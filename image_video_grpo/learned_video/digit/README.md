@@ -4,7 +4,7 @@ The fix for the class collapse found in the [first learned-video study](../RESUL
 is conditioned on a **(direction, digit)** prompt, and the GRPO reward pays for the *requested*
 digit, so collapsing onto one easy class lowers the reward.
 
-Write-up: [GRPO on diffusion models](../../../docs/grpo/index.html), section 1.
+Write-up: [RL for diffusion models](../../../docs/index.html), Part 2, video section.
 
 ## Result (320 identical-noise test clips)
 

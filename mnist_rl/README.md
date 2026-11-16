@@ -9,7 +9,7 @@ independent *gold* model.
 Everything runs on a laptop (Apple M3, MPS backend). The base model trains in about an hour, and
 each RL run takes 5–15 minutes.
 
-Write-up: [published page](../docs/reward-hacking/index.html) · [markdown version](POST.md) · figures in [`figures/`](figures)
+Write-up: [RL for diffusion models](../docs/index.html), Part 1 · [markdown version](POST.md) · figures in [`figures/`](figures)
 
 ## Setup
 

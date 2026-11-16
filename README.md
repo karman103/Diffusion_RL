@@ -5,10 +5,8 @@ a video model, RFdiffusion3 for protein backbones, a CIFAR-10 image DDPM and an 
 Everything runs on a 16 GB Apple M3 MacBook. Every result is measured on fresh seeds and scored by
 an evaluator that the training reward never saw.
 
-**Blog:** the [`docs/`](docs) folder is a GitHub Pages site with two posts:
-
-- [What GRPO does to diffusion models](docs/grpo/index.html)
-- [When the reward model lies](docs/reward-hacking/index.html)
+**Blog:** [RL for diffusion models: what works, and what gets hacked](https://karman103.github.io/Diffusion_RL/)
+(source in [`docs/`](docs), served by GitHub Pages). Part 1 compares RL algorithms on MNIST; Part 2 runs GRPO on video, RFdiffusion3 and CIFAR-10.
 
 ## Results at a glance
 
@@ -26,7 +24,7 @@ an evaluator that the training reward never saw.
 ## Layout
 
 ```
-docs/                 GitHub Pages site (blog posts + figures)
+docs/                 GitHub Pages site (the blog post + figures)
 rldiff/               shared library: DDIM-as-MDP sampler, models, rewards (used by several studies)
 mnist_rl/             MNIST DDPM study: DDPO / RWR / DRaFT / best-of-N vs a weak proxy reward
 image_video_grpo/     CIFAR-10 DDPM GRPO, plus the learned video model
