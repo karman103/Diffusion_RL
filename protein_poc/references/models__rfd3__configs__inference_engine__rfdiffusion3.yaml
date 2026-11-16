@@ -1,0 +1,101 @@
+# @package _global_
+defaults:
+  - base
+  - _self_
+
+_target_: rfd3.engine.RFD3InferenceEngine
+
+out_dir: ???
+inputs: ???  # null, json, pdb or 
+ckpt_path: rfd3
+json_keys_subset: null
+skip_existing: True
+# fast: corrected pooling and the acceleration settings below.
+# legacy: original index_reduce pooling, eager serial examples, Torch kernels,
+# vanilla attention, no graphs/workers. This preset overrides acceleration knobs.
+inference_mode: fast
+
+#########################################################
+# Design spec args: overrides args from input json
+specification: {}
+#########################################################
+
+# Diffusion args
+diffusion_batch_size: 8
+# Independent examples per device; eager B=1 retains the legacy inference path.
+inference_batch_size: 1
+# CPU preprocessing workers for padded inference; 0 runs synchronously.
+inference_num_workers: 2
+# Post-transform atom/token bucket capacities (multiples of these values).
+atom_padding_multiple: 128
+token_padding_multiple: 16
+# Reuse compiled graphs across nearby lengths by padding to preset buckets.
+# Use "batch_max" for the actual maximum atom/token/slot dimensions per batch.
+compile_shape_policy: buckets
+# Used only with compile_shape_policy=buckets: smallest ceiling that fits.
+compile_atom_buckets: [256, 512, 768, 1024, 1536, 2048, 3072, 4096, 6144, 8192, 12288, 16384, 24576, 32768]
+compile_token_buckets: [128, 256, 384, 512, 768, 1024, 1536, 2048, 3072, 4096]
+compile_slot_buckets: [1, 4, 8, 14, 24, 32, 64, 128]
+n_batches: 1
+
+# Inference sampler args | set to None to use the default in the checkpoint's config
+inference_sampler:
+  kind: "default" # "default" or "symmetry" to choose the sampler
+  # Classifier-free guidance args:
+  cfg_features:  # set to 0 in the reference CFG step
+    - active_donor
+    - active_acceptor
+    - ref_atomwise_rasa
+
+  use_classifier_free_guidance: False
+  cfg_t_max: null # max t to apply cfg guidance
+  cfg_scale: 1.5
+  center_option: "all"  # Options are ["all", "motif", "diffuse"]
+  s_trans: 1.0  # Translational noise scale for augmentation during inference
+  inference_noise_scaling_factor: 1.0
+  allow_realignment: False
+
+  # Recycling
+  n_recycle: null  # Override model default n_recycle for inference (default from checkpoint: 2)
+
+  # Diffusion args:
+  num_timesteps: 200
+  step_scale: 1.5  # 1.5 - 1.0   |   Higher values lead to less diverse, more designable, structures
+  noise_scale: 1.003
+  p: 7
+  gamma_0: 0.6  # Previously 1.0  | 0.0 for ODE sampling
+  gamma_min: 1.0
+  s_jitter_origin: 0.0  # Sigma of gaussian noise to jitter the motif offset (equivalent to ORI token Jitter)
+
+# Saving args
+cleanup_guideposts: True
+cleanup_virtual_atoms: True
+read_sequence_from_sequence_head: True
+output_full_json: True
+
+# Prefix to add to all output samples 
+# Default: None      -> f'{jsonfilebasename}_{jsonkey}_{batch}_{model}'
+# Otherwise: string  -> f'{string}{jsonkey}_{batch}_{model}'
+# e.g. Empty string  -> f'{jsonkey}_{batch}_{model}'
+# e.g. Chunk string  -> f'{chunkprefix_}{jsonkey}_{batch}_{model}' (pipelines usage)
+global_prefix: null
+dump_prediction_metadata_json: True
+dump_trajectories: False
+align_trajectory_structures: False
+prevalidate_inputs: False
+low_memory_mode: False # False for standard mode, True for memory efficient tokenization mode
+
+# Compile the padded denoiser. Speed and amortization depend on backend/workload.
+compile_model: True
+# Replay compiled CUDA denoiser graphs; ignored on CPU/MPS or when compile_model=false.
+compile_cuda_graphs: True
+# Persistent generated code; explicit config overrides this env default.
+# A non-default TORCHINDUCTOR_CACHE_DIR remains the framework-level override.
+compile_cache_dir: ${oc.env:RFD3_COMPILE_CACHE_DIR,null}
+
+# Dense token/pairformer attention; sparse atom attention is unchanged.
+dense_attention_backend: vanilla
+
+# Optional fused CUDA inference kernels and rollout-local invariant projections.
+inference_kernel_backend: auto  # auto | torch | triton | triton-transition
+inference_cuda_graph: false  # Replay token/atom stacks; graphs live for one rollout.

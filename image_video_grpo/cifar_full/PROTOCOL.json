@@ -1,0 +1,15 @@
+{
+  "purpose": "Fix for the weak-update CIFAR result in ../strong_reward: the 2,627-parameter output adapter barely moved the policy (reward 0.60 -> 0.65 while best-of-4 reaches 0.96, and proxy/gold agree on natural samples 0.957/0.950). Here the whole pretrained UNet is fine-tuned, as in the public Flow-GRPO/DDPO recipes, with the same proxy/gold classifier pair.",
+  "checkpoint": "google/ddpm-cifar10-32 (same pinned file as ../strong_reward)",
+  "sampler": "released 50-step leading-schedule fixed_large DDPM (stock-matched; pretrained = zero update)",
+  "classifiers": "../strong_reward/proxy.pt (reward) and ../strong_reward/gold.pt (evaluation only)",
+  "reward": "proxy frog probability averaged over identity and horizontal flip",
+  "trainable": "full UNet (35.7M); frozen copy as KL reference",
+  "grpo": {"seeds": [4101, 4102, 4103], "updates": 150, "group": 16, "train_timesteps_per_update": 10,
+           "lr": 1e-5, "clip": 0.2, "kl_beta": 0.01, "logprob": "mean over pixels (Flow-GRPO)", "grad_clip": 1.0},
+  "evaluation": {"n": 256, "seed": 770000, "paired_noise": true,
+                 "primary": "gold frog accuracy and probability, trained minus pretrained, paired bootstrap 95% CI",
+                 "secondary": ["proxy reward", "gold-feature Frechet vs 1000 real CIFAR test frogs", "pixel diversity"],
+                 "controls": ["pretrained", "best-of-4 from pretrained by proxy reward"]},
+  "rule": "final weights evaluated, no early stopping; stop a seed on non-finite loss"
+}

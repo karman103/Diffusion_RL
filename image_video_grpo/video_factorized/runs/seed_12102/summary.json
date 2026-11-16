@@ -1,0 +1,29 @@
+{
+  "zero": {
+    "reward": 0.5762450098991394,
+    "gold_confidence": 0.849392157047987,
+    "gold_class_consistency": 0.9583333333333334,
+    "centroid_motion_px": 2.778133769830068,
+    "centroid_acceleration_px": 0.07914681936623917,
+    "ink_mass": 0.12135841914763053,
+    "pixel_diversity": 40.98347473144531
+  },
+  "trained": {
+    "reward": 0.5776222882171472,
+    "gold_confidence": 0.9017054612437884,
+    "gold_class_consistency": 1.0,
+    "centroid_motion_px": 2.761293093363444,
+    "centroid_acceleration_px": 0.0769242466679619,
+    "ink_mass": 0.12244737179328997,
+    "pixel_diversity": 40.95998001098633
+  },
+  "best_of_four": {
+    "reward": 0.6705495292941729,
+    "gold_confidence": 0.9531927704811096,
+    "gold_class_consistency": 1.0,
+    "centroid_motion_px": 2.78492663304011,
+    "centroid_acceleration_px": 0.06541816064175994,
+    "ink_mass": 0.14065757704277834,
+    "pixel_diversity": 43.75276565551758
+  }
+}

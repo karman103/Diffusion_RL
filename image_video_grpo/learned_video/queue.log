@@ -1,0 +1,8 @@
+{'tag': 'gate', 'sampler_steps': 40, 'legible_fraction': 0.625, 'median_displacement_px': 10.479771614074707, 'direction_ok_fraction': 1.0, 'success_fraction': 0.625, 'median_angle_err_deg': 0.5542608499526978, 'digit_class_entropy': 0.8780408501625061, 'pass': True}
+pretrained {'legible': 0.51953125, 'eval_conf': 0.7081950902938843, 'consistency': 0.9326171875, 'angle_err': 0.671396017074585, 'speed_err': 0.14628596603870392, 'direction_ok': 1.0, 'success': 0.51953125, 'train_reward': 0.6144298315048218}
+cfg2 {'legible': 0.57421875, 'eval_conf': 0.7469365000724792, 'consistency': 0.9326171875, 'angle_err': 0.32748517394065857, 'speed_err': 0.17501886188983917, 'direction_ok': 1.0, 'success': 0.57421875, 'train_reward': 0.6934732794761658}
+best4 {'legible': 0.6171875, 'eval_conf': 0.7699005603790283, 'consistency': 0.94482421875, 'angle_err': 0.6754453778266907, 'speed_err': 0.14970535039901733, 'direction_ok': 1.0, 'success': 0.6171875, 'train_reward': 0.9284657835960388}
+grpo_2101 {'legible': 0.625, 'eval_conf': 0.7637035846710205, 'consistency': 0.92578125, 'angle_err': 0.7579339742660522, 'speed_err': 0.17431263625621796, 'direction_ok': 1.0, 'success': 0.625, 'train_reward': 0.9196490049362183}
+grpo_2102 {'legible': 0.68359375, 'eval_conf': 0.7882510423660278, 'consistency': 0.9462890625, 'angle_err': 0.7243368625640869, 'speed_err': 0.18126820027828217, 'direction_ok': 1.0, 'success': 0.68359375, 'train_reward': 0.9359857439994812}
+grpo_2103 {'legible': 0.6015625, 'eval_conf': 0.751781702041626, 'consistency': 0.94873046875, 'angle_err': 0.6306074857711792, 'speed_err': 0.19936364889144897, 'direction_ok': 1.0, 'success': 0.6015625, 'train_reward': 0.0957326591014862}
+QUEUE DONE

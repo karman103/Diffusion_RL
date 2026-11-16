@@ -1,0 +1,17 @@
+{'correct_digit_fraction': 0.36250001192092896, 'direction_ok_fraction': 1.0, 'success_fraction': 0.36250001192092896, 'median_displacement_px': 10.507624626159668, 'pass': False}
+GATE FAILED - stopping
+{'correct_digit_fraction': 0.4749999940395355, 'direction_ok_fraction': 1.0, 'success_fraction': 0.4749999940395355, 'median_displacement_px': 10.506930351257324, 'pass': True}
+pretrained {'success': 0.4906, 'correct_digit': 0.4906, 'direction_ok': 1.0, 'legible': 0.675, 'train_reward': 0.7753}
+cfg2 {'success': 0.8562, 'correct_digit': 0.8562, 'direction_ok': 1.0, 'legible': 0.9125, 'train_reward': 0.9164}
+best4 {'success': 0.8281, 'correct_digit': 0.8281, 'direction_ok': 1.0, 'legible': 0.8594, 'train_reward': 0.9249}
+grpo_3101 {'success': 0.7594, 'correct_digit': 0.7594, 'direction_ok': 1.0, 'legible': 0.8594, 'train_reward': 0.8867}
+grpo_3102 {'success': 0.8406, 'correct_digit': 0.8406, 'direction_ok': 1.0, 'legible': 0.9031, 'train_reward': 0.912}
+grpo_3103 {'success': 0.8438, 'correct_digit': 0.8438, 'direction_ok': 1.0, 'legible': 0.8844, 'train_reward': 0.9261}
+best4 {'success': 0.828, 'correct_digit': 0.828, 'direction_ok': 1.0, 'legible': 0.859, 'eval_conf': 0.897, 'train_reward': 0.925, 'min_digit_success': 0.562, 'within_prompt_pixel_diversity': 0.434} (0.3375000059604645, 0.28125, 0.39375001192092896)
+cfg2 {'success': 0.856, 'correct_digit': 0.856, 'direction_ok': 1.0, 'legible': 0.913, 'eval_conf': 0.933, 'train_reward': 0.916, 'min_digit_success': 0.75, 'within_prompt_pixel_diversity': 0.489} (0.3656249940395355, 0.30937498807907104, 0.421875)
+grpo_3101 {'success': 0.759, 'correct_digit': 0.759, 'direction_ok': 1.0, 'legible': 0.859, 'eval_conf': 0.901, 'train_reward': 0.887, 'min_digit_success': 0.531, 'within_prompt_pixel_diversity': 0.413} (0.26875001192092896, 0.21562500298023224, 0.3218750059604645)
+grpo_3102 {'success': 0.841, 'correct_digit': 0.841, 'direction_ok': 1.0, 'legible': 0.903, 'eval_conf': 0.929, 'train_reward': 0.912, 'min_digit_success': 0.688, 'within_prompt_pixel_diversity': 0.403} (0.3499999940395355, 0.296875, 0.40625)
+grpo_3103 {'success': 0.844, 'correct_digit': 0.844, 'direction_ok': 1.0, 'legible': 0.884, 'eval_conf': 0.921, 'train_reward': 0.926, 'min_digit_success': 0.719, 'within_prompt_pixel_diversity': 0.37} (0.3531250059604645, 0.296875, 0.40937501192092896)
+pretrained {'success': 0.491, 'correct_digit': 0.491, 'direction_ok': 1.0, 'legible': 0.675, 'eval_conf': 0.794, 'train_reward': 0.775, 'min_digit_success': 0.344, 'within_prompt_pixel_diversity': 0.465} None
+grpo_pooled {} (0.3239583373069763, 0.2770833373069763, 0.37291669845581055)
+QUEUE DONE

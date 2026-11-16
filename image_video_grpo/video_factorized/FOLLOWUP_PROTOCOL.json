@@ -1,0 +1,17 @@
+{
+  "status": "prospective_exploratory_followup_after_two_null_initial_runs",
+  "reason": "Initial 120-update LR=1e-5 runs changed conditional action log ratios by under 0.01 and did not improve independent digit validity.",
+  "training_seeds": [12101, 12102],
+  "updates": 400,
+  "group_size": 4,
+  "selected_steps": 3,
+  "inner_epochs": 2,
+  "learning_rate": 0.0002,
+  "clip_epsilon": 0.2,
+  "reference_kl_weight": 0.0001,
+  "grad_norm_clip": 1.0,
+  "evaluation_seeds": [1200001, 1200002, 1200003, 1200004, 1200005, 1200006, 1200007, 1200008, 1200009, 1200010, 1200011, 1200012, 1200013, 1200014, 1200015, 1200016, 1200017, 1200018, 1200019, 1200020, 1200021, 1200022, 1200023, 1200024],
+  "primary_effect": "paired trained-minus-zero proxy reward and independent gold digit confidence/consistency",
+  "stop_rule": "Nonfinite sample/loss/gradient or clipping >50% for five consecutive updates",
+  "interpretation": "Exploratory hyperparameter follow-up; assess on fresh fixed seeds and report both initial and follow-up results. Motion remains procedural."
+}

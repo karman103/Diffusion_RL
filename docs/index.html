@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>RL for Diffusion Models</title>
+<meta name="description" content="Research notes on reinforcement-learning fine-tuning of diffusion models, run on one laptop.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+<nav class="sitenav"><a href="./" aria-current="page">All posts</a><a href="grpo/">GRPO on diffusion</a><a href="reward-hacking/">Reward hacking</a></nav>
+<main>
+<header class="col">
+  <div class="eyebrow">Research notes</div>
+  <h1>RL fine-tuning of diffusion models</h1>
+  <p class="dek">Controlled experiments on what reinforcement learning actually does to diffusion models, in settings small enough to run on a 16 GB laptop and checked by evaluators the reward never saw.</p>
+</header>
+<section class="col">
+  <ul class="posts">
+    <li>
+      <a href="grpo/">What GRPO does to diffusion models</a>
+      <p>GRPO on a video model, RFdiffusion3 and a CIFAR-10 DDPM. +32 points on video when the reward pays for exactly the target; no movement on proteins; reward hacking on images.</p>
+      <div class="meta">Nov 2026 · video · proteins · images</div>
+    </li>
+    <li>
+      <a href="reward-hacking/">When the reward model lies</a>
+      <p>DDPO, reward-weighted regression, DRaFT and best-of-N against a weak proxy reward, with a gold evaluator that measures reward hacking directly.</p>
+      <div class="meta">Nov 2026 · MNIST DDPM · 20+ RL runs</div>
+    </li>
+  </ul>
+</section>
+</main>
+</body>
+</html>

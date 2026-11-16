@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>GRPO on Diffusion Models</title>
+<meta name="description" content="GRPO applied to a video diffusion model, RFdiffusion3 and a CIFAR-10 DDPM on one 16 GB laptop, scored by independent evaluators on fresh seeds.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<link rel="stylesheet" href="../assets/site.css">
+</head>
+<body>
+<nav class="sitenav"><a href="../">All posts</a><a href="./" aria-current="page">GRPO on diffusion</a><a href="../reward-hacking/">Reward hacking</a></nav>
+
+<main>
+<header class="col">
+  <div class="eyebrow">Research note · RL fine-tuning of diffusion models</div>
+  <h1>What GRPO does to diffusion models</h1>
+  <p class="dek">Group-relative policy optimisation applied to a video model, RFdiffusion3 and a CIFAR-10 image model on one 16 GB laptop. Every number is measured on fresh seeds by an evaluator that the training reward never saw.</p>
+  <div class="byline">Nov 2026 · Apple M3, 16 GB · video, proteins, images</div>
+</header>
+
+<section class="col">
+  <div class="versus three" role="group" aria-label="Headline results">
+    <div class="ok">
+      <div class="label">Video</div>
+      <div class="big">+32.4</div>
+      <div class="sub">points of success, 49.1% → 81.5%<br>3 seeds, 95% CI +27.7 to +37.3</div>
+    </div>
+    <div>
+      <div class="label">Proteins (RFdiffusion3)</div>
+      <div class="big">≈ 0</div>
+      <div class="sub">reward change on fresh designs<br>9 runs, every CI spans zero</div>
+    </div>
+    <div class="bad">
+      <div class="label">Images (CIFAR-10)</div>
+      <div class="big">6×</div>
+      <div class="sub">more gain on the training reward<br>than on an independent classifier</div>
+    </div>
+  </div>
+  <p><b>The short version.</b> GRPO is a strong optimiser for diffusion models, and what it delivers is set almost entirely by the reward. With a reward that pays for exactly what you want, it improved a video model by 32 points and lifted every class it was asked to draw. With a reward that has a shortcut, it finds the shortcut. With a reward the base model already satisfies, it has nothing to do.</p>
+</section>
+
+<section class="col">
+  <h2>The method in one paragraph</h2>
+  <p>A stochastic sampler (DDIM with η = 1, or DDPM) turns each denoising step into a Gaussian action with an exact log-probability. GRPO samples a group of outputs for the same prompt, scores them, and normalises each reward against its own group. It then takes clipped policy-gradient steps on the per-step log-probabilities, with a KL penalty that anchors the policy to the pretrained model. These are densities of the sampler's transitions, not likelihoods of the final sample, and that is all a policy gradient needs.</p>
+  <div class="eq">A_i = (r_i − mean(r_group)) / std(r_group)
+L = − E[ min(ρ·A, clip(ρ, 1±ε)·A) ] + β·KL(π_θ ‖ π_ref),   ρ = π_θ(x_{k+1}|x_k) / π_old(x_{k+1}|x_k)</div>
+  <p>Each experiment holds out an independent evaluator: a different classifier trained on disjoint data, or a separate geometric measure. Every comparison is paired. Each method starts from identical noise on the same test prompts, so differences are clip-for-clip.</p>
+
+  <h2>1. Video: +32 points, and every digit improves</h2>
+  <h3>The model</h3>
+  <p>I trained a video diffusion model from scratch: a 1.7M-parameter factorised space-time UNet, with per-frame 2D convolutions and per-pixel temporal convolutions. The data are freshly generated Moving-MNIST clips of 8 frames at 32×32. Each clip is one handwritten digit sliding in one of eight directions. The model is conditioned on two things, a <b>direction</b> and a <b>digit</b>, so a prompt reads "draw a 3 moving down-left". It trained for 12,000 steps, about three hours on the laptop, with classifier-free-guidance dropout on both labels.</p>
+  <p>Before any RL, the model had to pass a predeclared gate: draw the requested digit at least 40% of the time. At 8,000 steps it reached 36%, so I continued the same run to 12,000 steps and repeated the identical gate. It then reached 47.5%, and its clips moved in the requested direction 100% of the time. Both checks are recorded in the study's protocol.</p>
+
+  <h3>Why the model is told which digit to draw</h3>
+  <p>A first version of this experiment conditioned only on direction. The reward paid for correct motion and for "a legible digit". GRPO raised the independent success rate by 11.7 points, but it did so by drawing many more 8s: 109 to 150 of 256 test clips, against 64 before training. A loopy, high-contrast 8 is the easiest shape to call legible. Take the 8s out and the gain fell to 0–5 points.</p>
+  <p>The fix was to change what the reward pays for. The model now receives the digit as part of the prompt, and the reward only pays for <i>that</i> digit. Drawing an 8 when asked for a 3 now lowers the score.</p>
+
+  <h3>The setup</h3>
+  <dl class="setup">
+    <dt>Policy</dt><dd>The model's own DDIM sampler, η = 1, 40 steps. Every step is a Gaussian action with an exact log-probability.</dd>
+    <dt>Reward</dt><dd>0.4 × a small CNN's probability of the <i>requested</i> digit, plus 0.6 × motion score (centroid direction × speed match). Multiplied by an ink guard that zeroes blank or saturated clips.</dd>
+    <dt>Evaluator</dt><dd>A second, different CNN trained on the other half of MNIST, plus a phase-correlation motion estimate. Neither shares code or data with the reward.</dd>
+    <dt>Success</dt><dd>The evaluator reads a legible digit, it is the requested digit, and it moves in the requested direction.</dd>
+    <dt>Training</dt><dd>150 GRPO updates per seed, 4 prompts × 8 samples each, clipped ratios, KL to the pretrained model. Three seeds, about one hour each.</dd>
+    <dt>Test</dt><dd>320 clips: 4 for each of the 80 direction × digit prompts, with identical starting noise for every method.</dd>
+  </dl>
+
+  <h3>Results</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Method</th><th>Success</th><th>Δ vs pretrained (95% CI)</th><th>Worst digit</th></tr></thead>
+    <tbody>
+      <tr><td>Pretrained</td><td>49.1%</td><td>n/a</td><td>34%</td></tr>
+      <tr class="hl-ok"><td>GRPO, seed 1</td><td>75.9%</td><td class="ok">+26.9 (+21.6, +32.2)</td><td>53%</td></tr>
+      <tr class="hl-ok"><td>GRPO, seed 2</td><td>84.1%</td><td class="ok">+35.0 (+29.7, +40.6)</td><td>69%</td></tr>
+      <tr class="hl-ok"><td>GRPO, seed 3</td><td>84.4%</td><td class="ok">+35.3 (+29.7, +40.9)</td><td>72%</td></tr>
+      <tr class="hl-ok sep"><td><b>GRPO, 3 seeds pooled</b></td><td><b>81.5%</b></td><td class="ok"><b>+32.4 (+27.7, +37.3)</b></td><td>n/a</td></tr>
+      <tr><td>Best-of-4 sampling (4× cost)</td><td>82.8%</td><td>+33.8 (+28.1, +39.4)</td><td>56%</td></tr>
+      <tr><td>Guidance, w = 2 (2× cost)</td><td>85.6%</td><td>+36.6 (+30.9, +42.2)</td><td>75%</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>All three seeds improved by 27 to 35 points.</b> GRPO matches best-of-4 sampling while sampling at a quarter of the cost. Two of the three seeds land within two points of classifier-free guidance, which needs two network evaluations per step. Motion stayed perfect: 100% of clips moved the requested way before and after.</p>
+</section>
+
+<figure>
+  <div class="plate"><img src="figures/video_digit_paired_effects.png" alt="Three panels of paired changes vs the pretrained model with 95% confidence intervals: success, legible requested digit, and direction. All GRPO seeds sit between +0.27 and +0.35 on the first two; direction stays at zero change." width="1560" height="442" loading="lazy"></div>
+  <figcaption><b>Paired change vs the pretrained model on 320 identical-noise test clips</b>, with bootstrap 95% CIs. Direction was already perfect, so all of the gain is in drawing the right digit.</figcaption>
+</figure>
+
+<section class="col">
+  <h3>No shortcut this time</h3>
+  <p>Every requested digit improved. The weakest digit went from 34% to between 53% and 72%, depending on the seed. The pretrained model also had a bias of its own: asked for 32 of each digit, it drew 68 clips the evaluator read as 8s. After GRPO that count was 28, 38 and 31, close to the requested 32. GRPO removed the 8 bias instead of exploiting it.</p>
+</section>
+
+<figure class="narrow">
+  <div class="plate"><img src="figures/video_digit_per_digit.png" alt="Line chart of success rate by requested digit 0 to 9. The pretrained model sits between 0.34 and 0.66; all three GRPO seeds sit between 0.53 and 1.0 for every digit." width="910" height="390" loading="lazy"></div>
+  <figcaption><b>Success by requested digit.</b> GRPO raises every digit, not just the easy ones. Best-of-4 is shown for reference.</figcaption>
+</figure>
+
+<figure class="narrow">
+  <div class="plate"><img src="figures/video_digit_comparison.png" alt="Ten rows, one per digit 0 to 9, each showing four frames from the pretrained model and four from the GRPO model, from the same starting noise. GRPO clips have cleaner, sharper strokes; the pretrained 0 and 2 are blobs." width="1080" height="1410" loading="lazy"></div>
+  <figcaption><b>Same noise, before and after GRPO.</b> One test clip per digit, picked by a fixed rule rather than by outcome, showing frames 1, 3, 5 and 8. The coloured bar is the independent evaluator's verdict on the whole clip. GRPO turns the pretrained blobs into clean digits; its 4 is a miss.</figcaption>
+</figure>
+
+<section class="col">
+  <h3>What it cost</h3>
+  <p>Variety between clips for the same prompt fell from 0.47 to between 0.37 and 0.41 (mean pixel distance between clips for the same prompt), as is usual for KL-regularised RL on generators. Smoothed training reward climbed from 0.70–0.76 to 0.85–0.90 in every seed. One seed had a short dip near update 135 that recovered by update 150.</p>
+</section>
+
+<figure>
+  <div class="plate"><img src="figures/video_digit_training.png" alt="Training curves for three GRPO seeds: smoothed reward rising from about 0.70-0.76 to 0.85-0.91, KL to the reference staying below 0.02, and clip fraction at zero." width="1560" height="390" loading="lazy"></div>
+  <figcaption><b>Training.</b> Smoothed group reward, KL to the pretrained model, and PPO clip fraction. The ratio never reached the clip, so the KL anchor does the regularising.</figcaption>
+</figure>
+
+<section class="col">
+  <div class="note"><span class="eyebrow">Takeaway</span>Pay for exactly what you want, and GRPO delivers it. The same algorithm and the same model family went from "learned to draw 8s" to "+32 points on every digit". The only change was making the shortcut cost reward.</div>
+
+  <h2>2. Proteins: RFdiffusion3 doesn't move</h2>
+  <p>I fine-tuned the real, pinned RFdiffusion3 checkpoint (168M parameters, kept frozen) through a small low-rank adapter on its final coordinate-update layer. The policy was a stochastic version of RFD3's own sampler with explicit Gaussian actions and exact per-step densities. The reward favoured compact, well-bonded, clash-free backbones: −Rg/10 − 2·bond MAE − 10·clash fraction.</p>
+  <p><b>First study.</b> Three GRPO seeds plus three controls (random advantages, a single-expert adapter, and late-noise-only actions), tested on 288 fresh backbones:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Design length</th><th>Fresh backbones</th><th>Mean reward change (GRPO − untrained)</th></tr></thead>
+    <tbody>
+      <tr><td>24 residues</td><td>72</td><td>−0.00098</td></tr>
+      <tr><td>32 residues</td><td>144</td><td>−0.00063</td></tr>
+      <tr><td>40 residues</td><td>72</td><td>−0.00034</td></tr>
+    </tbody>
+  </table></div>
+  <p><b>Second attempt.</b> In the first study, actions moved only the Cα atoms, and RFD3's frozen denoiser pulled the rest of each residue back into place, undoing the action. So I let actions move every free atom, raised the learning rate from 3e-4 to 1e-3, concentrated actions on the low-noise range σ ∈ [0, 4] (the first study used [0.5, 32]), and trained for 60 epochs. Each seed was tested on 16 fresh paired designs:</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Seed</th><th>Actions on</th><th>Reward change</th><th>95% CI</th></tr></thead>
+    <tbody>
+      <tr><td>11</td><td>Cα only, lr 3e-3</td><td>+0.0005</td><td>−0.0001, +0.0014</td></tr>
+      <tr><td>21</td><td>all atoms, lr 1e-3</td><td>+0.0006</td><td>−0.0001, +0.0013</td></tr>
+      <tr><td>22</td><td>all atoms, lr 1e-3</td><td>−0.0000</td><td>−0.0008, +0.0006</td></tr>
+    </tbody>
+  </table></div>
+  <p>Every backbone in every run passed the geometry checks, and no change was distinguishable from zero. A separate benchmark, refilling an 8-residue gap in crambin (PDB 1CRN), gave the same answer: a mean paired change of 0.00000005 in reward and 0.00002 Å in RMSD to the native structure.</p>
+</section>
+
+<figure>
+  <div class="plate"><img src="figures/rfd3_paired_deltas.png" alt="Paired reward deltas for RFdiffusion3 at 24, 32 and 40 residues, all centred on zero." width="1800" height="810" loading="lazy"></div>
+  <figcaption><b>RFdiffusion3, first study.</b> Paired reward changes on 288 fresh backbones are centred on zero at every design length.</figcaption>
+</figure>
+
+<section class="col">
+  <div class="note"><span class="eyebrow">Takeaway</span>RFdiffusion3's outputs barely respond to small, KL-anchored updates on its last layer. The base model already scores well on a geometric reward, so the group has almost no reward variance to learn from. Moving it needs a larger trainable footprint, or a reward the base model doesn't already satisfy, such as binding or a designability score from a folding model.</div>
+
+  <h2>3. Images: the reward rises, the independent score barely moves</h2>
+  <p>On Google's pretrained CIFAR-10 DDPM, I used GRPO to make generated images more frog-like. The reward was one CIFAR classifier's frog probability. The independent judge was a second classifier trained on disjoint CIFAR data.</p>
+  <div class="tbl"><table>
+    <thead><tr><th>Measure</th><th>Change after GRPO (3 seeds)</th></tr></thead>
+    <tbody>
+      <tr><td>Training classifier's frog probability</td><td class="ok">+0.056</td></tr>
+      <tr><td>Independent classifier's frog probability</td><td class="bad">+0.009</td></tr>
+    </tbody>
+  </table></div>
+  <p>GRPO raised the reward six times more than the independent score. It learned what <i>that particular classifier</i> responds to, not what makes an image look more like a frog. With a weaker reward classifier (46% accurate), both scores stayed flat.</p>
+</section>
+
+<figure>
+  <div class="plate"><img src="figures/cifar_paired_effects.png" alt="Paired effects on CIFAR-10: the training classifier's frog probability rises clearly, the independent classifier's barely changes." width="1620" height="630" loading="lazy"></div>
+  <figcaption><b>CIFAR-10.</b> The reward model sets the ceiling. Gains transfer only as far as the reward agrees with independent judgement.</figcaption>
+</figure>
+
+<section class="col">
+  <h2>4. A real text-to-video model fits, barely</h2>
+  <p>As a feasibility check, I ran GRPO on ZeroScope, a pretrained text-to-video diffusion model. The U-Net stayed frozen; a small output residual was trained, with eight frames and the prompt "A single red ball rolls from left to right across a plain floor." One optimiser update fit in 16 GB. On two fresh paired seeds the reward change was +0.040 and −0.011. The model rendered several red spheres instead of one ball. This shows the machinery runs end to end on a laptop. It is not a result, and scaling it up needs more memory than this machine has.</p>
+
+  <h2>What ties it together</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>Domain</th><th class="l">Reward went up?</th><th class="l">Independent measure went up?</th><th class="l">Why</th></tr></thead>
+    <tbody>
+      <tr class="hl-ok"><td>Video, digit-conditioned</td><td class="l">Yes, 0.78 → 0.91</td><td class="l ok">Yes, +32.4 points</td><td class="l">Reward pays for exactly the target</td></tr>
+      <tr class="hl-bad"><td>Video, first version</td><td class="l">Yes, 0.61 → 0.92</td><td class="l">+11.7, mostly 8s</td><td class="l">Reward had a shortcut</td></tr>
+      <tr><td>Proteins (RFdiffusion3)</td><td class="l">No</td><td class="l">No</td><td class="l">Base model already satisfies the reward</td></tr>
+      <tr class="hl-bad"><td>Images (CIFAR-10 DDPM)</td><td class="l">Yes, +0.056</td><td class="l bad">Barely, +0.009</td><td class="l">Exploited the reward classifier</td></tr>
+    </tbody>
+  </table></div>
+  <p>The same machinery ran in every domain: a stochastic sampler, group-relative advantages, clipped ratios and a KL anchor. It worked in all of them as an optimiser. Whether that optimisation became <i>improvement</i> was decided by the reward.</p>
+  <ol class="find">
+    <li><b>Give it a reward with a shortcut, and it finds the shortcut.</b></li>
+    <li><b>Give it a reward the base model already satisfies, and it has nothing to do.</b></li>
+    <li><b>Give it a reward that pays for exactly the target, and it delivers: +32 points, every class improved, at 1× sampling cost.</b></li>
+  </ol>
+
+  <footer>
+    All code, protocols, per-sample metrics and analysis scripts are in the repository: <code>image_video_grpo/learned_video/digit/</code> (video), <code>rfd3_grpo/</code> (proteins), <code>image_video_grpo/</code> (CIFAR-10) and <code>text_video_grpo/</code> (ZeroScope). Each study fixed its protocol and gates before training, and every amendment is recorded in its <code>PROTOCOL.json</code>. Compute: one Apple M3 MacBook with 16 GB of memory. No cloud.
+  </footer>
+</section>
+</main>
+</body>
+</html>

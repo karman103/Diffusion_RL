@@ -1,0 +1,26 @@
+{
+  "scope": "single synthetic-noise UNet forward/backward, no text encoder or video decoding",
+  "model": "cerspense/zeroscope_v2_576w",
+  "revision": "6963642a64dbefa93663d1ecebb4ceda2d9ecb28",
+  "weight_dtype": "float32",
+  "adapter_dtype": "float32",
+  "latent_shape": [
+    1,
+    4,
+    8,
+    24,
+    40
+  ],
+  "cross_attention_shape": [
+    1,
+    77,
+    1024
+  ],
+  "mps_memory_fraction": 0.95,
+  "trainable_parameters": 830720,
+  "frozen_parameters": 1411233860,
+  "status": "failed",
+  "error": "RuntimeError: MPS backend out of memory (MPS allocated: 10.51 GiB, other allocations: 88.44 MiB, max allowed: 10.13 GiB). Tried to allocate 9.38 MiB on private pool. Use PYTORCH_MPS_HIGH_WATERMARK_RATIO=0.0 to disable upper limit for memory allocations (may cause system failure).",
+  "elapsed_seconds": 13.84322808298748,
+  "mps_driver_allocated_bytes": 11375411200
+}

@@ -1,0 +1,33 @@
+# Environments
+.venv/
+.venv-*/
+**/.venv/
+__pycache__/
+*.pyc
+.claude/
+
+# Datasets and vendored upstream repos (see README for how to fetch them)
+/data/
+mnist_rl/data/
+image_video_grpo/data/
+third_party/
+# Unlicensed upstream source (kuterd/toy_video_dit @ d5c2ae0); fetch it yourself, see README
+image_video_grpo/vendor/
+
+# Model weights and checkpoints
+checkpoints/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+
+# Runtime state
+*.lock
+*.pid
+queue_process.json
+text_video_grpo/NEURAL_SHADING_RELEASE*
+.DS_Store
+
+# Raw frame dumps (GIFs, PNGs and SHA-256 hashes of these are committed)
+frames_raw.npy

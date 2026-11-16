@@ -1,0 +1,5 @@
+{
+  "stage": "first denoiser forward",
+  "reason": "low-memory initializer omits dense P_LL; wrapper now passes chunked context and P_LL=None like stock sampler",
+  "corrected_in_later_retry": true
+}

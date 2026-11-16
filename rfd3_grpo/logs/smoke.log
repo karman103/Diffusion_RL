@@ -1,0 +1,74 @@
+Checkpoint complete; launching actual pretrained RFD3 GRPO smoke
+/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/bin/python -u -m rfd3_grpo.train --out /Users/karman/Desktop/projects/protein_folding/rfd3_grpo/runs/smoke --steps 8 --length 16 --epochs 1 --group-size 2 --eval-n 2 --lr 0.0001 --check-stock-parity --evaluate-stock
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+22:07:15 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+22:07:18 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+Traceback (most recent call last):
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 129, in _call_target
+    result = _target_(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/model/RFD3.py", line 51, in __init__
+    self.token_initializer = TokenInitializer(  # type: ignore[arg-type]
+                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/model/layers/encoders.py", line 61, in __init__
+    self.atom_1d_embedder_1 = OneDFeatureEmbedder(atom_1d_features, c_s)
+                              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/model/layers/blocks.py", line 131, in __init__
+    feature: EmbeddingLayer(
+             ^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/model/layers/layer_utils.py", line 65, in __init__
+    super().__init__(
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/torch/nn/modules/linear.py", line 109, in __init__
+    torch.empty((out_features, in_features), **factory_kwargs)
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/lightning/fabric/utilities/init.py", line 54, in __torch_function__
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/torch/utils/_device.py", line 122, in __torch_function__
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: invalid low watermark ratio 1.4
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_grpo/train.py", line 175, in <module>
+    main()
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_grpo/train.py", line 57, in main
+    backend=RFD3Backend(a.checkpoint,a.steps,a.length,a.recycles,a.device,a.rank,a.noise_experts)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_grpo/backend.py", line 52, in __init__
+    self.engine.initialize()
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/engine.py", line 315, in initialize
+    cfg = super().initialize()
+          ^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/_core/inference_engines/base.py", line 142, in initialize
+    self._construct_trainer(cfg, checkpoint=checkpoint)
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/_core/inference_engines/base.py", line 191, in _construct_trainer
+    trainer.construct_model()
+  File "/Users/karman/Desktop/projects/protein_folding/third_party/foundry-mps/models/rfd3/src/rfd3/_core/trainers/fabric.py", line 292, in construct_model
+    model = hydra.utils.instantiate(
+            ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 251, in instantiate
+    return _instantiate_impl(config, args, kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 299, in _instantiate_impl
+    return instantiate_node(
+           ^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 420, in instantiate_node
+    return _call_target(_target_, partial, args, kwargs, full_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/hydra/_internal/instantiate/_instantiate2.py", line 138, in _call_target
+    raise InstantiationException(_with_full_key(msg, full_key)) from e
+hydra.errors.InstantiationException: Error in call to target 'rfd3.model.RFD3.RFD3':
+RuntimeError('invalid low watermark ratio 1.4')
+full_key: model.net

@@ -1,0 +1,32 @@
+{
+  "status": "prospective_factorized_toy_video_study_after_learned_video_gates_failed",
+  "scope": "Diffusion samples one canonical MNIST digit, then a deterministic four-frame affine renderer moves that digit. GRPO acts on the canonical-image DDPM transitions but scores completed videos. Motion is procedural, not learned video diffusion.",
+  "image_checkpoint": "runs/base/ckpt.pt EMA at 10000 steps",
+  "image_checkpoint_sha256": "0876236071bf1b407569a0df79d896981fa8e0e4414e00d3aab991285ba91839",
+  "video_frames": 4,
+  "video_size": 28,
+  "motion_condition": "vx,vy each ±2 pixels/frame, fixed by seed and shared within a group; bilinear affine translation with black padding",
+  "diffusion_policy": "20-step stochastic DDIM eta=1 on canonical 28x28 image, cosine 1000-step schedule, t_min=20, x0 clipped to [-1,1]",
+  "baseline_seeds": [1170001, 1170002, 1170003, 1170004, 1170005, 1170006, 1170007, 1170008],
+  "baseline_gate": "At least 6/8 finite clips with ink mass 0.03-0.35, independent digit confidence >=0.7, independent frame-class consistency >=0.75, centroid movement >=0.7 pixels and direction cosine >=0.5; inspect all filmstrip rows",
+  "grpo_if_gate_passes": {
+    "training_seeds": [11801, 11802],
+    "updates": 120,
+    "group_size": 4,
+    "selected_steps": 3,
+    "inner_epochs": 2,
+    "learning_rate": 0.00001,
+    "clip_epsilon": 0.2,
+    "reference_kl_weight": 0.0001,
+    "grad_norm_clip": 1.0,
+    "reward": "proxy digit confidence times same-class fraction plus bounded motion smoothness, with ink/motion guard; no gold model in training",
+    "evaluation_seeds": [1190001, 1190002, 1190003, 1190004, 1190005, 1190006, 1190007, 1190008,
+                         1190009, 1190010, 1190011, 1190012, 1190013, 1190014, 1190015, 1190016,
+                         1190017, 1190018, 1190019, 1190020, 1190021, 1190022, 1190023, 1190024],
+    "controls": ["zero adapter with same renderer and noise", "trained adapter", "best-of-four zero adapter at 4x cost"],
+    "primary_effect": "paired trained-minus-zero proxy reward and independent gold confidence/consistency",
+    "quality_checks": ["ink", "motion direction", "static fraction", "pixel diversity", "filmstrips"],
+    "stop_rule": "Stop on nonfinite output/loss/gradients or >50% clipping for five updates"
+  },
+  "claim_scope": "toy video generation with procedural motion; conditional action density is for canonical DDPM image, not a learned full-video transition or final-video likelihood"
+}

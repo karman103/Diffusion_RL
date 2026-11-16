@@ -1,0 +1,10 @@
+{
+  "status": "exploratory_diagnostic_declared_before_corrected_sampling",
+  "reason": "The released sampler traverses descending noise levels but uses (sigma - sigma_prev) * predicted_data_minus_noise / 10; this both reverses the denoising direction and scales it by one tenth",
+  "checkpoint": "kuterd/moving_mnist_diffusion@f7d6f376f55556f5eb520069736544651fe48295",
+  "checkpoint_sha256": "ec9f5e39099e9cbcf282cfef05f74f8565cf68c07a1aad9857b3cc0f444e8af7",
+  "sampler": "diagnostic corrected ODE Euler: x += (sigma_prev - sigma) * predicted_data_minus_noise; native 20 frames, 100 steps, uniform initial noise",
+  "paired_seeds": [630001, 630002, 630003, 630004],
+  "gate": "At least 3/4 clips have a detected digit with independent confidence >=0.5, ink mass 0.01-0.35, and mean frame delta >0.005; inspect all clips visually",
+  "claim_scope": "Modified deterministic sampler baseline only; does not establish a stochastic policy or video GRPO result"
+}

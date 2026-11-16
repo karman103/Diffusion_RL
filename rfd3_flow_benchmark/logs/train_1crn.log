@@ -1,0 +1,33 @@
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+21:52:15 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+21:52:16 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+21:52:19 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+21:52:19 WARNING atomworks.io: PDB files always build all assemblies; ignoring build_assembly=('1',)
+21:52:20 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for ARG at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ARG/ARG.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for ASN at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ASN/ASN.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for CYS at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/C/CYS/CYS.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for GLU at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/G/GLU/GLU.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for GLY at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/G/GLY/GLY.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for ILE at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/I/ILE/ILE.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for PHE at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/P/PHE/PHE.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for PRO at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/P/PRO/PRO.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for SER at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/S/SER/SER.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for THR at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/T/THR/THR.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for TYR at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/T/TYR/TYR.pt
+21:52:20 WARNING atomworks.ml: Cached data not found for VAL at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/V/VAL/VAL.pt
+HEAD CHECK {"last_recycle_head_equivalence_max_error": 9.059906005859375e-06}
+EVAL {"rg": 9.241621017456055, "bond_mae": 0.027538778260350227, "bond_ok": 1.0, "clash_fraction": 0.0, "geometry_pass": 1.0, "reward": -0.9792397618293762, "epoch": 0, "n": 4, "stock": true, "path_kl": 0.0, "seconds": 558.0225439071655, "training_trajectories": 0}
+EVAL {"rg": 9.228950500488281, "bond_mae": 0.026610516011714935, "bond_ok": 1.0, "clash_fraction": 0.0, "geometry_pass": 1.0, "reward": -0.9761161804199219, "epoch": 0, "n": 4, "stock": false, "path_kl": 0.0, "seconds": 1069.116400718689, "training_trajectories": 0}
+TRAIN {"epoch": 1, "group_rewards": [-0.97422194480896, -0.9700181484222412, -0.9740985035896301, -0.9851977229118347], "group_advantages": [0.2948600649833679, 1.0406066179275513, 0.31675833463668823, -1.6522250175476074], "transitions": 32, "clip_fraction": 0.0, "max_abs_logratio": 0.008535460568964481, "mean_conditional_kl": 2.2536182806009997e-06, "grad_norm": 0.7806044220924377, "adapter_delta_norm": 0.0012465607138703557, "adapter_band_delta_norm": [0.0007375784916803241, 0.0006674666074104607, 0.0007512522279284894], "policy_sigma_levels": [0.9044535160064697, 1.5958915948867798, 2.6984002590179443, 4.398274898529053, 6.944034576416016, 10.660825729370117, 15.966970443725586, 23.392715454101562], "frozen_base_gradient_count": 0, "seconds": 1603.8227787017822}
+TRAIN {"epoch": 2, "group_rewards": [-0.991352915763855, -0.9796567559242249, -0.9695638418197632, -0.9694141149520874], "group_advantages": [-1.5373680591583252, -0.23963508009910583, 0.8802117109298706, 0.8968244791030884], "transitions": 32, "clip_fraction": 0.0, "max_abs_logratio": 0.005831295624375343, "mean_conditional_kl": 1.7434941510074964e-05, "grad_norm": 0.3891471326351166, "adapter_delta_norm": 0.002041280067478443, "adapter_band_delta_norm": [0.0011829833965748549, 0.0010586591670289636, 0.0012832051143050194], "policy_sigma_levels": [0.9044535160064697, 1.5958915948867798, 2.6984002590179443, 4.398274898529053, 6.944034576416016, 10.660825729370117, 15.966970443725586, 23.392715454101562], "frozen_base_gradient_count": 0, "seconds": 2130.49334692955}
+TRAIN {"epoch": 3, "group_rewards": [-0.9802998304367065, -0.984326183795929, -0.986272931098938, -0.9908853769302368], "group_advantages": [1.351387619972229, 0.2940841317176819, -0.2171235829591751, -1.4283325672149658], "transitions": 32, "clip_fraction": 0.0, "max_abs_logratio": 0.003829187247902155, "mean_conditional_kl": 3.486175896583177e-05, "grad_norm": 0.7274854183197021, "adapter_delta_norm": 0.002587330646990624, "adapter_band_delta_norm": [0.0013942263321951032, 0.0014433799078688025, 0.0016331158112734556], "policy_sigma_levels": [0.9044535160064697, 1.5958915948867798, 2.6984002590179443, 4.398274898529053, 6.944034576416016, 10.660825729370117, 15.966970443725586, 23.392715454101562], "frozen_base_gradient_count": 0, "seconds": 2771.0294120311737}
+EVAL {"rg": 9.228933334350586, "bond_mae": 0.026611242443323135, "bond_ok": 1.0, "clash_fraction": 0.0, "geometry_pass": 1.0, "reward": -0.9761157035827637, "epoch": 3, "n": 4, "stock": false, "path_kl": 0.0004302786733205721, "seconds": 3509.834639787674, "training_trajectories": 12}

@@ -1,0 +1,23 @@
+{
+ "method": "ddpo",
+ "reward": "proxyp:7",
+ "target": 7,
+ "kl": 0.0,
+ "epochs": 150,
+ "bs": 64,
+ "mb": 32,
+ "inner": 1,
+ "n_steps": 20,
+ "t_frac": 0.5,
+ "lr": 1e-05,
+ "clip": 0.2,
+ "adv_clip": 5.0,
+ "rwr_temp": 0.5,
+ "draft_k": 1,
+ "eval_every": 10,
+ "n_eval": 256,
+ "seed": 0,
+ "clip_x0": 1,
+ "t_min": 20,
+ "out": "runs/p_ddpo"
+}

@@ -1,0 +1,35 @@
+REMARK   1 RFD3 CA TRACE; SEQUENCE UNSPECIFIED; GEOMETRY PROXY EXPERIMENT
+ATOM      1  CA  UNK A   1      -2.847  11.198  -0.524  1.00  0.00           C
+ATOM      2  CA  UNK A   2       0.903  10.997  -0.130  1.00  0.00           C
+ATOM      3  CA  UNK A   3       0.671   8.202   2.465  1.00  0.00           C
+ATOM      4  CA  UNK A   4      -1.695   5.223   2.744  1.00  0.00           C
+ATOM      5  CA  UNK A   5      -2.215   2.635   5.486  1.00  0.00           C
+ATOM      6  CA  UNK A   6      -3.509  -0.785   4.317  1.00  0.00           C
+ATOM      7  CA  UNK A   7      -5.035  -2.840   7.143  1.00  0.00           C
+ATOM      8  CA  UNK A   8      -4.913  -6.536   6.200  1.00  0.00           C
+ATOM      9  CA  UNK A   9      -2.182  -7.990   3.996  1.00  0.00           C
+ATOM     10  CA  UNK A  10      -4.314 -10.765   2.452  1.00  0.00           C
+ATOM     11  CA  UNK A  11      -4.709 -11.114  -1.333  1.00  0.00           C
+ATOM     12  CA  UNK A  12      -6.670  -7.847  -1.763  1.00  0.00           C
+ATOM     13  CA  UNK A  13      -4.486  -5.904   0.698  1.00  0.00           C
+ATOM     14  CA  UNK A  14      -1.248  -7.029  -1.027  1.00  0.00           C
+ATOM     15  CA  UNK A  15      -2.523  -6.117  -4.535  1.00  0.00           C
+ATOM     16  CA  UNK A  16      -3.812  -2.725  -3.224  1.00  0.00           C
+ATOM     17  CA  UNK A  17      -0.464  -1.984  -1.553  1.00  0.00           C
+ATOM     18  CA  UNK A  18       1.405  -2.913  -4.767  1.00  0.00           C
+ATOM     19  CA  UNK A  19      -0.852  -0.714  -6.954  1.00  0.00           C
+ATOM     20  CA  UNK A  20      -0.564   2.277  -4.544  1.00  0.00           C
+ATOM     21  CA  UNK A  21       3.245   1.908  -4.440  1.00  0.00           C
+ATOM     22  CA  UNK A  22       3.413   1.808  -8.268  1.00  0.00           C
+ATOM     23  CA  UNK A  23       1.307   4.999  -8.223  1.00  0.00           C
+ATOM     24  CA  UNK A  24       4.039   6.677  -6.064  1.00  0.00           C
+ATOM     25  CA  UNK A  25       2.315   6.550  -2.639  1.00  0.00           C
+ATOM     26  CA  UNK A  26       4.041   5.799   0.662  1.00  0.00           C
+ATOM     27  CA  UNK A  27       2.274   2.600   1.764  1.00  0.00           C
+ATOM     28  CA  UNK A  28       2.195   1.053   5.245  1.00  0.00           C
+ATOM     29  CA  UNK A  29       0.710  -2.488   5.405  1.00  0.00           C
+ATOM     30  CA  UNK A  30      -0.509  -3.739   8.769  1.00  0.00           C
+ATOM     31  CA  UNK A  31      -1.699  -7.340   9.424  1.00  0.00           C
+ATOM     32  CA  UNK A  32      -2.969  -8.792  12.659  1.00  0.00           C
+TER
+END

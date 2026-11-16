@@ -1,0 +1,9 @@
+{
+  "first_seed": 3000000,
+  "count": 16,
+  "active_min": 0.5,
+  "active_max": 4.0,
+  "extra_noise": 0.1,
+  "checkpoint_sha256": "9b3f85923e0d51e9453e15cdd2f8c666e7ce096a60577f57d11bbc54ae6d67c1",
+  "deadline": "2026-11-13T10:26:00Z"
+}

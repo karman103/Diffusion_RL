@@ -1,0 +1,128 @@
+[
+  {
+    "name": "main_s0",
+    "args": [
+      "--length",
+      "32",
+      "--steps",
+      "64",
+      "--epochs",
+      "6",
+      "--group-size",
+      "4",
+      "--eval-n",
+      "4",
+      "--lr",
+      "0.0003",
+      "--evaluate-stock",
+      "--seed",
+      "0"
+    ]
+  },
+  {
+    "name": "random_s0",
+    "args": [
+      "--length",
+      "32",
+      "--steps",
+      "64",
+      "--epochs",
+      "6",
+      "--group-size",
+      "4",
+      "--eval-n",
+      "4",
+      "--lr",
+      "0.0003",
+      "--evaluate-stock",
+      "--seed",
+      "0",
+      "--objective",
+      "random"
+    ]
+  },
+  {
+    "name": "main_s1",
+    "args": [
+      "--length",
+      "32",
+      "--steps",
+      "64",
+      "--epochs",
+      "6",
+      "--group-size",
+      "4",
+      "--eval-n",
+      "4",
+      "--lr",
+      "0.0003",
+      "--evaluate-stock",
+      "--seed",
+      "1"
+    ]
+  },
+  {
+    "name": "main_s2",
+    "args": [
+      "--length",
+      "32",
+      "--steps",
+      "64",
+      "--epochs",
+      "6",
+      "--group-size",
+      "4",
+      "--eval-n",
+      "4",
+      "--lr",
+      "0.0003",
+      "--evaluate-stock",
+      "--seed",
+      "2"
+    ]
+  },
+  {
+    "name": "single_s0",
+    "args": [
+      "--length",
+      "32",
+      "--steps",
+      "64",
+      "--epochs",
+      "6",
+      "--group-size",
+      "4",
+      "--eval-n",
+      "4",
+      "--lr",
+      "0.0003",
+      "--evaluate-stock",
+      "--seed",
+      "0",
+      "--noise-experts",
+      "single"
+    ]
+  },
+  {
+    "name": "late_s0",
+    "args": [
+      "--length",
+      "32",
+      "--steps",
+      "64",
+      "--epochs",
+      "6",
+      "--group-size",
+      "4",
+      "--eval-n",
+      "4",
+      "--lr",
+      "0.0003",
+      "--evaluate-stock",
+      "--seed",
+      "0",
+      "--active-max",
+      "4"
+    ]
+  }
+]

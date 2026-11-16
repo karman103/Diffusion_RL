@@ -1,0 +1,9 @@
+{
+  "status": "exploratory_inference_diagnostic_declared_after_conditional_baseline_gate_failure",
+  "question": "Does stronger velocity conditioning fix direction adherence without damaging digit quality?",
+  "scales": [1.0, 2.0, 4.0],
+  "development_seeds": [1080001, 1080002, 1080003, 1080004, 1080005, 1080006, 1080007, 1080008],
+  "metric": "Same content/direction gate as conditional PROTOCOL.json; do not call this confirmatory evaluation",
+  "if_promising": "Choose a scale, then freeze it and evaluate on new untouched seeds before GRPO",
+  "claim_scope": "Sampler diagnostic only; no video GRPO"
+}

@@ -1,0 +1,14 @@
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+21:01:24 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+21:01:25 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+21:01:28 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+21:01:29 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+seed_21 mean delta 0.0006284639239311218 zero -0.9738427102565765 trained -0.9732142463326454

@@ -1,0 +1,6 @@
+{
+  "proxy_test_acc": 0.9214000105857849,
+  "evaluator_test_acc": 0.982699990272522,
+  "agreement_on_test": 0.9222999811172485,
+  "gate_pass": false
+}

@@ -1,0 +1,23 @@
+{
+  "model": "cerspense/zeroscope_v2_576w",
+  "revision": "6963642a64dbefa93663d1ecebb4ceda2d9ecb28",
+  "sampler": "stock DDIMScheduler, eta=0",
+  "prompt": "A single red ball rolls from left to right across a plain floor.",
+  "seed": 20261115,
+  "width": 320,
+  "height": 192,
+  "num_frames": 8,
+  "num_inference_steps": 16,
+  "guidance_scale": 7.5,
+  "unet_dtype": "float16",
+  "vae_decode_dtype": "float32",
+  "mps_memory_fraction": 0.9,
+  "latents_finite": false,
+  "latent_min": Infinity,
+  "latent_max": -Infinity,
+  "status": "failed",
+  "error": "FloatingPointError: Denoising produced non-finite latents",
+  "elapsed_seconds": 130.9312601669808,
+  "mps_driver_allocated_bytes": 4584865792,
+  "mps_current_allocated_bytes": 3670880000
+}

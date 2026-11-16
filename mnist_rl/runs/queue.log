@@ -1,0 +1,46 @@
+=== START 10:22:30 :: python -u scripts/best_of_n.py > runs/base/best_of_n.log 2>&1
+=== END   10:23:55 rc=0 :: python -u scripts/best_of_n.py > runs/base/best_of_n.log 2>&1
+=== START 10:23:55 :: python -u scripts/rl_finetune.py --method ddpo --out runs/e1_ddpo > runs/e1_ddpo.log 2>&1
+=== END   10:32:41 rc=0 :: python -u scripts/rl_finetune.py --method ddpo --out runs/e1_ddpo > runs/e1_ddpo.log 2>&1
+=== START 10:32:41 :: python -u scripts/rl_finetune.py --method draft --out runs/e1_draft > runs/e1_draft.log 2>&1
+=== END   10:37:18 rc=0 :: python -u scripts/rl_finetune.py --method draft --out runs/e1_draft > runs/e1_draft.log 2>&1
+=== START 10:37:18 :: python -u scripts/rl_finetune.py --method ddpo --reward proxyp:7 --out runs/e1p_ddpo > runs/e1p_ddpo.log 2>&1
+=== END   10:46:17 rc=0 :: python -u scripts/rl_finetune.py --method ddpo --reward proxyp:7 --out runs/e1p_ddpo > runs/e1p_ddpo.log 2>&1
+=== START 10:46:17 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --out runs/p_ddpo > runs/p_ddpo.log 2>&1
+=== END   10:59:25 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --out runs/p_ddpo > runs/p_ddpo.log 2>&1
+=== START 10:59:25 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --out runs/p_draft > runs/p_draft.log 2>&1
+=== END   11:06:21 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --out runs/p_draft > runs/p_draft.log 2>&1
+=== START 11:06:21 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo_sf --out runs/p_ddpo_sf > runs/p_ddpo_sf.log 2>&1
+./scripts/queue.sh: line 12: 82805 Terminated: 15          bash -c "$next"
+=== END   11:15:10 rc=143 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo_sf --out runs/p_ddpo_sf > runs/p_ddpo_sf.log 2>&1
+=== START 11:15:10 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method rwr --out runs/p_rwr > runs/p_rwr.log 2>&1
+=== END   11:21:52 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method rwr --out runs/p_rwr > runs/p_rwr.log 2>&1
+=== START 11:21:52 :: python -u scripts/rl_finetune.py --reward proxyp:7 --method ddpo --inner 3 --epochs 75 --eval_every 5 --out runs/p_ddpo_reuse3 > runs/p_ddpo_reuse3.log 2>&1
+=== END   11:36:58 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --method ddpo --inner 3 --epochs 75 --eval_every 5 --out runs/p_ddpo_reuse3 > runs/p_ddpo_reuse3.log 2>&1
+=== START 11:36:58 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.1 --out runs/p_kl_0.1 > runs/p_kl_0.1.log 2>&1
+=== END   11:49:04 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.1 --out runs/p_kl_0.1 > runs/p_kl_0.1.log 2>&1
+=== START 11:49:04 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.001 --out runs/p_kl_0.001 > runs/p_kl_0.001.log 2>&1
+=== END   12:01:04 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.001 --out runs/p_kl_0.001 > runs/p_kl_0.001.log 2>&1
+=== START 12:01:04 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.0003 --out runs/p_kl_0.0003 > runs/p_kl_0.0003.log 2>&1
+=== END   12:14:19 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.0003 --out runs/p_kl_0.0003 > runs/p_kl_0.0003.log 2>&1
+=== START 12:14:19 :: python -u scripts/rl_finetune.py --method ddpo --reward goldp:7 --epochs 150 --out runs/p_oracle > runs/p_oracle.log 2>&1
+=== END   12:26:10 rc=0 :: python -u scripts/rl_finetune.py --method ddpo --reward goldp:7 --epochs 150 --out runs/p_oracle > runs/p_oracle.log 2>&1
+=== START 12:26:10 :: python -u scripts/rl_finetune.py --method ddpo --reward jpeg_incompress --out runs/e2_incompress > runs/e2_incompress.log 2>&1
+=== END   12:34:11 rc=0 :: python -u scripts/rl_finetune.py --method ddpo --reward jpeg_incompress --out runs/e2_incompress > runs/e2_incompress.log 2>&1
+=== START 12:34:11 :: python -u scripts/rl_finetune.py --method ddpo --reward jpeg_compress --out runs/e2_compress > runs/e2_compress.log 2>&1
+=== END   12:42:10 rc=0 :: python -u scripts/rl_finetune.py --method ddpo --reward jpeg_compress --out runs/e2_compress > runs/e2_compress.log 2>&1
+=== START 12:42:10 :: python -u scripts/rl_finetune.py --method ddpo --reward random --out runs/e0_random > runs/e0_random.log 2>&1
+=== END   12:50:08 rc=0 :: python -u scripts/rl_finetune.py --method ddpo --reward random --out runs/e0_random > runs/e0_random.log 2>&1
+=== START 12:50:08 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --seed 1 --out runs/p_ddpo_s1 > runs/p_ddpo_s1.log 2>&1
+=== END   13:02:02 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --seed 1 --out runs/p_ddpo_s1 > runs/p_ddpo_s1.log 2>&1
+=== START 13:02:02 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --seed 2 --out runs/p_ddpo_s2 > runs/p_ddpo_s2.log 2>&1
+=== END   13:13:45 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --seed 2 --out runs/p_ddpo_s2 > runs/p_ddpo_s2.log 2>&1
+=== START 13:13:45 :: python -u scripts/rl_finetune.py --reward goldp:7 --epochs 150 --method draft --out runs/p_draft_oracle > runs/p_draft_oracle.log 2>&1
+=== END   13:20:02 rc=0 :: python -u scripts/rl_finetune.py --reward goldp:7 --epochs 150 --method draft --out runs/p_draft_oracle > runs/p_draft_oracle.log 2>&1
+=== START 13:20:02 :: python -u scripts/rl_finetune.py --reward proxyp:7 --method ddpo --inner 3 --epochs 75 --eval_every 5 --kl 0.0003 --out runs/p_reuse3_kl > runs/p_reuse3_kl.log 2>&1
+=== END   13:36:25 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --method ddpo --inner 3 --epochs 75 --eval_every 5 --kl 0.0003 --out runs/p_reuse3_kl > runs/p_reuse3_kl.log 2>&1
+=== START 13:36:25 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --seed 1 --out runs/p_draft_s1 > runs/p_draft_s1.log 2>&1
+=== END   13:43:09 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --seed 1 --out runs/p_draft_s1 > runs/p_draft_s1.log 2>&1
+=== START 13:43:09 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --seed 2 --out runs/p_draft_s2 > runs/p_draft_s2.log 2>&1
+=== END   13:50:20 rc=0 :: python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --seed 2 --out runs/p_draft_s2 > runs/p_draft_s2.log 2>&1
+queue empty Thu Nov 12 13:50:20 EST 2026

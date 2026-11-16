@@ -1,0 +1,9 @@
+torch==2.8.0
+torchvision==0.23.0
+diffusers==0.35.2
+einops==0.8.1
+safetensors==0.6.2
+numpy==2.2.6
+scipy==1.13.1
+matplotlib==3.10.6
+Pillow==11.3.0

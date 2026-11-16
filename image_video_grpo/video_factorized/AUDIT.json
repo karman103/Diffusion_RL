@@ -1,0 +1,164 @@
+{
+  "protocol_sha256": {
+    "initial": "eab7373a38956f77ddc5d663e208b36cbbee2fc2e7218bf0da9f57cfa3863f3e",
+    "higher_step_size": "f2788cbb8a0d71c466bd490cd0e9c847e2c9af42a1217136f7da47825c095735"
+  },
+  "studies": {
+    "initial": {
+      "11801": {
+        "zero": {
+          "video_sha256": "f4094116f2c2ee58eff75a5b0a2d5cfef6012ed4ae9235df7b92baf53a56497e",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        },
+        "trained": {
+          "video_sha256": "e9c3de7e24d67c14c6eb8d01a0b6348abcd32873019102bd61180705172bfcaf",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": 0.003710055723786354
+        },
+        "best_of_four": {
+          "video_sha256": "5acb5982b7f51006cd31bc2fbc9dca2169229ae1af9f85ee5a324e7f726fc76f",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        }
+      },
+      "11802": {
+        "zero": {
+          "video_sha256": "f4094116f2c2ee58eff75a5b0a2d5cfef6012ed4ae9235df7b92baf53a56497e",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        },
+        "trained": {
+          "video_sha256": "f670756420a448410b1b23ffa51c44084b3f125d5aef228b113395b9bd7ef571",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": 0.00917339138686657
+        },
+        "best_of_four": {
+          "video_sha256": "5acb5982b7f51006cd31bc2fbc9dca2169229ae1af9f85ee5a324e7f726fc76f",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        }
+      }
+    },
+    "higher_step_size": {
+      "12101": {
+        "zero": {
+          "video_sha256": "c3f82cd8cf0c5a5087e34d1de5c2f1710bc513750bd34f3f4a998ea02ca259b5",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        },
+        "trained": {
+          "video_sha256": "2bccf97569f4ea8eed2bb6da69369125f32736ebf3cf526e203370c2e29c8012",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": 0.07496605068445206
+        },
+        "best_of_four": {
+          "video_sha256": "15919fbd0052ad9f2f2ac2e0c63e9248d364fefc60892d5a133000e953c56b33",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        }
+      },
+      "12102": {
+        "zero": {
+          "video_sha256": "c3f82cd8cf0c5a5087e34d1de5c2f1710bc513750bd34f3f4a998ea02ca259b5",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        },
+        "trained": {
+          "video_sha256": "e76345699428022eb2b443aa45151dd489c4f2e225e2a8d3e1b2ffb19ec84178",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": 0.051460981369018555
+        },
+        "best_of_four": {
+          "video_sha256": "15919fbd0052ad9f2f2ac2e0c63e9248d364fefc60892d5a133000e953c56b33",
+          "shape": [
+            24,
+            4,
+            28,
+            28
+          ],
+          "finite": true,
+          "max_saved_vs_rescored_error": 0.0,
+          "mean_absolute_pixel_change_from_zero": null
+        }
+      }
+    }
+  }
+}

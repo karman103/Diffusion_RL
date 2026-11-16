@@ -1,0 +1,30 @@
+{
+  "stock": {
+    "reward": 0.40107570032705553,
+    "gold_probability": 0.43124970637196824,
+    "gold_accuracy": 0.46875,
+    "pixel_diversity": 35.412288665771484,
+    "classifier_feature_frechet": 9.830647841683563
+  },
+  "zero": {
+    "reward": 0.07056750666001221,
+    "gold_probability": 0.15571581893062264,
+    "gold_accuracy": 0.15625,
+    "pixel_diversity": 31.503381729125977,
+    "classifier_feature_frechet": 28.208387629689817
+  },
+  "trained": {
+    "reward": 0.07056714503686123,
+    "gold_probability": 0.1556998790163403,
+    "gold_accuracy": 0.15625,
+    "pixel_diversity": 31.503475189208984,
+    "classifier_feature_frechet": 28.205936867374575
+  },
+  "best_of_four": {
+    "reward": 0.1323191395495087,
+    "gold_probability": 0.17686257085115287,
+    "gold_accuracy": 0.21875,
+    "pixel_diversity": 28.824413299560547,
+    "classifier_feature_frechet": 13.221172412590278
+  }
+}

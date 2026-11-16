@@ -1,0 +1,74 @@
+{
+  "dtype": "bfloat16",
+  "status": "complete",
+  "initial": {
+    "dtype": "torch.bfloat16",
+    "shape": [
+      1,
+      4,
+      8,
+      24,
+      40
+    ],
+    "finite_fraction": 1.0,
+    "min_finite": -3.328125,
+    "max_finite": 3.328125,
+    "mean_abs_finite": 0.7871153950691223
+  },
+  "unconditional_prediction": {
+    "dtype": "torch.bfloat16",
+    "shape": [
+      1,
+      4,
+      8,
+      24,
+      40
+    ],
+    "finite_fraction": 0.0,
+    "min_finite": null,
+    "max_finite": null,
+    "mean_abs_finite": null
+  },
+  "conditional_prediction": {
+    "dtype": "torch.bfloat16",
+    "shape": [
+      1,
+      4,
+      8,
+      24,
+      40
+    ],
+    "finite_fraction": 0.0,
+    "min_finite": null,
+    "max_finite": null,
+    "mean_abs_finite": null
+  },
+  "guided_prediction": {
+    "dtype": "torch.bfloat16",
+    "shape": [
+      1,
+      4,
+      8,
+      24,
+      40
+    ],
+    "finite_fraction": 0.0,
+    "min_finite": null,
+    "max_finite": null,
+    "mean_abs_finite": null
+  },
+  "next_latents": {
+    "dtype": "torch.bfloat16",
+    "shape": [
+      1,
+      4,
+      8,
+      24,
+      40
+    ],
+    "finite_fraction": 0.0,
+    "min_finite": null,
+    "max_finite": null,
+    "mean_abs_finite": null
+  }
+}

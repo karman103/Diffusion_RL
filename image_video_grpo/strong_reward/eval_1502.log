@@ -1,0 +1,34 @@
+Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+W1114 18:59:45.544000 66107 site-packages/torch/distributed/elastic/multiprocessing/redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+{"training_seed": 1502, "eval_seed": 550001, "policy": "trained", "reward": 0.8926109671592712, "gold_probability": 0.986598014831543, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550002, "policy": "trained", "reward": 0.4698928892612457, "gold_probability": 0.6255839467048645, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550003, "policy": "trained", "reward": 0.9092243909835815, "gold_probability": 0.9248620867729187, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550004, "policy": "trained", "reward": 0.983664333820343, "gold_probability": 0.9943590760231018, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550005, "policy": "trained", "reward": 0.9944410920143127, "gold_probability": 0.9974507689476013, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550006, "policy": "trained", "reward": 0.4912126958370209, "gold_probability": 0.5541114211082458, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550007, "policy": "trained", "reward": 0.9785914421081543, "gold_probability": 0.9989482760429382, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550008, "policy": "trained", "reward": 0.1037873849272728, "gold_probability": 0.0781838446855545, "gold_accuracy": 0.0}
+{"training_seed": 1502, "eval_seed": 550009, "policy": "trained", "reward": 0.9822832942008972, "gold_probability": 0.9945535659790039, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550010, "policy": "trained", "reward": 0.912305474281311, "gold_probability": 0.9848997592926025, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550011, "policy": "trained", "reward": 0.5087016224861145, "gold_probability": 0.19144612550735474, "gold_accuracy": 0.0}
+{"training_seed": 1502, "eval_seed": 550012, "policy": "trained", "reward": 0.9867945313453674, "gold_probability": 0.9996046423912048, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550013, "policy": "trained", "reward": 0.30401483178138733, "gold_probability": 0.4504527747631073, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550014, "policy": "trained", "reward": 0.9301539063453674, "gold_probability": 0.7218874096870422, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550015, "policy": "trained", "reward": 0.05863043665885925, "gold_probability": 0.002000035485252738, "gold_accuracy": 0.0}
+{"training_seed": 1502, "eval_seed": 550016, "policy": "trained", "reward": 0.021126264706254005, "gold_probability": 0.005424693692475557, "gold_accuracy": 0.0}
+{"training_seed": 1502, "eval_seed": 550017, "policy": "trained", "reward": 0.9908013939857483, "gold_probability": 0.9987558126449585, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550018, "policy": "trained", "reward": 0.18824462592601776, "gold_probability": 0.5802236199378967, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550019, "policy": "trained", "reward": 0.9988718628883362, "gold_probability": 0.9987437129020691, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550020, "policy": "trained", "reward": 0.9994542002677917, "gold_probability": 0.9976109266281128, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550021, "policy": "trained", "reward": 0.9563857913017273, "gold_probability": 0.9780891537666321, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550022, "policy": "trained", "reward": 0.9399097561836243, "gold_probability": 0.743628978729248, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550023, "policy": "trained", "reward": 0.9708811044692993, "gold_probability": 0.9979839324951172, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550024, "policy": "trained", "reward": 0.9968752861022949, "gold_probability": 0.999019980430603, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550025, "policy": "trained", "reward": 0.396289199590683, "gold_probability": 0.03389763832092285, "gold_accuracy": 0.0}
+{"training_seed": 1502, "eval_seed": 550026, "policy": "trained", "reward": 0.9896852970123291, "gold_probability": 0.9940741658210754, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550027, "policy": "trained", "reward": 0.9906538128852844, "gold_probability": 0.9906100630760193, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550028, "policy": "trained", "reward": 0.7561586499214172, "gold_probability": 0.9779664278030396, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550029, "policy": "trained", "reward": 0.5859976410865784, "gold_probability": 0.7786744832992554, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550030, "policy": "trained", "reward": 0.2065538913011551, "gold_probability": 0.3671538531780243, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550031, "policy": "trained", "reward": 0.8412073254585266, "gold_probability": 0.7504459619522095, "gold_accuracy": 1.0}
+{"training_seed": 1502, "eval_seed": 550032, "policy": "trained", "reward": 0.9921305775642395, "gold_probability": 0.998008668422699, "gold_accuracy": 1.0}

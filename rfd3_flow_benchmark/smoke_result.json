@@ -1,0 +1,16 @@
+{
+  "stock_churn": {
+    "reward": -0.9764898419380188,
+    "geometry_pass": 1.0,
+    "bond_mae": 0.025976279750466347,
+    "records": 0,
+    "finite": true
+  },
+  "ve_sde": {
+    "reward": -0.986831784248352,
+    "geometry_pass": 1.0,
+    "bond_mae": 0.03138791024684906,
+    "records": 4,
+    "finite": true
+  }
+}

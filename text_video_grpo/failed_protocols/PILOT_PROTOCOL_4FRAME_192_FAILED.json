@@ -1,0 +1,22 @@
+{
+  "status": "amended before any GRPO training: eight-frame float32 adapter backward OOMed at the 90% MPS cap; four-frame variant pending its own gate",
+  "model_revision": "6963642a64dbefa93663d1ecebb4ceda2d9ecb28",
+  "prompt": "A single red ball rolls from left to right across a plain floor.",
+  "sampler": "modified stochastic DDIM, eta=0.5, epsilon prediction",
+  "guidance_scale": 7.5,
+  "adapter_scope": "conditional U-Net branch only; unconditional classifier-free guidance branch remains frozen",
+  "vae_decode_dtype": "float32",
+  "unet_compute_dtype": "float32 (float16 and bfloat16 failed finiteness checks on MPS)",
+  "steps": 16,
+  "frames": 4,
+  "width": 320,
+  "height": 192,
+  "group_size": 4,
+  "train_seeds": [311, 312, 313, 314],
+  "eval_seeds": [911, 912],
+  "adapter_rank": 4,
+  "learning_rate": 0.00003,
+  "clip_ratio": 0.2,
+  "reward": "red-object horizontal displacement with visibility penalty; inspect stock clip before use",
+  "scope": "one-update four-frame feasibility pilot, not a full benchmark or evidence of cinematic video quality"
+}

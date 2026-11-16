@@ -1,0 +1,19 @@
+test_cached_update_matches_actual_network_weight_update (protein_poc.test_core.CoreTests.test_cached_update_matches_actual_network_weight_update) ... ok
+test_gaussian_kl_matches_distribution_formula (protein_poc.test_core.CoreTests.test_gaussian_kl_matches_distribution_formula) ... ok
+test_geometry_separates_straight_chain_and_collapse (protein_poc.test_core.CoreTests.test_geometry_separates_straight_chain_and_collapse) ... ok
+test_gradient_matches_finite_difference (protein_poc.test_core.CoreTests.test_gradient_matches_finite_difference) ... ok
+test_joint_logprob_is_normal_sum (protein_poc.test_core.CoreTests.test_joint_logprob_is_normal_sum) ... ok
+test_shared_terminal_decoder_ignores_head (protein_poc.test_core.CoreTests.test_shared_terminal_decoder_ignores_head) ... ok
+test_vectorized_frames_match_upstream (protein_poc.test_core.CoreTests.test_vectorized_frames_match_upstream) ... /Users/karman/Desktop/projects/protein_folding/third_party/genie/genie/utils/geo_utils.py:40: UserWarning: Using torch.cross without specifying the dim arg is deprecated.
+Please either pass the dim explicitly or simply use torch.linalg.cross.
+The default value of dim will change to agree with that of linalg.cross in a future release. (Triggered internally at /Users/runner/work/pytorch/pytorch/aten/src/ATen/native/Cross.cpp:65.)
+  b = torch.cross(t[:, :-1], t[:, 1:])
+ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.297s
+
+OK
+
+End-to-end CPU smoke: PASS. One training update, checkpoint reload, fresh-seed evaluation, finite JSON and NPZ/PDB artifacts.
+Queue manifest: 21 unique runs with option/value pairs validated.

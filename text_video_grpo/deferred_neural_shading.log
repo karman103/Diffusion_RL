@@ -1,0 +1,6 @@
+2026-11-15T19:59:28Z waiting for video-study release marker
+2026-11-15T22:05:30Z restarting resumable round 7
+2026-11-15T22:24:08Z waiting for video-study release marker
+2026-11-15T22:24:09Z neural-shading stopped again at user request (all GPU to GRPO studies); wrapper re-armed, waiting for new release marker
+2026-11-16T08:34:15Z restarting resumable round 7
+2026-11-16T13:32:22Z round 7 finished; restarting sweep

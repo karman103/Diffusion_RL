@@ -1,0 +1,40 @@
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+22:08:22 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+22:08:26 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+22:09:09 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+22:09:13 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_grpo/train.py", line 175, in <module>
+    main()
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_grpo/train.py", line 80, in main
+    head_error=backend.head_equivalence_check()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_grpo/backend.py", line 158, in head_equivalence_check
+    ref,features,_ = self.denoise(x,sigma)
+                     ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/torch/utils/_contextlib.py", line 158, in no_grad
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_grpo/backend.py", line 89, in denoise
+    out = self.dm(X_noisy_L=x,t=t,f=features,n_recycle=self.recycles,**self.initializer)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1787, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/.venv-rfd3/lib/python3.12/site-packages/torch/nn/modules/module.py", line 1798, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: RFD3DiffusionModule.forward() missing 1 required positional argument: 'P_LL'

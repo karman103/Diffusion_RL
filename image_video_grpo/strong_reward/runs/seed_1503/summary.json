@@ -1,0 +1,23 @@
+{
+  "zero": {
+    "reward": 0.624348522949731,
+    "gold_probability": 0.6848939391493332,
+    "gold_accuracy": 0.75,
+    "pixel_diversity": 35.44524002075195,
+    "classifier_feature_frechet": 18.26278706107223
+  },
+  "trained": {
+    "reward": 0.6411948376480723,
+    "gold_probability": 0.6361375069081987,
+    "gold_accuracy": 0.6875,
+    "pixel_diversity": 34.23407745361328,
+    "classifier_feature_frechet": 20.77562015740343
+  },
+  "best_of_four": {
+    "reward": 0.9571802299469709,
+    "gold_probability": 0.9503181297332048,
+    "gold_accuracy": 1.0,
+    "pixel_diversity": 31.834362030029297,
+    "classifier_feature_frechet": 16.46460255551313
+  }
+}

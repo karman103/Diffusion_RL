@@ -1,0 +1,9 @@
+2026-11-14T22:02:42.958586+00:00 Classifier gate passed: {'proxy': {'test_accuracy': 0.462, 'train_examples': 5000, 'epochs': 8}, 'gold': {'test_accuracy': 0.7988, 'train_examples': 45000, 'epochs': 12}}
+2026-11-14T22:03:43.027898+00:00 Running real-checkpoint MPS identity and finite-sample preflight
+2026-11-14T22:04:54.793992+00:00 Starting image training seed 1101
+2026-11-14T22:06:30.908735+00:00 Starting image evaluation seed 1101
+2026-11-14T22:12:34.095900+00:00 Starting image training seed 1102
+2026-11-14T22:14:08.137897+00:00 Starting image evaluation seed 1102
+2026-11-14T22:20:16.378170+00:00 Starting image training seed 1103
+2026-11-14T22:21:52.186378+00:00 Starting image evaluation seed 1103
+2026-11-14T22:26:56.380395+00:00 Image runs complete; generating measured report

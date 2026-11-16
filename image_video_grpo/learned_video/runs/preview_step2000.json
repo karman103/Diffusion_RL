@@ -1,0 +1,11 @@
+{
+  "tag": "preview_step2000",
+  "sampler_steps": 40,
+  "legible_fraction": 0.421875,
+  "median_displacement_px": 9.778532981872559,
+  "direction_ok_fraction": 0.859375,
+  "success_fraction": 0.359375,
+  "median_angle_err_deg": 6.980811595916748,
+  "digit_class_entropy": 0.4266277849674225,
+  "pass": false
+}

@@ -1,0 +1,79 @@
+/* Layout: lab-report long read. One 66ch text column; figures break out to a wider "plate" column. */
+:root{
+  --paper:#f4f6f9; --ink:#141922; --muted:#566070; --rule:#d6dbe3; --tint:#e9eef6;
+  --accent:#2559c4; --hack:#b8382b; --plate:#ffffff;
+  --f-display:"IBM Plex Sans Condensed","Arial Narrow",system-ui,sans-serif;
+  --f-body:"Source Serif 4",Georgia,"Times New Roman",serif;
+  --f-mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+  --measure:66ch; --wide:1060px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#0e1116; --ink:#e4e8ef; --muted:#9aa4b4; --rule:#262d38; --tint:#161c26;
+  --accent:#7aa5ff; --hack:#ff8a7a; --plate:#f7f8fa; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#0e1116; --ink:#e4e8ef; --muted:#9aa4b4; --rule:#262d38; --tint:#161c26;
+  --accent:#7aa5ff; --hack:#ff8a7a; --plate:#f7f8fa; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:18px;line-height:1.62;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 64px}
+main{max-width:var(--wide);margin:0 auto}
+.col{max-width:var(--measure);margin-inline:auto}
+h1,h2,h3{font-family:var(--f-display);text-wrap:balance;line-height:1.12;letter-spacing:-.005em}
+h1{font-size:clamp(2.3rem,6vw,3.9rem);font-weight:700;margin:0}
+h2{font-size:1.65rem;font-weight:600;margin:3.2rem 0 .6rem;padding-top:1.2rem;border-top:1px solid var(--rule)}
+h3{font-size:1.2rem;font-weight:600;margin:2rem 0 .4rem}
+p{margin:.8rem 0}
+a{color:var(--accent)}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.eyebrow{font-family:var(--f-mono);font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+header{padding-block:56px 8px}
+.dek{font-size:1.22rem;color:var(--muted);margin-top:1rem;max-width:58ch}
+.byline{font-family:var(--f-mono);font-size:.8rem;color:var(--muted);margin-top:1.2rem}
+/* Thesis strip: same proxy reward, opposite truth */
+.versus{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--rule);border:1px solid var(--rule);margin:2.2rem 0 1rem}
+.versus>div{background:var(--paper);padding:20px 22px;min-width:0}
+.versus .label{font-family:var(--f-display);font-weight:600;font-size:1.05rem}
+.versus .big{font-family:var(--f-display);font-weight:700;font-size:3.1rem;line-height:1;margin:.35rem 0 .2rem;font-variant-numeric:tabular-nums}
+.versus .ok .big{color:var(--accent)} .versus .bad .big{color:var(--hack)}
+.versus .sub{font-family:var(--f-mono);font-size:.78rem;color:var(--muted);line-height:1.5}
+figure{margin:2rem 0}
+figure .plate{background:var(--plate);border:1px solid var(--rule);padding:10px;overflow-x:auto}
+figure img{display:block;max-width:100%;height:auto;margin:0 auto}
+figcaption{font-size:.9rem;color:var(--muted);margin-top:.55rem;max-width:var(--measure)}
+figcaption b{color:var(--ink);font-weight:600}
+.narrow{max-width:560px;margin-inline:auto}
+ol.find{padding-left:1.3rem} ol.find li{margin:.65rem 0}
+ol.find li::marker{font-family:var(--f-mono);color:var(--muted);font-size:.9rem}
+.eq{font-family:var(--f-mono);font-size:.88rem;background:var(--tint);border-left:3px solid var(--accent);padding:10px 14px;margin:1rem 0;overflow-x:auto;white-space:pre;line-height:1.55}
+code{font-family:var(--f-mono);font-size:.86em;background:var(--tint);padding:1px 5px;border-radius:3px}
+.tbl{overflow-x:auto;margin:1.4rem 0;border-top:2px solid var(--ink);border-bottom:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-size:.88rem;font-variant-numeric:tabular-nums}
+th,td{padding:7px 10px;text-align:right;white-space:nowrap;border-bottom:1px solid var(--rule)}
+th{font-family:var(--f-mono);font-weight:500;font-size:.74rem;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+th:first-child,td:first-child{text-align:left;font-family:var(--f-body)}
+tr.hl-ok td:first-child{box-shadow:inset 3px 0 0 var(--accent)} tr.hl-bad td:first-child{box-shadow:inset 3px 0 0 var(--hack)}
+td.bad{color:var(--hack);font-weight:600} td.ok{color:var(--accent);font-weight:600}
+tr.sep td{border-bottom:1px dashed var(--muted)}
+.setup{display:grid;grid-template-columns:minmax(120px,170px) 1fr;gap:.35rem 1.2rem;margin:1.2rem 0;font-size:.95rem}
+.setup dt{font-family:var(--f-mono);font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);padding-top:.2rem}
+.setup dd{margin:0;min-width:0}
+@media (max-width:520px){.setup{grid-template-columns:1fr}.setup dd{margin-bottom:.5rem}body{font-size:17px}}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;align-items:start}
+.two>figure{margin:0;min-width:0}
+.note{font-size:.95rem;border:1px solid var(--rule);padding:12px 16px;margin:1.4rem 0}
+.note .eyebrow{display:block;margin-bottom:.2rem}
+footer{margin-top:3.5rem;padding-top:1rem;border-top:1px solid var(--rule);font-size:.88rem;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){.versus .big{transition:transform .2s}}
+
+/* Site navigation and post list (shared by all pages) */
+.sitenav{max-width:var(--wide);margin:0 auto;padding-top:18px;display:flex;gap:18px;flex-wrap:wrap;font-family:var(--f-mono);font-size:.78rem;letter-spacing:.06em;text-transform:uppercase}
+.sitenav a{color:var(--muted);text-decoration:none}
+.sitenav a:hover,.sitenav a[aria-current]{color:var(--ink)}
+.posts{list-style:none;padding:0;margin:1.6rem 0}
+.posts li{border-top:1px solid var(--rule);padding:1.2rem 0}
+.posts a{font-family:var(--f-display);font-weight:600;font-size:1.35rem;text-decoration:none}
+.posts p{margin:.3rem 0 0;color:var(--muted)}
+.posts .meta{font-family:var(--f-mono);font-size:.76rem;color:var(--muted);margin-top:.35rem}
+.versus.three{grid-template-columns:repeat(auto-fit,minmax(200px,1fr))}
+td.l,th.l{text-align:left}
+th{white-space:normal}

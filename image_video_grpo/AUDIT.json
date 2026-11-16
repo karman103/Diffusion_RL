@@ -1,0 +1,248 @@
+{
+  "1101": {
+    "stock": {
+      "sha256": "827f633d0c4e70a8fb03836b53d74417c104ecdadf83e9d318601616b71735fd",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 7.748603820800781e-07,
+        "gold_probability": 5.945563316345215e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "zero": {
+      "sha256": "85d3e4e74bbd4e6e337184755dc30b83b3f73646a565f0915a165250436d1ac7",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 2.980232238769531e-07,
+        "gold_probability": 1.9669532775878906e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained": {
+      "sha256": "c2a4fad03e35ff72dc1229a80488631e6739e0cbe9e92cae155cc22980eebb76",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 2.086162567138672e-07,
+        "gold_probability": 2.7418136596679688e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "best_of_four": {
+      "sha256": "a71bc0d89fdad93ffe35b4ce4046b03587037439671edc97399282627ce44047",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 6.556510925292969e-07,
+        "gold_probability": 4.172325134277344e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained_minus_zero": {
+      "mean_absolute_pixel_difference": 8.761251956457272e-05,
+      "max_absolute_pixel_difference": 0.00170135498046875
+    }
+  },
+  "1102": {
+    "stock": {
+      "sha256": "827f633d0c4e70a8fb03836b53d74417c104ecdadf83e9d318601616b71735fd",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 7.748603820800781e-07,
+        "gold_probability": 5.945563316345215e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "zero": {
+      "sha256": "85d3e4e74bbd4e6e337184755dc30b83b3f73646a565f0915a165250436d1ac7",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 2.980232238769531e-07,
+        "gold_probability": 1.9669532775878906e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained": {
+      "sha256": "41699e7256c99015ba0c0e15c61add57c7ee7b1e49d2ac6a87b11878524bc833",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 3.2782554626464844e-07,
+        "gold_probability": 3.4570693969726562e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "best_of_four": {
+      "sha256": "a71bc0d89fdad93ffe35b4ce4046b03587037439671edc97399282627ce44047",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 6.556510925292969e-07,
+        "gold_probability": 4.172325134277344e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained_minus_zero": {
+      "mean_absolute_pixel_difference": 0.00015088570944499224,
+      "max_absolute_pixel_difference": 0.001986190676689148
+    }
+  },
+  "1103": {
+    "stock": {
+      "sha256": "827f633d0c4e70a8fb03836b53d74417c104ecdadf83e9d318601616b71735fd",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 7.748603820800781e-07,
+        "gold_probability": 5.945563316345215e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "zero": {
+      "sha256": "85d3e4e74bbd4e6e337184755dc30b83b3f73646a565f0915a165250436d1ac7",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 2.980232238769531e-07,
+        "gold_probability": 1.9669532775878906e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained": {
+      "sha256": "a32e4ae22d653de91ec7f34a93b7b9f8be6a202750a0428fb52315a47051e8ab",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 6.258487701416016e-07,
+        "gold_probability": 2.3245811462402344e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "best_of_four": {
+      "sha256": "a71bc0d89fdad93ffe35b4ce4046b03587037439671edc97399282627ce44047",
+      "finite": true,
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 6.556510925292969e-07,
+        "gold_probability": 4.172325134277344e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained_minus_zero": {
+      "mean_absolute_pixel_difference": 9.685985423857346e-05,
+      "max_absolute_pixel_difference": 0.001308828592300415
+    }
+  }
+}

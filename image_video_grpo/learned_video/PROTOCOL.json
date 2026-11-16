@@ -1,0 +1,79 @@
+{
+  "purpose": "Learned toy video diffusion + GRPO with a verifiable motion reward. Declared before any training.",
+  "video": {
+    "frames": 8,
+    "size": 32,
+    "digit": 20,
+    "speed_px_per_frame": 1.5,
+    "directions": 8,
+    "motion": "straight line, no bounce, start chosen so path stays in canvas",
+    "note": "reduced from 48/28 after measuring 3 s/step on MPS; digits bilinearly resized 28->20"
+  },
+  "data_splits": {
+    "denoiser": "MNIST train[0:60000], fresh random clips each batch",
+    "proxy_classifier": "MNIST train[0:30000], MLP",
+    "evaluator_classifier": "MNIST train[30000:60000], CNN",
+    "classifier_gate": "both >= 0.95 on MNIST test"
+  },
+  "diffusion": {
+    "T": 1000,
+    "schedule": "cosine",
+    "target": "epsilon",
+    "label_dropout": 0.1,
+    "policy_sampler": "DDIM eta=1, 40 steps; final step deterministic and not a policy action"
+  },
+  "pretrain": {
+    "batch": 32,
+    "lr": 0.0002,
+    "steps": 8000,
+    "ema": 0.999,
+    "warmup": 200,
+    "sampling_uses": "EMA weights",
+    "measured_throughput_s_per_step": 0.75
+  },
+  "gate": {
+    "n": 64,
+    "per_direction": 8,
+    "seed": 777,
+    "legible": "evaluator mean crop confidence >= 0.7 and class consistency >= 0.75",
+    "require_legible_fraction": 0.6,
+    "require_median_displacement_px": 5.0,
+    "rule": "if gate fails, no GRPO is run"
+  },
+  "reward_train": "guard(ink) * [0.4 * proxy_conf * proxy_consistency + 0.6 * max(0,cos(centroid displacement, requested)) * speed_match]",
+  "grpo": {
+    "seeds": [
+      2101,
+      2102,
+      2103
+    ],
+    "updates": 150,
+    "directions_per_update": 4,
+    "group": 8,
+    "train_timesteps_per_update": 10,
+    "lr": 1e-05,
+    "clip": 0.2,
+    "kl_beta": 0.01,
+    "trainable": "full denoiser, reference = frozen pretrained copy",
+    "advantage": "per-direction group normalised"
+  },
+  "evaluation": {
+    "seed": 9000,
+    "n": 256,
+    "per_direction": 32,
+    "paired_noise": true,
+    "primary": "direction success (cross-correlation displacement angle error < 22.5 deg AND evaluator-legible)",
+    "independent_measures": [
+      "evaluator legibility",
+      "cross-correlation direction error",
+      "digit class entropy",
+      "pixel diversity"
+    ],
+    "controls": [
+      "pretrained (zero update)",
+      "pretrained + CFG w=2",
+      "pretrained best-of-4 by train reward"
+    ],
+    "uncertainty": "bootstrap 95% CI over clips, per seed and pooled"
+  }
+}

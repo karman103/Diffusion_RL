@@ -1,0 +1,11 @@
+{
+  "tag": "gate",
+  "sampler_steps": 40,
+  "legible_fraction": 0.625,
+  "median_displacement_px": 10.479771614074707,
+  "direction_ok_fraction": 1.0,
+  "success_fraction": 0.625,
+  "median_angle_err_deg": 0.5542608499526978,
+  "digit_class_entropy": 0.8780408501625061,
+  "pass": true
+}

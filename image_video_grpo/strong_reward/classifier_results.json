@@ -1,0 +1,12 @@
+{
+  "proxy": {
+    "test_accuracy": 0.8166,
+    "train_examples": 25000,
+    "epochs": 16
+  },
+  "gold": {
+    "test_accuracy": 0.8146,
+    "train_examples": 25000,
+    "epochs": 16
+  }
+}

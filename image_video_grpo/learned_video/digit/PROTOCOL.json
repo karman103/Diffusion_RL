@@ -1,0 +1,74 @@
+{
+  "purpose": "Fix for the class-collapse found in ../RESULTS.md: condition on (direction, digit) and reward the requested digit, so collapsing onto one class lowers reward. Declared before training.",
+  "pretrain": {
+    "init": "from scratch",
+    "steps": 12000,
+    "batch": 32,
+    "lr": 0.0002,
+    "warmup": 200,
+    "ema": 0.999,
+    "dropout": "direction and digit each dropped independently with p=0.1 (CFG)",
+    "digit_emb_lr": 0.0002
+  },
+  "gate": {
+    "n": 80,
+    "seed": 777,
+    "require_correct_digit_fraction": 0.4,
+    "require_median_displacement_px": 5.0,
+    "rule": "if gate fails, no GRPO"
+  },
+  "reward_train": "guard(0.02<=ink<=0.30 every frame) * [0.4 * mean_t proxy_p(requested digit) + 0.6 * max(0,cos(centroid displacement, requested direction)) * speed_match]",
+  "reward_changes_vs_first_study": [
+    "requested-digit probability replaces max-class confidence x consistency",
+    "ink guard widened from 0.15 to 0.30 (the first guard rejected 28% of pretrained frames)"
+  ],
+  "grpo": {
+    "seeds": [
+      3101,
+      3102,
+      3103
+    ],
+    "updates": 150,
+    "prompts_per_update": 4,
+    "group": 8,
+    "train_timesteps_per_update": 10,
+    "lr": 1e-05,
+    "clip": 0.2,
+    "kl_beta": 0.01,
+    "note": "identical hyperparameters to the first study; final weights evaluated, no early stopping"
+  },
+  "evaluation": {
+    "seed": 9000,
+    "n": 320,
+    "layout": "clip i -> direction i%8, digit (i//8)%10; 4 clips per (direction,digit)",
+    "primary": "success = evaluator mode digit == requested AND conf>=0.7 AND consistency>=0.75 AND phase-corr angle error < 22.5 deg",
+    "secondary": [
+      "correct-digit rate",
+      "direction rate",
+      "per-digit success (collapse check)",
+      "within-prompt pixel diversity"
+    ],
+    "controls": [
+      "pretrained",
+      "pretrained + CFG w=2",
+      "pretrained best-of-4 by train reward"
+    ],
+    "uncertainty": "paired clip bootstrap 95% CI, per seed and pooled"
+  },
+  "amendment_1": {
+    "reason": "attempt 1 failed the gate: correct digit 5% (CFG 3: 14%); digit embedding norm 0.53 vs direction 33 - zero-init embedding received too little signal under warm start. Record in runs_attempt1_gate_failed/.",
+    "change": "digit embedding learning rate 1e-2 (50x), rest 2e-4; 3000 steps; early check at step 1000",
+    "gate": "unchanged"
+  },
+  "amendment_2": {
+    "reason": "attempt 2 (warm start, digit-embedding lr 1e-2) at step 1000: correct digit 6.25%, embedding norm 0.99; warm start ignores digit. Record in runs_attempt2_warmstart_failed/.",
+    "change": "train the (direction, digit) model from scratch, same recipe as the direction model: 8000 steps, lr 2e-4, EMA 0.999, independent 10% dropout of each label",
+    "gate": "unchanged"
+  },
+  "amendment_3": {
+    "date": "2026-11-15",
+    "reason": "gate at 8000 steps: correct digit 36.25% < 40% (rising: 6% @2500, 21% @5000); gate unchanged",
+    "change": "continue the same run (constant lr after warmup) from the step-8000 checkpoint to 12000 steps, then re-run the identical gate",
+    "archived": "runs_attempt3_gate_8000/"
+  }
+}

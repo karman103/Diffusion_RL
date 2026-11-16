@@ -1,0 +1,2 @@
+{"rg": 9.149405479431152, "bond_mae": 0.028454896062612534, "bond_ok": 1.0, "clash_fraction": 0.0, "geometry_pass": 1.0, "reward": -0.9718503355979919, "epoch": 0, "n": 4, "stock": false, "path_kl": 0.0, "seconds": 54.93711495399475, "training_trajectories": 0}
+{"rg": 9.149518966674805, "bond_mae": 0.028356797993183136, "bond_ok": 1.0, "clash_fraction": 0.0, "geometry_pass": 1.0, "reward": -0.971665620803833, "epoch": 60, "n": 4, "stock": false, "path_kl": 42.65608564019203, "seconds": 2989.9826481342316, "training_trajectories": 240}

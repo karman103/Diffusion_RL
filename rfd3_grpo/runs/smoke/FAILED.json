@@ -1,0 +1,5 @@
+{
+  "stage": "GPU allocator initialization",
+  "reason": "high watermark0.8 was below default low watermark1.4; corrected both settings",
+  "corrected_in_later_retry": true
+}

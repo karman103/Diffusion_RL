@@ -1,0 +1,72 @@
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+22:54:46 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+22:54:47 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+22:54:52 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+22:54:52 WARNING atomworks.io: PDB files always build all assemblies; ignoring build_assembly=('1',)
+22:54:53 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for ARG at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ARG/ARG.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for ASN at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ASN/ASN.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for CYS at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/C/CYS/CYS.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for GLU at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/G/GLU/GLU.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for GLY at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/G/GLY/GLY.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for ILE at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/I/ILE/ILE.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for PHE at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/P/PHE/PHE.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for PRO at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/P/PRO/PRO.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for SER at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/S/SER/SER.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for THR at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/T/THR/THR.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for TYR at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/T/TYR/TYR.pt
+22:54:53 WARNING atomworks.ml: Cached data not found for VAL at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/V/VAL/VAL.pt
+{"pdb": "1CRN", "policy": "stock", "seed": 5100000, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.068016482218447, "path_kl": 0.0, "reward": -0.9779442439283356, "rg": 9.239787860902918, "bond_mae": 0.026982728919021894, "loop_bond_mae": 0.03908415121563675, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_zero", "seed": 5100000, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.0510204579218152, "path_kl": 0.0, "reward": -0.9773458758503065, "rg": 9.23821897898884, "bond_mae": 0.026761988975711273, "loop_bond_mae": 0.038127611461290734, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_trained", "seed": 5100000, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.0509449595702343, "path_kl": 0.00038182684056664584, "reward": -0.9773516997843649, "rg": 9.238303695660019, "bond_mae": 0.026760665109181493, "loop_bond_mae": 0.03812187470632836, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "stock", "seed": 5100001, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.1008622225622648, "path_kl": 0.0, "reward": -0.9802255157400986, "rg": 9.243196427265145, "bond_mae": 0.027952936506792037, "loop_bond_mae": 0.043288384095974033, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_zero", "seed": 5100001, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.0500499903616636, "path_kl": 0.0, "reward": -0.968034781775494, "rg": 9.205780437152852, "bond_mae": 0.023728369030104376, "loop_bond_mae": 0.024981925030327517, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_trained", "seed": 5100001, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.0500664698541922, "path_kl": 0.0005030585261920351, "reward": -0.9680335134265856, "rg": 9.205755207982236, "bond_mae": 0.023728996314181038, "loop_bond_mae": 0.02498464326132637, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "stock", "seed": 5100002, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.0537285235354712, "path_kl": 0.0, "reward": -0.9811819257185266, "rg": 9.238688904680744, "bond_mae": 0.028656517625226075, "loop_bond_mae": 0.046337235609188204, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_zero", "seed": 5100002, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.218312283679028, "path_kl": 0.0, "reward": -0.9842540548921255, "rg": 9.252219781984916, "bond_mae": 0.029516038346816906, "loop_bond_mae": 0.05006182540274848, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_trained", "seed": 5100002, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.2183435132006188, "path_kl": 0.0005275844896459603, "reward": -0.98424703264847, "rg": 9.252199224123174, "bond_mae": 0.02951355511807629, "loop_bond_mae": 0.05005106474487247, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "stock", "seed": 5100003, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.0587618447029294, "path_kl": 0.0, "reward": -0.9771707176579532, "rg": 9.247098246138842, "bond_mae": 0.026230446522034514, "loop_bond_mae": 0.03582426082869144, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_zero", "seed": 5100003, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.303101297946133, "path_kl": 0.0, "reward": -0.9783437649229833, "rg": 9.232206518038737, "bond_mae": 0.0275615565595548, "loop_bond_mae": 0.041592404324612677, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1CRN", "policy": "ve_trained", "seed": 5100003, "fixed_rmsd": 4.590807106100193e-07, "gap_rmsd_to_native": 1.3030399527870156, "path_kl": 0.00034170485650975024, "reward": -0.9783464469629645, "rg": 9.232194563328054, "bond_mae": 0.027563495315079536, "loop_bond_mae": 0.041600805598553205, "clash_fraction": 0.0, "geometry_pass": true}
+Seed set to 0
+23:27:28 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+23:27:30 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+23:27:33 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+23:27:33 WARNING atomworks.io._loaders: Chain A contains both polymer and non-polymer residues; separating them for processing, naming the non-polymer residues as B.
+23:27:33 WARNING atomworks.io: PDB files always build all assemblies; ignoring build_assembly=('1',)
+23:27:33 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for ASN at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ASN/ASN.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for ASP at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ASP/ASP.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for GLN at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/G/GLN/GLN.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for GLU at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/G/GLU/GLU.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for GLY at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/G/GLY/GLY.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for ILE at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/I/ILE/ILE.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for LEU at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/L/LEU/LEU.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for LYS at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/L/LYS/LYS.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for MET at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/M/MET/MET.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for PHE at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/P/PHE/PHE.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for THR at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/T/THR/THR.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for TYR at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/T/TYR/TYR.pt
+23:27:33 WARNING atomworks.ml: Cached data not found for VAL at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/V/VAL/VAL.pt
+{"pdb": "1PGA", "policy": "stock", "seed": 5100000, "fixed_rmsd": 1.0111141469948087e-06, "gap_rmsd_to_native": 0.3124196756517425, "path_kl": 0.0, "reward": -1.0538846488969715, "rg": 9.999247362926198, "bond_mae": 0.02697995630217583, "loop_bond_mae": 0.015982383639267034, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1PGA", "policy": "ve_zero", "seed": 5100000, "fixed_rmsd": 1.0111141469948087e-06, "gap_rmsd_to_native": 0.5912110980758223, "path_kl": 0.0, "reward": -1.062702808359269, "rg": 10.014115453877219, "bond_mae": 0.030645631485773536, "loop_bond_mae": 0.03186697610152375, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1PGA", "policy": "ve_trained", "seed": 5100000, "fixed_rmsd": 1.0111141469948087e-06, "gap_rmsd_to_native": 0.5911860428794312, "path_kl": 0.0003813210541920853, "reward": -1.0627015837050815, "rg": 10.014132010893274, "bond_mae": 0.03064419130787705, "loop_bond_mae": 0.031860735330638996, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1PGA", "policy": "stock", "seed": 5100001, "fixed_rmsd": 1.0111141469948087e-06, "gap_rmsd_to_native": 0.4192236546043781, "path_kl": 0.0, "reward": -1.0566020795910007, "rg": 9.998298205612535, "bond_mae": 0.028386129514873668, "loop_bond_mae": 0.022075800894291002, "clash_fraction": 0.0, "geometry_pass": true}
+{"pdb": "1PGA", "policy": "ve_zero", "seed": 5100001, "fixed_rmsd": 1.0111141469948087e-06, "gap_rmsd_to_native": 0.6758840146159458, "path_kl": 0.0, "reward": -1.0668068674145699, "rg": 10.000743529437436, "bond_mae": 0.03336625723541307, "loop_bond_mae": 0.043656354349961735, "clash_fraction": 0.0, "geometry_pass": true}
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_flow_benchmark/benchmark.py", line 145, in <module>
+    report() if args.report else run()
+                                 ^^^^^
+  File "/Users/karman/Desktop/projects/protein_folding/rfd3_flow_benchmark/benchmark.py", line 75, in run
+    raise TimeoutError("Benchmark deadline reached before starting next sample")
+TimeoutError: Benchmark deadline reached before starting next sample

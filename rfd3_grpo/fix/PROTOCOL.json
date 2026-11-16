@@ -1,0 +1,34 @@
+{
+  "purpose": "Make RFD3 GRPO move the reward. Diagnosis of ../RESULTS.md: only 6 updates, lr 3e-4 on a zero-initialised rank-2 adapter (delta norm ~0.003), and most recorded actions at high noise where reward signal is weakest. The only positive run was the late-noise window (late_s0: -0.9737 -> -0.9691 in 6 updates).",
+  "changes_vs_first_study": {
+    "epochs": "6 -> 60",
+    "lr": "3e-4 -> 3e-3",
+    "rank": "2 -> 3 (maximum for the 3-coordinate head)",
+    "active_window": "sigma in [0.5, 4.0] (late window, as late_s0)"
+  },
+  "unchanged": "checkpoint, 32 residues, 64 steps, stock-churn sampler with explicit CA Gaussian actions, group 4, reuse 4, clip 0.2, KL beta 0.01, guarded reward (-Rg/10 - 2*bond MAE - 10*clash fraction)",
+  "seeds": [
+    11,
+    12
+  ],
+  "evaluation": {
+    "fresh_seeds": "5_000_000 .. 5_000_015 (16, never used before)",
+    "paired": "zero adapter vs trained adapter with identical noise",
+    "primary": "guarded reward, paired bootstrap 95% CI",
+    "validity": [
+      "geometry pass (bond 3.4-4.2 A for >=95% and no nonlocal CA pair < 3 A)",
+      "bond MAE",
+      "clash fraction",
+      "Rg"
+    ]
+  },
+  "rule": "final adapters evaluated; no early stopping",
+  "amendment_1": {
+    "reason": "seed 11 (CA-only actions, window [0.5,4], lr 3e-3): adapter moved (delta 0.09, path KL 12) but paired fresh reward +0.0005 (CI -0.00005..+0.00135); diagnosis: CA-only shifts are undone by the frozen denoiser because the rest of each residue does not move. Seed 12 of that setting stopped as superseded.",
+    "change": "actions on ALL free atoms (RFD3_ACTION_ATOMS=all), window sigma in [0, 4] (all but the final deterministic step), lr 1e-3; everything else unchanged",
+    "seeds": [
+      21,
+      22
+    ]
+  }
+}

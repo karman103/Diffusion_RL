@@ -1,0 +1,7 @@
+{
+  "1PGA_gap15_22": {
+    "input": "/Users/karman/Desktop/projects/protein_folding/rfd3_flow_benchmark/pdbs/1PGA.pdb",
+    "contig": "A1-14,8,A23-40",
+    "select_fixed_atoms": true
+  }
+}

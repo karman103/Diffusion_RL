@@ -1,0 +1,23 @@
+{
+ "method": "ddpo",
+ "reward": "random",
+ "target": 7,
+ "kl": 0.0,
+ "epochs": 10,
+ "bs": 64,
+ "mb": 32,
+ "inner": 1,
+ "n_steps": 20,
+ "t_frac": 0.5,
+ "lr": 1e-05,
+ "clip": 0.2,
+ "adv_clip": 5.0,
+ "rwr_temp": 0.5,
+ "draft_k": 1,
+ "eval_every": 5,
+ "n_eval": 128,
+ "seed": 0,
+ "clip_x0": 1,
+ "t_min": 20,
+ "out": "runs/ctrl_c1_t20"
+}

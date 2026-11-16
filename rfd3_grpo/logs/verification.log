@@ -1,0 +1,12 @@
+test_conditions_do_not_mix (rfd3_grpo.test_grpo.GRPOTests.test_conditions_do_not_mix) ... ok
+test_group_normalization (rfd3_grpo.test_grpo.GRPOTests.test_group_normalization) ... ok
+test_low_rank_projection_matches_merged_weight (rfd3_grpo.test_grpo.GRPOTests.test_low_rank_projection_matches_merged_weight) ... ok
+test_positive_advantage_increases_recorded_action_probability (rfd3_grpo.test_grpo.GRPOTests.test_positive_advantage_increases_recorded_action_probability) ... ok
+test_stable_ratio_is_exact_joint_gaussian_ratio (rfd3_grpo.test_grpo.GRPOTests.test_stable_ratio_is_exact_joint_gaussian_ratio) ... ok
+test_ties_have_no_fabricated_signal (rfd3_grpo.test_grpo.GRPOTests.test_ties_have_no_fabricated_signal) ... ok
+test_zero_initialization_matches_reference (rfd3_grpo.test_grpo.GRPOTests.test_zero_initialization_matches_reference) ... ok
+
+----------------------------------------------------------------------
+Ran 7 tests in 1.612s
+
+OK

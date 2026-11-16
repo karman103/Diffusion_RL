@@ -1,0 +1,25 @@
+/Users/karman/Desktop/projects/protein_folding/image_video_grpo/train_cifar_classifiers.py:41: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at /Users/runner/work/pytorch/pytorch/pytorch/torch/csrc/autograd/generated/python_variable_methods.cpp:836.)
+  print(json.dumps({"classifier": name, "epoch": epoch + 1, "loss": float(loss)}), flush=True)
+{"classifier": "proxy", "epoch": 1, "loss": 1.9971648454666138}
+{"classifier": "proxy", "epoch": 2, "loss": 1.9899424314498901}
+{"classifier": "proxy", "epoch": 3, "loss": 1.4844120740890503}
+{"classifier": "proxy", "epoch": 4, "loss": 2.2372536659240723}
+{"classifier": "proxy", "epoch": 5, "loss": 1.1257678270339966}
+{"classifier": "proxy", "epoch": 6, "loss": 0.960415780544281}
+{"classifier": "proxy", "epoch": 7, "loss": 1.4321421384811401}
+{"classifier": "proxy", "epoch": 8, "loss": 1.0628561973571777}
+{"classifier": "proxy", "test_accuracy": 0.462}
+{"classifier": "gold", "epoch": 1, "loss": 0.9199730753898621}
+{"classifier": "gold", "epoch": 2, "loss": 0.8435648083686829}
+{"classifier": "gold", "epoch": 3, "loss": 0.5519449710845947}
+{"classifier": "gold", "epoch": 4, "loss": 0.6353504061698914}
+{"classifier": "gold", "epoch": 5, "loss": 0.5573349595069885}
+{"classifier": "gold", "epoch": 6, "loss": 0.4569205641746521}
+{"classifier": "gold", "epoch": 7, "loss": 0.395382285118103}
+{"classifier": "gold", "epoch": 8, "loss": 0.35592517256736755}
+{"classifier": "gold", "epoch": 9, "loss": 0.3808411657810211}
+{"classifier": "gold", "epoch": 10, "loss": 0.40854573249816895}
+{"classifier": "gold", "epoch": 11, "loss": 0.32282713055610657}
+{"classifier": "gold", "epoch": 12, "loss": 0.2082967758178711}
+{"classifier": "gold", "test_accuracy": 0.7988}

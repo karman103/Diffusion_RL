@@ -1,0 +1,54 @@
+{
+  "rows": [
+    {
+      "seed": 610001,
+      "mean": 0.010921233333647251,
+      "std": 0.021332334727048874,
+      "frame_delta": 0.00784919410943985,
+      "reward": 0.20719142258167267,
+      "proxy_digit_confidence": 0.0,
+      "gold_digit_confidence": 0.0,
+      "motion_score": 0.41438284516334534,
+      "static": 0.0,
+      "ink_mass": 0.011087230406701565
+    },
+    {
+      "seed": 610002,
+      "mean": 0.008695367723703384,
+      "std": 0.005816787015646696,
+      "frame_delta": 0.005816246848553419,
+      "reward": 0.0,
+      "proxy_digit_confidence": 0.0,
+      "gold_digit_confidence": 0.0,
+      "motion_score": 0.4052388668060303,
+      "static": 0.0,
+      "ink_mass": 0.008789688348770142
+    },
+    {
+      "seed": 610003,
+      "mean": 0.00716128945350647,
+      "std": 0.005651647225022316,
+      "frame_delta": 0.0047635664232075214,
+      "reward": 0.0,
+      "proxy_digit_confidence": 0.0,
+      "gold_digit_confidence": 0.0,
+      "motion_score": 0.39735203981399536,
+      "static": 1.0,
+      "ink_mass": 0.007409705780446529
+    },
+    {
+      "seed": 610004,
+      "mean": 0.012641007080674171,
+      "std": 0.011915735900402069,
+      "frame_delta": 0.008066216483712196,
+      "reward": 0.20947502553462982,
+      "proxy_digit_confidence": 0.0,
+      "gold_digit_confidence": 0.0,
+      "motion_score": 0.41895005106925964,
+      "static": 0.0,
+      "ink_mass": 0.012717153877019882
+    }
+  ],
+  "checkpoint": "f7d6f376f55556f5eb520069736544651fe48295",
+  "sampler": "8-step 4-frame modified stochastic Euler, zero adapter"
+}

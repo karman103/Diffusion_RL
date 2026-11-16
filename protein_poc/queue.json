@@ -1,0 +1,345 @@
+[
+  {
+    "name": "base_bon4",
+    "args": [
+      "--mode",
+      "baseline",
+      "--eval-n",
+      "64",
+      "--bon-n",
+      "4",
+      "--bon-groups",
+      "32"
+    ]
+  },
+  {
+    "name": "compact_s0",
+    "args": [
+      "--seed",
+      "0",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.001"
+    ]
+  },
+  {
+    "name": "random_s0",
+    "args": [
+      "--seed",
+      "0",
+      "--objective",
+      "random",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.001"
+    ]
+  },
+  {
+    "name": "guarded_s0",
+    "args": [
+      "--seed",
+      "0",
+      "--objective",
+      "guarded",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.001"
+    ]
+  },
+  {
+    "name": "early_s0",
+    "args": [
+      "--seed",
+      "0",
+      "--objective",
+      "compact",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.0001",
+      "--active-min",
+      "200",
+      "--active-max",
+      "999"
+    ]
+  },
+  {
+    "name": "early_random_s0",
+    "args": [
+      "--seed",
+      "0",
+      "--objective",
+      "random",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.0001",
+      "--active-min",
+      "200",
+      "--active-max",
+      "999"
+    ]
+  },
+  {
+    "name": "compact_s1",
+    "args": [
+      "--seed",
+      "1",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.001"
+    ]
+  },
+  {
+    "name": "compact_s2",
+    "args": [
+      "--seed",
+      "2",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.001"
+    ]
+  },
+  {
+    "name": "guarded_s1",
+    "args": [
+      "--seed",
+      "1",
+      "--objective",
+      "guarded",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.001"
+    ]
+  },
+  {
+    "name": "guarded_s2",
+    "args": [
+      "--seed",
+      "2",
+      "--objective",
+      "guarded",
+      "--epochs",
+      "24",
+      "--batch",
+      "8",
+      "--eval-n",
+      "32",
+      "--eval-every",
+      "12",
+      "--lr",
+      "0.001"
+    ]
+  },
+  {
+    "name": "base_steps100",
+    "args": [
+      "--mode",
+      "baseline",
+      "--steps",
+      "100",
+      "--eval-n",
+      "32",
+      "--bon-n",
+      "1",
+      "--bon-groups",
+      "8"
+    ]
+  },
+  {
+    "name": "test_base",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32"
+    ]
+  },
+  {
+    "name": "test_random_s0",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/random_s0/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32"
+    ]
+  },
+  {
+    "name": "test_compact_s0",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/compact_s0/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32"
+    ]
+  },
+  {
+    "name": "test_compact_s1",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/compact_s1/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32"
+    ]
+  },
+  {
+    "name": "test_compact_s2",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/compact_s2/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32"
+    ]
+  },
+  {
+    "name": "test_guarded_s0",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/guarded_s0/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32",
+      "--objective",
+      "guarded"
+    ]
+  },
+  {
+    "name": "test_guarded_s1",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/guarded_s1/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32",
+      "--objective",
+      "guarded"
+    ]
+  },
+  {
+    "name": "test_guarded_s2",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/guarded_s2/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32",
+      "--objective",
+      "guarded"
+    ]
+  },
+  {
+    "name": "test_early_s0",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/early_s0/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32",
+      "--active-min",
+      "200",
+      "--active-max",
+      "999"
+    ]
+  },
+  {
+    "name": "test_early_random_s0",
+    "args": [
+      "--mode",
+      "evaluate",
+      "--head",
+      "protein_poc/runs/early_random_s0/head.pt",
+      "--eval-seed",
+      "4000000",
+      "--eval-n",
+      "32",
+      "--active-min",
+      "200",
+      "--active-max",
+      "999"
+    ]
+  }
+]

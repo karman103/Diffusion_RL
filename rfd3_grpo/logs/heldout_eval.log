@@ -1,0 +1,141 @@
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+00:59:20 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+00:59:22 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+00:59:26 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+00:59:27 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+{"policy": "stock", "seed": 3000000, "guarded_reward": -0.9662489295005798, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000000, "guarded_reward": -0.9667285084724426, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000000, "guarded_reward": -0.9667177796363831, "geometry_pass": 1.0, "path_kl": 0.6988399984693388}
+{"policy": "main_s1", "seed": 3000000, "guarded_reward": -0.9667432308197021, "geometry_pass": 1.0, "path_kl": 0.8505201422958635}
+{"policy": "main_s2", "seed": 3000000, "guarded_reward": -0.9667303562164307, "geometry_pass": 1.0, "path_kl": 1.7862482665514108}
+{"policy": "random_s0", "seed": 3000000, "guarded_reward": -0.9667551517486572, "geometry_pass": 1.0, "path_kl": 0.9614876850391738}
+{"policy": "single_s0", "seed": 3000000, "guarded_reward": -0.9669358730316162, "geometry_pass": 1.0, "path_kl": 0.14826954386626312}
+{"policy": "late_s0", "seed": 3000000, "guarded_reward": -0.9659917950630188, "geometry_pass": 1.0, "path_kl": 0.010139618592802435}
+{"policy": "stock", "seed": 3000001, "guarded_reward": -0.8404768705368042, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000001, "guarded_reward": -0.8631898760795593, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000001, "guarded_reward": -0.8653358817100525, "geometry_pass": 1.0, "path_kl": 0.7871914787683636}
+{"policy": "main_s1", "seed": 3000001, "guarded_reward": -0.8369722962379456, "geometry_pass": 1.0, "path_kl": 0.8561411038390361}
+{"policy": "main_s2", "seed": 3000001, "guarded_reward": -0.8640669584274292, "geometry_pass": 1.0, "path_kl": 1.781258629707736}
+{"policy": "random_s0", "seed": 3000001, "guarded_reward": -0.8427193760871887, "geometry_pass": 1.0, "path_kl": 1.0691405077523086}
+{"policy": "single_s0", "seed": 3000001, "guarded_reward": -0.8491092920303345, "geometry_pass": 1.0, "path_kl": 0.09502982827325468}
+{"policy": "late_s0", "seed": 3000001, "guarded_reward": -0.8399692177772522, "geometry_pass": 1.0, "path_kl": 0.009222853870596737}
+{"policy": "stock", "seed": 3000002, "guarded_reward": -0.9066471457481384, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000002, "guarded_reward": -0.9062336683273315, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000002, "guarded_reward": -0.9062421917915344, "geometry_pass": 1.0, "path_kl": 0.7830374861659948}
+{"policy": "main_s1", "seed": 3000002, "guarded_reward": -0.9062491655349731, "geometry_pass": 1.0, "path_kl": 0.899615473812446}
+{"policy": "main_s2", "seed": 3000002, "guarded_reward": -0.9055274724960327, "geometry_pass": 1.0, "path_kl": 1.660309247119585}
+{"policy": "random_s0", "seed": 3000002, "guarded_reward": -0.9057485461235046, "geometry_pass": 1.0, "path_kl": 1.2059170364227612}
+{"policy": "single_s0", "seed": 3000002, "guarded_reward": -0.9059807658195496, "geometry_pass": 1.0, "path_kl": 0.11401279340134352}
+{"policy": "late_s0", "seed": 3000002, "guarded_reward": -0.9065362215042114, "geometry_pass": 1.0, "path_kl": 0.009857864992227405}
+{"policy": "stock", "seed": 3000003, "guarded_reward": -0.9671725034713745, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000003, "guarded_reward": -0.9692222476005554, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000003, "guarded_reward": -0.9848672747612, "geometry_pass": 1.0, "path_kl": 0.7411837129184278}
+{"policy": "main_s1", "seed": 3000003, "guarded_reward": -0.9690448641777039, "geometry_pass": 1.0, "path_kl": 0.8817088162759319}
+{"policy": "main_s2", "seed": 3000003, "guarded_reward": -0.9696352481842041, "geometry_pass": 1.0, "path_kl": 1.6843462935939897}
+{"policy": "random_s0", "seed": 3000003, "guarded_reward": -0.9696484804153442, "geometry_pass": 1.0, "path_kl": 1.0728015139175113}
+{"policy": "single_s0", "seed": 3000003, "guarded_reward": -0.9853450655937195, "geometry_pass": 1.0, "path_kl": 0.14856687458814122}
+{"policy": "late_s0", "seed": 3000003, "guarded_reward": -0.9695148468017578, "geometry_pass": 1.0, "path_kl": 0.009029514738358557}
+{"policy": "stock", "seed": 3000004, "guarded_reward": -0.9024041891098022, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000004, "guarded_reward": -0.902133047580719, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000004, "guarded_reward": -0.9029448628425598, "geometry_pass": 1.0, "path_kl": 0.7168756608298281}
+{"policy": "main_s1", "seed": 3000004, "guarded_reward": -0.9113032817840576, "geometry_pass": 1.0, "path_kl": 0.9176433808170259}
+{"policy": "main_s2", "seed": 3000004, "guarded_reward": -0.9109672904014587, "geometry_pass": 1.0, "path_kl": 1.8565917191735934}
+{"policy": "random_s0", "seed": 3000004, "guarded_reward": -0.9116170406341553, "geometry_pass": 1.0, "path_kl": 1.0492859742080327}
+{"policy": "single_s0", "seed": 3000004, "guarded_reward": -0.9094600081443787, "geometry_pass": 1.0, "path_kl": 0.19463065011950675}
+{"policy": "late_s0", "seed": 3000004, "guarded_reward": -0.9110708236694336, "geometry_pass": 1.0, "path_kl": 0.009752120822668076}
+{"policy": "stock", "seed": 3000005, "guarded_reward": -0.8503680229187012, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000005, "guarded_reward": -0.8511162996292114, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000005, "guarded_reward": -0.8512945175170898, "geometry_pass": 1.0, "path_kl": 0.7876181029132567}
+{"policy": "main_s1", "seed": 3000005, "guarded_reward": -0.8561950922012329, "geometry_pass": 1.0, "path_kl": 0.9154950593947433}
+{"policy": "main_s2", "seed": 3000005, "guarded_reward": -0.851175844669342, "geometry_pass": 1.0, "path_kl": 1.6235613411990926}
+{"policy": "random_s0", "seed": 3000005, "guarded_reward": -0.8512675762176514, "geometry_pass": 1.0, "path_kl": 1.1534301150240935}
+{"policy": "single_s0", "seed": 3000005, "guarded_reward": -0.8558035492897034, "geometry_pass": 1.0, "path_kl": 0.16168976069275232}
+{"policy": "late_s0", "seed": 3000005, "guarded_reward": -0.8512499332427979, "geometry_pass": 1.0, "path_kl": 0.008314054401125759}
+{"policy": "stock", "seed": 3000006, "guarded_reward": -0.9778022766113281, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000006, "guarded_reward": -0.9783956408500671, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000006, "guarded_reward": -0.9783895611763, "geometry_pass": 1.0, "path_kl": 0.7358358094206778}
+{"policy": "main_s1", "seed": 3000006, "guarded_reward": -0.9783973693847656, "geometry_pass": 1.0, "path_kl": 0.8396725322236307}
+{"policy": "main_s2", "seed": 3000006, "guarded_reward": -0.9784380793571472, "geometry_pass": 1.0, "path_kl": 1.536912793002557}
+{"policy": "random_s0", "seed": 3000006, "guarded_reward": -0.9784358143806458, "geometry_pass": 1.0, "path_kl": 1.07459499000106}
+{"policy": "single_s0", "seed": 3000006, "guarded_reward": -0.978403627872467, "geometry_pass": 1.0, "path_kl": 0.14055259975066292}
+{"policy": "late_s0", "seed": 3000006, "guarded_reward": -0.9770411252975464, "geometry_pass": 1.0, "path_kl": 0.009537464880850166}
+{"policy": "stock", "seed": 3000007, "guarded_reward": -0.9889109134674072, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000007, "guarded_reward": -0.9859576225280762, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000007, "guarded_reward": -0.9893211126327515, "geometry_pass": 1.0, "path_kl": 0.7317593419720652}
+{"policy": "main_s1", "seed": 3000007, "guarded_reward": -0.9889260530471802, "geometry_pass": 1.0, "path_kl": 0.8326003024121746}
+{"policy": "main_s2", "seed": 3000007, "guarded_reward": -0.988645613193512, "geometry_pass": 1.0, "path_kl": 1.7199677593744127}
+{"policy": "random_s0", "seed": 3000007, "guarded_reward": -0.9886773824691772, "geometry_pass": 1.0, "path_kl": 1.011411321524065}
+{"policy": "single_s0", "seed": 3000007, "guarded_reward": -0.9890267252922058, "geometry_pass": 1.0, "path_kl": 0.14231564791953133}
+{"policy": "late_s0", "seed": 3000007, "guarded_reward": -0.9889712929725647, "geometry_pass": 1.0, "path_kl": 0.00968209933489561}
+{"policy": "stock", "seed": 3000008, "guarded_reward": -0.9225159883499146, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000008, "guarded_reward": -0.9310072660446167, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000008, "guarded_reward": -0.931523323059082, "geometry_pass": 1.0, "path_kl": 0.7156330578873167}
+{"policy": "main_s1", "seed": 3000008, "guarded_reward": -0.931134819984436, "geometry_pass": 1.0, "path_kl": 0.8249718268634751}
+{"policy": "main_s2", "seed": 3000008, "guarded_reward": -0.9311244487762451, "geometry_pass": 1.0, "path_kl": 1.6873642281861976}
+{"policy": "random_s0", "seed": 3000008, "guarded_reward": -0.9310744404792786, "geometry_pass": 1.0, "path_kl": 0.9816019799327478}
+{"policy": "single_s0", "seed": 3000008, "guarded_reward": -0.9313468933105469, "geometry_pass": 1.0, "path_kl": 0.1213788809000107}
+{"policy": "late_s0", "seed": 3000008, "guarded_reward": -0.9227932095527649, "geometry_pass": 1.0, "path_kl": 0.008688456029631197}
+{"policy": "stock", "seed": 3000009, "guarded_reward": -0.8715091943740845, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000009, "guarded_reward": -0.8749244213104248, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000009, "guarded_reward": -0.8747553825378418, "geometry_pass": 1.0, "path_kl": 0.7834908223012462}
+{"policy": "main_s1", "seed": 3000009, "guarded_reward": -0.8706607222557068, "geometry_pass": 1.0, "path_kl": 0.8517136633163318}
+{"policy": "main_s2", "seed": 3000009, "guarded_reward": -0.8708246946334839, "geometry_pass": 1.0, "path_kl": 1.621403900819132}
+{"policy": "random_s0", "seed": 3000009, "guarded_reward": -0.8708173632621765, "geometry_pass": 1.0, "path_kl": 1.130019931588322}
+{"policy": "single_s0", "seed": 3000009, "guarded_reward": -0.8748844861984253, "geometry_pass": 1.0, "path_kl": 0.11878702043031808}
+{"policy": "late_s0", "seed": 3000009, "guarded_reward": -0.8709028959274292, "geometry_pass": 1.0, "path_kl": 0.00873105926439166}
+{"policy": "stock", "seed": 3000010, "guarded_reward": -1.0308868885040283, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000010, "guarded_reward": -1.0259813070297241, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000010, "guarded_reward": -1.0304896831512451, "geometry_pass": 1.0, "path_kl": 0.7107570741209202}
+{"policy": "main_s1", "seed": 3000010, "guarded_reward": -1.0309172868728638, "geometry_pass": 1.0, "path_kl": 0.8340105164097622}
+{"policy": "main_s2", "seed": 3000010, "guarded_reward": -1.0262253284454346, "geometry_pass": 1.0, "path_kl": 1.6627183883392718}
+{"policy": "random_s0", "seed": 3000010, "guarded_reward": -1.0256067514419556, "geometry_pass": 1.0, "path_kl": 0.9808886407699902}
+{"policy": "single_s0", "seed": 3000010, "guarded_reward": -1.031165361404419, "geometry_pass": 1.0, "path_kl": 0.19430827843643783}
+{"policy": "late_s0", "seed": 3000010, "guarded_reward": -1.0313656330108643, "geometry_pass": 1.0, "path_kl": 0.008601684123277664}
+{"policy": "stock", "seed": 3000011, "guarded_reward": -0.932829737663269, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000011, "guarded_reward": -0.931315004825592, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000011, "guarded_reward": -0.9315853118896484, "geometry_pass": 1.0, "path_kl": 0.751458149854443}
+{"policy": "main_s1", "seed": 3000011, "guarded_reward": -0.9313485622406006, "geometry_pass": 1.0, "path_kl": 0.8469143863185309}
+{"policy": "main_s2", "seed": 3000011, "guarded_reward": -0.9314892292022705, "geometry_pass": 1.0, "path_kl": 1.6286835977225564}
+{"policy": "random_s0", "seed": 3000011, "guarded_reward": -0.9316527843475342, "geometry_pass": 1.0, "path_kl": 1.100853397831088}
+{"policy": "single_s0", "seed": 3000011, "guarded_reward": -0.9314739108085632, "geometry_pass": 1.0, "path_kl": 0.1321370010937244}
+{"policy": "late_s0", "seed": 3000011, "guarded_reward": -0.9324683547019958, "geometry_pass": 1.0, "path_kl": 0.009007459739223123}
+{"policy": "stock", "seed": 3000012, "guarded_reward": -0.9001101851463318, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000012, "guarded_reward": -0.9010461568832397, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000012, "guarded_reward": -0.9019375443458557, "geometry_pass": 1.0, "path_kl": 0.6979415427485947}
+{"policy": "main_s1", "seed": 3000012, "guarded_reward": -0.9010631442070007, "geometry_pass": 1.0, "path_kl": 0.8176690752152354}
+{"policy": "main_s2", "seed": 3000012, "guarded_reward": -0.9009326100349426, "geometry_pass": 1.0, "path_kl": 1.8228543006407563}
+{"policy": "random_s0", "seed": 3000012, "guarded_reward": -0.9019588232040405, "geometry_pass": 1.0, "path_kl": 0.8991870783502236}
+{"policy": "single_s0", "seed": 3000012, "guarded_reward": -0.9010486602783203, "geometry_pass": 1.0, "path_kl": 0.16575390265461465}
+{"policy": "late_s0", "seed": 3000012, "guarded_reward": -0.9003596305847168, "geometry_pass": 1.0, "path_kl": 0.007988163270056248}
+{"policy": "stock", "seed": 3000013, "guarded_reward": -1.0528990030288696, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000013, "guarded_reward": -1.0552200078964233, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000013, "guarded_reward": -1.0554810762405396, "geometry_pass": 1.0, "path_kl": 0.7382795552548487}
+{"policy": "main_s1", "seed": 3000013, "guarded_reward": -1.0557632446289062, "geometry_pass": 1.0, "path_kl": 0.8558579576201737}
+{"policy": "main_s2", "seed": 3000013, "guarded_reward": -1.055513620376587, "geometry_pass": 1.0, "path_kl": 1.6789653858722886}
+{"policy": "random_s0", "seed": 3000013, "guarded_reward": -1.0559370517730713, "geometry_pass": 1.0, "path_kl": 1.0744371274777222}
+{"policy": "single_s0", "seed": 3000013, "guarded_reward": -1.055519461631775, "geometry_pass": 1.0, "path_kl": 0.12894215691085265}
+{"policy": "late_s0", "seed": 3000013, "guarded_reward": -1.0529226064682007, "geometry_pass": 1.0, "path_kl": 0.008897282124962658}
+{"policy": "stock", "seed": 3000014, "guarded_reward": -1.0546064376831055, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000014, "guarded_reward": -1.0154322385787964, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000014, "guarded_reward": -1.015618920326233, "geometry_pass": 1.0, "path_kl": 0.7209442481107544}
+{"policy": "main_s1", "seed": 3000014, "guarded_reward": -1.015608549118042, "geometry_pass": 1.0, "path_kl": 0.8868898697546683}
+{"policy": "main_s2", "seed": 3000014, "guarded_reward": -1.015945553779602, "geometry_pass": 1.0, "path_kl": 1.770471095413086}
+{"policy": "random_s0", "seed": 3000014, "guarded_reward": -1.0147747993469238, "geometry_pass": 1.0, "path_kl": 1.0193298512604088}
+{"policy": "single_s0", "seed": 3000014, "guarded_reward": -1.0147525072097778, "geometry_pass": 1.0, "path_kl": 0.13953660040715476}
+{"policy": "late_s0", "seed": 3000014, "guarded_reward": -1.0495191812515259, "geometry_pass": 1.0, "path_kl": 0.008468702610116452}
+{"policy": "stock", "seed": 3000015, "guarded_reward": -1.1199413537979126, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "zero", "seed": 3000015, "guarded_reward": -1.1199476718902588, "geometry_pass": 1.0, "path_kl": 0.0}
+{"policy": "main_s0", "seed": 3000015, "guarded_reward": -1.1199607849121094, "geometry_pass": 1.0, "path_kl": 0.6989791371161118}
+{"policy": "main_s1", "seed": 3000015, "guarded_reward": -1.1199742555618286, "geometry_pass": 1.0, "path_kl": 0.8773299542954192}
+{"policy": "main_s2", "seed": 3000015, "guarded_reward": -1.1199604272842407, "geometry_pass": 1.0, "path_kl": 1.8059362603671616}
+{"policy": "random_s0", "seed": 3000015, "guarded_reward": -1.1199637651443481, "geometry_pass": 1.0, "path_kl": 0.951657591125695}
+{"policy": "single_s0", "seed": 3000015, "guarded_reward": -1.1199434995651245, "geometry_pass": 1.0, "path_kl": 0.17443613864998042}
+{"policy": "late_s0", "seed": 3000015, "guarded_reward": -1.1205379962921143, "geometry_pass": 1.0, "path_kl": 0.008852825209032744}

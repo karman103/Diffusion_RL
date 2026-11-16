@@ -1,0 +1,27 @@
+{
+  "training_length": 32,
+  "evaluation_length": 40,
+  "count": 8,
+  "first_seed": 4000000,
+  "policies": [
+    "stock",
+    "zero",
+    "late_zero",
+    "main_s0",
+    "main_s1",
+    "main_s2",
+    "random_s0",
+    "single_s0",
+    "late_s0"
+  ],
+  "checkpoint_sha256": "9b3f85923e0d51e9453e15cdd2f8c666e7ce096a60577f57d11bbc54ae6d67c1",
+  "adapter_sha256": {
+    "main_s0": "7157c1f2ec1c595ee52a5e6daf75864aec196a224770830a74fb1c8b80e26055",
+    "main_s1": "cba3cd4f4013ea9970ae7f6ff2655d0bd5ee09af50549a41cbc26ce5435440e9",
+    "main_s2": "d1104836d4e67d4f027b0816c366091d5ff2cd30d2af46f9ed524510ab153769",
+    "random_s0": "640ba1de8f2967884162a04e5346d2b3cebd8c2b79c071100b97b93b9430206a",
+    "single_s0": "9ee594575384da2eb26c86aee1c4e4da9aa10d4b8fe3654f92f0f9cd7697e243",
+    "late_s0": "5ef63aa461077aba70f6553e6186a1a580ea64207bd6b50efd0c713c7dd6ae75"
+  },
+  "deadline": "2026-11-13T10:26:00Z"
+}

@@ -1,0 +1,9 @@
+{
+  "status": "failed_before_video_training",
+  "reason": "All four predeclared four-frame zero-adapter feasibility samples had no detected digit components and zero independent MNIST digit confidence. Two of four still received nonzero reward solely from pixel motion, so the planned reward could be optimized without generating digits.",
+  "evidence": "video_feasibility.json",
+  "checkpoint_sha256": "ec9f5e39099e9cbcf282cfef05f74f8565cf68c07a1aad9857b3cc0f444e8af7",
+  "sampler": "8-step, four-frame stochastic Euler, velocity scale 1, zero residual adapter",
+  "other_smokes": "Four-frame 100-step upstream sampler remained noise-like; four-frame 8-step ordinary Euler output collapsed near black. Native 20-frame 8-step upstream sampler remained noise-like. See smoke_stock.gif, smoke_video_euler.gif, and smoke_stock_20frames.gif.",
+  "action": "Do not start video GRPO training or claim video benchmark improvement. Preserve the failed feasibility evidence and report it in the blog."
+}

@@ -1,0 +1,18 @@
+{
+  "recorded_after_runs_for_audit": true,
+  "canonical_image_ddpm": {
+    "path": "runs/base/ckpt.pt",
+    "sha256": "0876236071bf1b407569a0df79d896981fa8e0e4414e00d3aab991285ba91839",
+    "source": "local 10000-step EMA pretrained MNIST image model"
+  },
+  "proxy_mnist_classifier": {
+    "path": "runs/clf/proxy.pt",
+    "sha256": "8ab7b28964e193e361947b41343589011d91234e44543fdaf13fd43a5c701eb9",
+    "training": "scripts/train_classifiers.py: MLP on 1000 MNIST training examples; test accuracy 0.8989"
+  },
+  "gold_mnist_classifier": {
+    "path": "runs/clf/gold.pt",
+    "sha256": "7a72ecff90d109498b14dd6cacbf70d4b4cbd788732c4f7848d97c0dd5bb9f9b",
+    "training": "scripts/train_classifiers.py: separate CNN on all 60000 MNIST training examples; test accuracy 0.9923. Its data include the proxy's 1000 examples. It was not used for reward or adapter selection."
+  }
+}

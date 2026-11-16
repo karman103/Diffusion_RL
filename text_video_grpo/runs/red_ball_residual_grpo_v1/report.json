@@ -1,0 +1,202 @@
+{
+  "protocol": {
+    "status": "exploratory amendment before any GRPO training: internal LoRA backward OOMed at visually useful 8-frame sizes; frozen float32 U-Net with a small zero-initialized output residual is the new pilot policy",
+    "model_revision": "6963642a64dbefa93663d1ecebb4ceda2d9ecb28",
+    "prompt": "A single red ball rolls from left to right across a plain floor.",
+    "sampler": "modified stochastic DDIM, eta=0.5, epsilon prediction",
+    "guidance_scale": 7.5,
+    "adapter_scope": "conditional U-Net branch only; unconditional classifier-free guidance branch remains frozen",
+    "vae_decode_dtype": "float32",
+    "unet_compute_dtype": "float32 (float16 and bfloat16 failed finiteness checks on MPS)",
+    "steps": 16,
+    "frames": 8,
+    "width": 320,
+    "height": 192,
+    "mps_memory_fraction": 0.95,
+    "group_size": 4,
+    "train_seeds": [
+      311,
+      312,
+      313,
+      314
+    ],
+    "eval_seeds": [
+      911,
+      912
+    ],
+    "adapter": "zero-initialized Conv3d(8,16,3)-SiLU-Conv3d(16,4,3) residual on conditional epsilon; pretrained U-Net frozen",
+    "learning_rate": 0.0003,
+    "clip_ratio": 0.2,
+    "reward": "red-object horizontal displacement with visibility penalty; inspect stock clip before use",
+    "scope": "one-update eight-frame feasibility pilot, not a full benchmark or evidence of cinematic video quality"
+  },
+  "scope": "one real-checkpoint frozen-denoiser residual GRPO update",
+  "status": "complete",
+  "train": [
+    {
+      "seed": 311,
+      "reward": 0.00043414404073649493,
+      "red_visibility": 0.5924921631813049,
+      "red_displacement": 0.00669589638710022,
+      "center_jerk": 0.023852616548538208,
+      "frame_difference": 40.73896789550781,
+      "shape": [
+        8,
+        192,
+        320,
+        3
+      ],
+      "raw_dtype": "float32",
+      "raw_min": 0.0,
+      "raw_max": 1.0,
+      "finite": true,
+      "pixel_std": 87.92154019237455,
+      "sha256": "8445d4c1a7f502b3545e41a94c7c6351f2139c2e2db8caeb864c3955ffe23ac0"
+    },
+    {
+      "seed": 312,
+      "reward": -0.038006176752372445,
+      "red_visibility": 0.48947373032569885,
+      "red_displacement": -0.07638692855834961,
+      "center_jerk": 0.005040367599576712,
+      "frame_difference": 17.270883560180664,
+      "shape": [
+        8,
+        192,
+        320,
+        3
+      ],
+      "raw_dtype": "float32",
+      "raw_min": 0.0,
+      "raw_max": 1.0,
+      "finite": true,
+      "pixel_std": 67.50998575229661,
+      "sha256": "7bc24430578a9f469fc7111da9abce6c864db886a0fc8a29bf3a94ea76ca5df5"
+    },
+    {
+      "seed": 313,
+      "reward": 0.05479925171259514,
+      "red_visibility": 0.6342361569404602,
+      "red_displacement": 0.10463279485702515,
+      "center_jerk": 0.07292331010103226,
+      "frame_difference": 13.627411842346191,
+      "shape": [
+        8,
+        192,
+        320,
+        3
+      ],
+      "raw_dtype": "float32",
+      "raw_min": 0.0,
+      "raw_max": 1.0,
+      "finite": true,
+      "pixel_std": 62.64306966698304,
+      "sha256": "3a0b79e9dc57a3b1868629da406eb581c568d7fd094c4eecee7b105e3421fbb1"
+    },
+    {
+      "seed": 314,
+      "reward": 0.03830216419993482,
+      "red_visibility": 0.9059256315231323,
+      "red_displacement": 0.04601350426673889,
+      "center_jerk": 0.014935657382011414,
+      "frame_difference": 61.01801681518555,
+      "shape": [
+        8,
+        192,
+        320,
+        3
+      ],
+      "raw_dtype": "float32",
+      "raw_min": 0.0,
+      "raw_max": 1.0,
+      "finite": true,
+      "pixel_std": 102.23645996636944,
+      "sha256": "19f7597044a6539f097b518614b6f61175c783127f6d621d01a580604338e9e7"
+    }
+  ],
+  "evaluation": [
+    {
+      "seed": 911,
+      "policy": "trained",
+      "reward": -0.02651294825712691,
+      "red_visibility": 0.32091617584228516,
+      "red_displacement": -0.07695761322975159,
+      "center_jerk": 0.022635260596871376,
+      "frame_difference": 0.10011423379182816
+    },
+    {
+      "seed": 912,
+      "policy": "trained",
+      "reward": -0.006642015805192081,
+      "red_visibility": 0.8293195962905884,
+      "red_displacement": -0.005866914987564087,
+      "center_jerk": 0.00856831669807434,
+      "frame_difference": 0.07496616989374161
+    },
+    {
+      "seed": 911,
+      "policy": "zero",
+      "reward": -0.06675858538962609,
+      "red_visibility": 0.5460057258605957,
+      "red_displacement": -0.11885958909988403,
+      "center_jerk": 0.013630400411784649,
+      "frame_difference": 0.09425336122512817
+    },
+    {
+      "seed": 912,
+      "policy": "zero",
+      "reward": 0.004025721340440214,
+      "red_visibility": 1.0,
+      "red_displacement": 0.005186289548873901,
+      "center_jerk": 0.004642272833734751,
+      "frame_difference": 0.06281183660030365
+    }
+  ],
+  "update": {
+    "advantages": [
+      -0.37501826882362366,
+      -1.4469698667526245,
+      1.1410139799118042,
+      0.6809741258621216
+    ],
+    "grad_norm": 3349.461669921875,
+    "adapter_delta_norm": 0.012485156767070293,
+    "transitions": [
+      {
+        "old_logp": 4037.71826171875,
+        "new_logp": 4037.71826171875,
+        "initial_ratio": 1.0,
+        "reference_kl_before_update": 0.0,
+        "advantage": -0.37501826882362366,
+        "loss": 0.09375456720590591
+      },
+      {
+        "old_logp": 3892.604248046875,
+        "new_logp": 3892.604248046875,
+        "initial_ratio": 1.0,
+        "reference_kl_before_update": 0.0,
+        "advantage": -1.4469698667526245,
+        "loss": 0.36174246668815613
+      },
+      {
+        "old_logp": 4121.50927734375,
+        "new_logp": 4121.50927734375,
+        "initial_ratio": 1.0,
+        "reference_kl_before_update": 0.0,
+        "advantage": 1.1410139799118042,
+        "loss": -0.28525349497795105
+      },
+      {
+        "old_logp": 4219.6767578125,
+        "new_logp": 4219.6767578125,
+        "initial_ratio": 1.0,
+        "reference_kl_before_update": 0.0,
+        "advantage": 0.6809741258621216,
+        "loss": -0.1702435314655304
+      }
+    ]
+  },
+  "frozen_backbone_grad_count": 0,
+  "elapsed_seconds": 1162.7502744999947,
+  "mps_driver_allocated_bytes": 7770587136
+}

@@ -1,0 +1,56 @@
+{
+  "status": "passed_visual_gate",
+  "visual_review": "Recognizable red spheres across all eight frames with coherent small changes; fails the single-object/plain-floor semantics, so only the red-motion proxy is tested.",
+  "protocol": {
+    "status": "exploratory amendment before any GRPO training: internal LoRA backward OOMed at visually useful 8-frame sizes; frozen float32 U-Net with a small zero-initialized output residual is the new pilot policy",
+    "model_revision": "6963642a64dbefa93663d1ecebb4ceda2d9ecb28",
+    "prompt": "A single red ball rolls from left to right across a plain floor.",
+    "sampler": "modified stochastic DDIM, eta=0.5, epsilon prediction",
+    "guidance_scale": 7.5,
+    "adapter_scope": "conditional U-Net branch only; unconditional classifier-free guidance branch remains frozen",
+    "vae_decode_dtype": "float32",
+    "unet_compute_dtype": "float32 (float16 and bfloat16 failed finiteness checks on MPS)",
+    "steps": 16,
+    "frames": 8,
+    "width": 320,
+    "height": 192,
+    "mps_memory_fraction": 0.95,
+    "group_size": 4,
+    "train_seeds": [
+      311,
+      312,
+      313,
+      314
+    ],
+    "eval_seeds": [
+      911,
+      912
+    ],
+    "adapter": "zero-initialized Conv3d(8,16,3)-SiLU-Conv3d(16,4,3) residual on conditional epsilon; pretrained U-Net frozen",
+    "learning_rate": 0.0003,
+    "clip_ratio": 0.2,
+    "reward": "red-object horizontal displacement with visibility penalty; inspect stock clip before use",
+    "scope": "one-update eight-frame feasibility pilot, not a full benchmark or evidence of cinematic video quality"
+  },
+  "seed": 20261115,
+  "sampler": "modified stochastic DDIM eta=0.5, zero output residual",
+  "shape": [
+    8,
+    192,
+    320,
+    3
+  ],
+  "raw_dtype": "float32",
+  "raw_min": 0.0,
+  "raw_max": 1.0,
+  "finite": true,
+  "pixel_std": 72.31553725739518,
+  "frame_difference": 0.05446480214595795,
+  "sha256": "c98a9e84373fe0f6a1dc2d961c3019f9bb14dc4936c51aa8734241a3690e6a6d",
+  "reward": 0.00476257778926481,
+  "red_visibility": 0.4214010238647461,
+  "red_displacement": 0.012939691543579102,
+  "center_jerk": 0.006551682949066162,
+  "elapsed_seconds": 140.5371012079995,
+  "mps_driver_allocated_bytes": 7787151360
+}

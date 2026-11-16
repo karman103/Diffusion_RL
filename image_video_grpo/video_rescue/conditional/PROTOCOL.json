@@ -1,0 +1,18 @@
+{
+  "status": "exploratory_conditional_followup_declared_after_joint_video_gate_failure_and_before_training",
+  "reason": "Unconditioned joint four-frame model preserves digit identity but often generates nearly static clips, consistent with averaging opposite training motions",
+  "parent_joint_checkpoint_sha256": "516c5f252d0c8452b1d6b60eff63d35cb76d92ce5a36d10da3f99fb3ee4bdcee",
+  "architecture": "Initialize four-frame UNet from joint_ema.pt, expand input from four noisy-frame channels to six by adding x/y velocity channels with zero initial weights; keep four predicted-noise output channels",
+  "training_seed": 10601,
+  "training_steps": 2000,
+  "batch_size": 32,
+  "learning_rate": 0.0001,
+  "ema_decay": 0.999,
+  "save_at": [1000, 2000],
+  "data": "Same MNIST moving-digit generator but explicit velocity vx,vy=±2 pixels/frame; conditioning maps give vx/2 and vy/2",
+  "sampling": "20-step stochastic DDIM eta=1, cosine schedule, t_min=20, x0 clipped to [-1,1], fixed velocity from seed",
+  "baseline_seeds": [1070001, 1070002, 1070003, 1070004, 1070005, 1070006, 1070007, 1070008],
+  "baseline_gate": "At least 6/8 finite clips with ink mass 0.03-0.40, independent digit confidence >=0.7, independent frame-class consistency >=0.75, centroid movement >=0.7 pixels, and centroid displacement cosine >=0.5 toward requested velocity; inspect grid. The upper ink threshold was revised after observing the prior joint-model grid and is not a confirmatory reuse of its seeds.",
+  "stop_rule": "No GRPO unless new fixed-seed baseline gate and visual inspection pass; stop nonfinite training; no paid compute",
+  "claim_scope": "Locally trained conditional toy-video model, not external pretrained video or cinematic generation"
+}

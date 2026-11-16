@@ -1,0 +1,31 @@
+{
+  "status": "prospective_toy_video_rescue_after_external_checkpoint_gate_failure",
+  "scope": "Train a temporal adapter on an already pretrained MNIST image DDPM, then gate video quality before any video GRPO. This is a locally trained toy-video model, not the released Moving-MNIST checkpoint.",
+  "frozen_image_checkpoint": "runs/base/ckpt.pt (EMA, 10000 image pretraining steps)",
+  "frames": 4,
+  "size": 28,
+  "data": "MNIST train digits, deterministic affine translations of one digit per 4-frame clip; independent MNIST test digits for visual/metric context",
+  "temporal_pretraining_seed": 8601,
+  "temporal_pretraining_steps": 1500,
+  "temporal_batch": 32,
+  "temporal_learning_rate": 0.001,
+  "sampling_steps": 20,
+  "sampling_eta": 1.0,
+  "feasibility_seeds": [870001, 870002, 870003, 870004, 870005, 870006, 870007, 870008],
+  "feasibility_gate": "At least 6/8 clips have finite frames, mean pixel intensity in [0.03,0.35], independent digit confidence >=0.7 averaged over frames, frame-class consistency >=0.75, and nonstatic centroid displacement >=0.5 pixels; inspect grids visually",
+  "grpo_if_gate_passes": {
+    "training_seeds": [8801, 8802],
+    "updates": 100,
+    "group_size": 4,
+    "selected_steps": 3,
+    "inner_epochs": 2,
+    "learning_rate": 0.00001,
+    "clip_epsilon": 0.2,
+    "reference_kl_weight": 0.0001,
+    "eval_seeds": [890001, 890002, 890003, 890004, 890005, 890006, 890007, 890008,
+                   890009, 890010, 890011, 890012, 890013, 890014, 890015, 890016],
+    "primary_reward": "proxy digit confidence and same-class fraction, multiplied by a bounded motion/ink guard",
+    "independent_checks": ["disjoint gold MNIST classifier confidence", "frame-class consistency", "centroid path smoothness", "nonstatic fraction", "pixel diversity"]
+  },
+  "stop_rule": "Do not start GRPO if baseline gate fails; stop runs for nonfinite values or sustained ratio clipping; no paid compute"
+}

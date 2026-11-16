@@ -1,0 +1,29 @@
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+02:19:04 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+02:19:05 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+02:19:08 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+02:19:09 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+{"policy": "late_zero", "seed": 3000000, "guarded_reward": -0.965981125831604, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000001, "guarded_reward": -0.8399670124053955, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000002, "guarded_reward": -0.9065366387367249, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000003, "guarded_reward": -0.9695099592208862, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000004, "guarded_reward": -0.9109065532684326, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000005, "guarded_reward": -0.8512479066848755, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000006, "guarded_reward": -0.9770455360412598, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000007, "guarded_reward": -0.9889705181121826, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000008, "guarded_reward": -0.9228217601776123, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000009, "guarded_reward": -0.8759539127349854, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000010, "guarded_reward": -1.031359076499939, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000011, "guarded_reward": -0.9324686527252197, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000012, "guarded_reward": -0.9003604650497437, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000013, "guarded_reward": -1.052907943725586, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000014, "guarded_reward": -1.049519658088684, "geometry_pass": 1.0}
+{"policy": "late_zero", "seed": 3000015, "guarded_reward": -1.120543360710144, "geometry_pass": 1.0}

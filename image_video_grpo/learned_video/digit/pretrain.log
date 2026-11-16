@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/Users/karman/Desktop/projects/protein_folding/image_video_grpo/learned_video/digit/pretrain.py", line 69, in <module>
+    main()
+  File "/Users/karman/Desktop/projects/protein_folding/image_video_grpo/learned_video/digit/pretrain.py", line 41, in main
+    start = st["step"]; gen.set_state(st["gen"])
+                        ^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: RNG state must be a torch.ByteTensor

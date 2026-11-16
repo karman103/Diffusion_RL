@@ -1,0 +1,7 @@
+{
+  "reviewed": true,
+  "artifact": "baseline_grid.png",
+  "observation": "Eight rows contain the same recognizable digit across four translated frames; two rows have weaker recognition. Motion is a deterministic affine translation, not learned.",
+  "gate": "6/8 automatic passes; visual inspection finds no blank or noise-only clip",
+  "grpo_allowed": true
+}

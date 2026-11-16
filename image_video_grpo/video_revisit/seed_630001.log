@@ -1,0 +1,4 @@
+Skipping import of cpp extensions due to incompatible torch version 2.8.0 for torchao version 0.15.0             Please see https://github.com/pytorch/ao/issues/2919 for more info
+W1114 21:54:35.345000 71721 site-packages/torch/distributed/elastic/multiprocessing/redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+128
+{"seed": 630001, "shape": [1, 20, 1, 64, 64], "min": -0.004231070168316364, "max": 0.9798107147216797, "mean": 0.462352991104126, "std": 0.27376431226730347, "frame_delta": 0.31536856293678284, "reward": 0.0, "proxy_digit_confidence": 0.20225349068641663, "gold_digit_confidence": 0.999997079372406, "motion_score": 1.3703105317119935e-10, "static": 0.0, "ink_mass": 0.4623536467552185}

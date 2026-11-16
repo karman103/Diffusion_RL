@@ -1,0 +1,16 @@
+Environment variable CCD_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Environment variable PDB_MIRROR_PATH not set. Will not be able to use function requiring this variable. To set it you may:
+  (1) add the line 'export VAR_NAME=path/to/variable' to your .bashrc or .zshrc file
+  (2) set it in your current shell with 'export VAR_NAME=path/to/variable'
+  (3) write it to a .env file in the root of the atomworks.io repository
+Seed set to 0
+22:14:54 INFO rfd3.engine: [rank: 0] Low memory mode enabled.
+22:14:58 INFO rfd3._core.utils.ddp: Using explicitly requested mps accelerator
+22:15:41 INFO rfd3.engine: [rank: 0] RFD3 inference: mode=legacy, policy=torch, kernels=torch, compile_model=False, token_and_atom_cuda_graph=False, low_memory_mode=True
+22:15:45 WARNING atomworks.ml: Cached data not found for ALA at /net/tukwila/ncorley/datahub/MACE-OFF23_medium/A/ALA/ALA.pt
+HEAD CHECK {"last_recycle_head_equivalence_max_error": 1.0609626770019531e-05}
+EVAL {"rg": 9.674025535583496, "bond_mae": 0.03056560456752777, "bond_ok": 1.0, "clash_fraction": 0.0, "geometry_pass": 1.0, "reward": -1.028533697128296, "epoch": 0, "n": 2, "stock": true, "path_kl": 0.0, "seconds": 201.069317817688, "training_trajectories": 0}
+EVAL {"rg": 9.615731239318848, "bond_mae": 0.033633626997470856, "bond_ok": 1.0, "clash_fraction": 0.0, "geometry_pass": 1.0, "reward": -1.0288403034210205, "epoch": 0, "n": 2, "stock": false, "path_kl": 0.0, "seconds": 342.9715828895569, "training_trajectories": 0}

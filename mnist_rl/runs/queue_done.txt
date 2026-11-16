@@ -1,0 +1,22 @@
+python -u scripts/best_of_n.py > runs/base/best_of_n.log 2>&1
+python -u scripts/rl_finetune.py --method ddpo --out runs/e1_ddpo > runs/e1_ddpo.log 2>&1
+python -u scripts/rl_finetune.py --method draft --out runs/e1_draft > runs/e1_draft.log 2>&1
+python -u scripts/rl_finetune.py --method ddpo --reward proxyp:7 --out runs/e1p_ddpo > runs/e1p_ddpo.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --out runs/p_ddpo > runs/p_ddpo.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --out runs/p_draft > runs/p_draft.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo_sf --out runs/p_ddpo_sf > runs/p_ddpo_sf.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method rwr --out runs/p_rwr > runs/p_rwr.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --method ddpo --inner 3 --epochs 75 --eval_every 5 --out runs/p_ddpo_reuse3 > runs/p_ddpo_reuse3.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.1 --out runs/p_kl_0.1 > runs/p_kl_0.1.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.001 --out runs/p_kl_0.001 > runs/p_kl_0.001.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --kl 0.0003 --out runs/p_kl_0.0003 > runs/p_kl_0.0003.log 2>&1
+python -u scripts/rl_finetune.py --method ddpo --reward goldp:7 --epochs 150 --out runs/p_oracle > runs/p_oracle.log 2>&1
+python -u scripts/rl_finetune.py --method ddpo --reward jpeg_incompress --out runs/e2_incompress > runs/e2_incompress.log 2>&1
+python -u scripts/rl_finetune.py --method ddpo --reward jpeg_compress --out runs/e2_compress > runs/e2_compress.log 2>&1
+python -u scripts/rl_finetune.py --method ddpo --reward random --out runs/e0_random > runs/e0_random.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --seed 1 --out runs/p_ddpo_s1 > runs/p_ddpo_s1.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method ddpo --seed 2 --out runs/p_ddpo_s2 > runs/p_ddpo_s2.log 2>&1
+python -u scripts/rl_finetune.py --reward goldp:7 --epochs 150 --method draft --out runs/p_draft_oracle > runs/p_draft_oracle.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --method ddpo --inner 3 --epochs 75 --eval_every 5 --kl 0.0003 --out runs/p_reuse3_kl > runs/p_reuse3_kl.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --seed 1 --out runs/p_draft_s1 > runs/p_draft_s1.log 2>&1
+python -u scripts/rl_finetune.py --reward proxyp:7 --epochs 150 --method draft --seed 2 --out runs/p_draft_s2 > runs/p_draft_s2.log 2>&1

@@ -1,0 +1,191 @@
+{
+  "1301": {
+    "zero": {
+      "sha256": "51dc94e75a03116aff990892edb99ecedfeeaf735cf0934fa0f82b2462b2d84d",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.6987323760986328e-06,
+        "gold_probability": 4.291534423828125e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained": {
+      "sha256": "663f5d20cab205be6761b7702cb97771e1e3e5d6d9e9504cef85d6dafc572aa4",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 8.344650268554688e-07,
+        "gold_probability": 4.380941390991211e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "best_of_four": {
+      "sha256": "ec0d8b92f3df017ee80ca9584f1113e5966a64fad344c1be2605eecaa1f3ea09",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.0728836059570312e-06,
+        "gold_probability": 6.198883056640625e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "paired_pixel_difference": {
+      "mean": 0.03380931541323662,
+      "max": 0.8196867108345032
+    }
+  },
+  "1302": {
+    "zero": {
+      "sha256": "51dc94e75a03116aff990892edb99ecedfeeaf735cf0934fa0f82b2462b2d84d",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.6987323760986328e-06,
+        "gold_probability": 4.291534423828125e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained": {
+      "sha256": "25efcd860cadeb6aa1c3e382694c15225aad767324d10ffe361eed2da1ce22d3",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.6093254089355469e-06,
+        "gold_probability": 6.973743438720703e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "best_of_four": {
+      "sha256": "ec0d8b92f3df017ee80ca9584f1113e5966a64fad344c1be2605eecaa1f3ea09",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.0728836059570312e-06,
+        "gold_probability": 6.198883056640625e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "paired_pixel_difference": {
+      "mean": 0.041269395500421524,
+      "max": 0.9868053197860718
+    }
+  },
+  "1303": {
+    "zero": {
+      "sha256": "51dc94e75a03116aff990892edb99ecedfeeaf735cf0934fa0f82b2462b2d84d",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.6987323760986328e-06,
+        "gold_probability": 4.291534423828125e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "trained": {
+      "sha256": "9cbe613b68446cf261fa9a6a1605b44c990fb82df14ffa85007f6ae26494c702",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.0728836059570312e-06,
+        "gold_probability": 4.738569259643555e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "best_of_four": {
+      "sha256": "ec0d8b92f3df017ee80ca9584f1113e5966a64fad344c1be2605eecaa1f3ea09",
+      "shape": [
+        32,
+        3,
+        32,
+        32
+      ],
+      "finite": true,
+      "range": [
+        -1.0,
+        1.0
+      ],
+      "max_cpu_recompute_abs_difference": {
+        "reward": 1.0728836059570312e-06,
+        "gold_probability": 6.198883056640625e-06,
+        "gold_accuracy": 0.0
+      }
+    },
+    "paired_pixel_difference": {
+      "mean": 0.05480432137846947,
+      "max": 0.6317409873008728
+    }
+  }
+}

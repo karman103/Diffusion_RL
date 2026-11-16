@@ -1,0 +1,262 @@
+{
+  "zero": [
+    {
+      "rg": 8.90918254852295,
+      "bond_mae": 0.03843669593334198,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9677916765213013
+    },
+    {
+      "rg": 10.119872093200684,
+      "bond_mae": 0.01564287394285202,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0432729721069336
+    },
+    {
+      "rg": 8.26718521118164,
+      "bond_mae": 0.04256577789783478,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.911850094795227
+    },
+    {
+      "rg": 10.50809383392334,
+      "bond_mae": 0.016593025997281075,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0839954614639282
+    },
+    {
+      "rg": 8.94162368774414,
+      "bond_mae": 0.04262680560350418,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9794159531593323
+    },
+    {
+      "rg": 10.730820655822754,
+      "bond_mae": 0.016873644664883614,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.1068294048309326
+    },
+    {
+      "rg": 9.187301635742188,
+      "bond_mae": 0.013674682006239891,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9460794925689697
+    },
+    {
+      "rg": 8.479690551757812,
+      "bond_mae": 0.011935087852180004,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.8718392252922058
+    },
+    {
+      "rg": 8.152602195739746,
+      "bond_mae": 0.04839274287223816,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9120457172393799
+    },
+    {
+      "rg": 8.783291816711426,
+      "bond_mae": 0.014961650595068932,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.908252477645874
+    },
+    {
+      "rg": 8.636027336120605,
+      "bond_mae": 0.018949385732412338,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9015015363693237
+    },
+    {
+      "rg": 8.207895278930664,
+      "bond_mae": 0.01082362700253725,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.8424367904663086
+    },
+    {
+      "rg": 9.977206230163574,
+      "bond_mae": 0.022480133920907974,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0426808595657349
+    },
+    {
+      "rg": 8.841339111328125,
+      "bond_mae": 0.05923467129468918,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.00260329246521
+    },
+    {
+      "rg": 9.270042419433594,
+      "bond_mae": 0.027552135288715363,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.982108473777771
+    },
+    {
+      "rg": 10.54405403137207,
+      "bond_mae": 0.01218724250793457,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.078779935836792
+    }
+  ],
+  "trained": [
+    {
+      "rg": 8.909037590026855,
+      "bond_mae": 0.03780624270439148,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9665162563323975
+    },
+    {
+      "rg": 10.119604110717773,
+      "bond_mae": 0.015843283385038376,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0436469316482544
+    },
+    {
+      "rg": 8.267107009887695,
+      "bond_mae": 0.042070697993040085,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9108520746231079
+    },
+    {
+      "rg": 10.508702278137207,
+      "bond_mae": 0.016563747078180313,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0839977264404297
+    },
+    {
+      "rg": 8.94154167175293,
+      "bond_mae": 0.041470952332019806,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9770960807800293
+    },
+    {
+      "rg": 10.731992721557617,
+      "bond_mae": 0.01712925173342228,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.1074577569961548
+    },
+    {
+      "rg": 9.187477111816406,
+      "bond_mae": 0.013482886366546154,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9457135200500488
+    },
+    {
+      "rg": 8.479312896728516,
+      "bond_mae": 0.012026510201394558,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.8719843029975891
+    },
+    {
+      "rg": 8.151314735412598,
+      "bond_mae": 0.04805267974734306,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9112368226051331
+    },
+    {
+      "rg": 8.783919334411621,
+      "bond_mae": 0.01459400076419115,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9075798988342285
+    },
+    {
+      "rg": 8.637207984924316,
+      "bond_mae": 0.0203669685870409,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9044547080993652
+    },
+    {
+      "rg": 8.20822525024414,
+      "bond_mae": 0.010884953662753105,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.8425924181938171
+    },
+    {
+      "rg": 9.981186866760254,
+      "bond_mae": 0.02049596793949604,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0391106605529785
+    },
+    {
+      "rg": 8.84076976776123,
+      "bond_mae": 0.05876888707280159,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0016146898269653
+    },
+    {
+      "rg": 9.267874717712402,
+      "bond_mae": 0.026249069720506668,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -0.9792856574058533
+    },
+    {
+      "rg": 10.54452133178711,
+      "bond_mae": 0.011918121948838234,
+      "bond_ok": 1.0,
+      "clash_fraction": 0.0,
+      "geometry_pass": 1.0,
+      "reward": -1.0782884359359741
+    }
+  ]
+}

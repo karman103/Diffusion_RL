@@ -1,0 +1,12 @@
+{
+  "finite": true,
+  "sample_shape": [
+    4,
+    3,
+    32,
+    32
+  ],
+  "max_identity_log_ratio": 0.0,
+  "adapter_parameters": 2627,
+  "frozen_backbone_parameters": 35746307
+}

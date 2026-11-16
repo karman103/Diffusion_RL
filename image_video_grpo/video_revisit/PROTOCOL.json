@@ -1,0 +1,12 @@
+{
+  "status": "exploratory_recheck_declared_before_sampling",
+  "reason": "The failed gate used four frames and eight stochastic steps; the source model was trained on 20 frames and its released sampler uses 100 deterministic steps",
+  "checkpoint": "kuterd/moving_mnist_diffusion@f7d6f376f55556f5eb520069736544651fe48295",
+  "checkpoint_sha256": "ec9f5e39099e9cbcf282cfef05f74f8565cf68c07a1aad9857b3cc0f444e8af7",
+  "source": "kuterd/toy_video_dit@d5c2ae0dee8ccd90fe50d8cffbcb0ef4b4126f8a/sampling.py",
+  "sampler": "exact source semantics: uniform initial noise, native 20 frames, 100 schedule steps, velocity scale 0.1, no added transition noise",
+  "seeds": [630001, 630002, 630003, 630004],
+  "gate": "At least 3/4 clips have a detected digit with independent confidence >=0.5, ink mass 0.01-0.35, and mean frame delta >0.005; inspect all clips visually",
+  "action_if_gate_fails": "No video GRPO training; report the source-aligned baseline failure",
+  "claim_scope": "Inference recheck only until baseline quality passes; no video GRPO result is implied"
+}

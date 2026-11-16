@@ -1,0 +1,19 @@
+REMARK   1 RFD3 CA TRACE; SEQUENCE UNSPECIFIED; GEOMETRY PROXY EXPERIMENT
+ATOM      1  CA  UNK A   1      -8.092  -4.835  -1.798  1.00  0.00           C
+ATOM      2  CA  UNK A   2     -11.226   0.836  -1.817  1.00  0.00           C
+ATOM      3  CA  UNK A   3      -7.701   5.485   5.700  1.00  0.00           C
+ATOM      4  CA  UNK A   4      10.182  20.272 -14.031  1.00  0.00           C
+ATOM      5  CA  UNK A   5      12.892  16.637   3.541  1.00  0.00           C
+ATOM      6  CA  UNK A   6      -3.620   2.076   0.117  1.00  0.00           C
+ATOM      7  CA  UNK A   7       0.154   2.601   4.420  1.00  0.00           C
+ATOM      8  CA  UNK A   8      -0.700   3.368   1.918  1.00  0.00           C
+ATOM      9  CA  UNK A   9      -0.807   5.531   1.717  1.00  0.00           C
+ATOM     10  CA  UNK A  10       1.846  -0.407   1.239  1.00  0.00           C
+ATOM     11  CA  UNK A  11       6.119   1.752   1.635  1.00  0.00           C
+ATOM     12  CA  UNK A  12      -4.014  -8.002   1.048  1.00  0.00           C
+ATOM     13  CA  UNK A  13       1.743   0.891   0.820  1.00  0.00           C
+ATOM     14  CA  UNK A  14      -2.509  -5.952   4.951  1.00  0.00           C
+ATOM     15  CA  UNK A  15      34.692  -5.849  36.592  1.00  0.00           C
+ATOM     16  CA  UNK A  16      -6.197  -3.132   0.284  1.00  0.00           C
+TER
+END

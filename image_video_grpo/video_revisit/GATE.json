@@ -1,0 +1,104 @@
+{
+  "seeds": [
+    630001,
+    630002,
+    630003,
+    630004
+  ],
+  "rows": [
+    {
+      "seed": 630001,
+      "shape": [
+        1,
+        20,
+        1,
+        64,
+        64
+      ],
+      "min": -0.004231070168316364,
+      "max": 0.9798107147216797,
+      "mean": 0.462352991104126,
+      "std": 0.27376431226730347,
+      "frame_delta": 0.31536856293678284,
+      "reward": 0.0,
+      "proxy_digit_confidence": 0.20225349068641663,
+      "gold_digit_confidence": 0.999997079372406,
+      "motion_score": 1.3703105317119935e-10,
+      "static": 0.0,
+      "ink_mass": 0.4623536467552185
+    },
+    {
+      "seed": 630002,
+      "shape": [
+        1,
+        20,
+        1,
+        64,
+        64
+      ],
+      "min": -0.005543573759496212,
+      "max": 0.9825058579444885,
+      "mean": 0.46229100227355957,
+      "std": 0.27346551418304443,
+      "frame_delta": 0.3146355450153351,
+      "reward": 0.0,
+      "proxy_digit_confidence": 0.22153952717781067,
+      "gold_digit_confidence": 0.9999974966049194,
+      "motion_score": 1.5469041325655297e-10,
+      "static": 0.0,
+      "ink_mass": 0.4622916579246521
+    },
+    {
+      "seed": 630003,
+      "shape": [
+        1,
+        20,
+        1,
+        64,
+        64
+      ],
+      "min": -0.0030751621816307306,
+      "max": 0.9851713180541992,
+      "mean": 0.4610973000526428,
+      "std": 0.27331089973449707,
+      "frame_delta": 0.31544169783592224,
+      "reward": 0.0,
+      "proxy_digit_confidence": 0.19938082993030548,
+      "gold_digit_confidence": 0.9999929666519165,
+      "motion_score": 1.364285628913109e-10,
+      "static": 0.0,
+      "ink_mass": 0.4610976278781891
+    },
+    {
+      "seed": 630004,
+      "shape": [
+        1,
+        20,
+        1,
+        64,
+        64
+      ],
+      "min": -0.006902631372213364,
+      "max": 0.9826363325119019,
+      "mean": 0.46055230498313904,
+      "std": 0.27415379881858826,
+      "frame_delta": 0.31580850481987,
+      "reward": 0.0,
+      "proxy_digit_confidence": 0.2208055704832077,
+      "gold_digit_confidence": 0.9999914765357971,
+      "motion_score": 1.2898208889833285e-10,
+      "static": 0.0,
+      "ink_mass": 0.46055322885513306
+    }
+  ],
+  "passed_per_clip": [
+    false,
+    false,
+    false,
+    false
+  ],
+  "passed_count": 0,
+  "automatic_gate_passed": false,
+  "visual_review_required": true,
+  "video_grpo_started": false
+}

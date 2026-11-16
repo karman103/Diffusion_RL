@@ -1,0 +1,18 @@
+{
+  "status": "exploratory_joint_video_followup_declared_after_temporal_residual_gate_failure_and_before_training",
+  "reason": "An 8241-parameter temporal residual left the four frames nearly independent (0/8 baseline gate). A joint four-channel denoiser can represent cross-frame dependencies throughout the U-Net.",
+  "parent_image_checkpoint_sha256": "0876236071bf1b407569a0df79d896981fa8e0e4414e00d3aab991285ba91839",
+  "initialization": "Copy all pretrained MNIST image UNet weights; average replicated four-frame input filters and replicate output filters; fine-tune all 1.5M parameters on four-frame moving-digit clips",
+  "training_seed": 9601,
+  "training_steps": 3000,
+  "batch_size": 32,
+  "learning_rate": 0.0002,
+  "ema_decay": 0.999,
+  "save_at": [1500, 3000],
+  "data": "MNIST train digit translated by one pixel per axis per frame, same deterministic affine generator as prior failed temporal-residual arm",
+  "sampling": "20-step stochastic DDIM, eta=1, cosine 1000-step schedule, t_min=20, predicted x0 clipped to [-1,1]",
+  "baseline_seeds": [970001, 970002, 970003, 970004, 970005, 970006, 970007, 970008],
+  "baseline_gate": "At least 6/8 clips finite, ink 0.03-0.35, independent digit confidence >=0.7, independent frame-class consistency >=0.75, centroid movement >=0.5 pixels; inspect grid",
+  "if_gate_passes": "Run predeclared video GRPO with separate adapter, frozen joint reference, group-relative reward, paired fresh evaluation and independent metrics",
+  "stop_rule": "No GRPO unless baseline gate passes; stop training on nonfinite loss/gradients; no paid compute"
+}

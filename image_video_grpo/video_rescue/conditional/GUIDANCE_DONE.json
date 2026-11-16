@@ -1,0 +1,509 @@
+{
+  "1.0": {
+    "passed": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "passed_count": 1,
+    "rows": [
+      {
+        "proxy_confidence": 0.5000354051589966,
+        "gold_confidence": 0.7514178156852722,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 2,
+        "ink_mass": 0.25137126445770264,
+        "centroid_motion_px": 2.416339635848999,
+        "centroid_dx_px": -5.133795738220215,
+        "centroid_dy_px": -5.117380142211914,
+        "velocity_direction_cosine": -0.9999986886978149,
+        "centroid_acceleration_px": 0.08811655640602112,
+        "frame_delta": 0.15943866968154907,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.7109657526016235,
+        "gold_confidence": 0.7234644293785095,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 9,
+        "ink_mass": 0.22878089547157288,
+        "centroid_motion_px": 2.535820722579956,
+        "centroid_dx_px": -5.314790725708008,
+        "centroid_dy_px": 5.440060615539551,
+        "velocity_direction_cosine": -0.011646966449916363,
+        "centroid_acceleration_px": 0.19433405995368958,
+        "frame_delta": 0.17092415690422058,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.768869161605835,
+        "gold_confidence": 0.9869317412376404,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 4,
+        "ink_mass": 0.17507153749465942,
+        "centroid_motion_px": 2.466489315032959,
+        "centroid_dx_px": 5.179576873779297,
+        "centroid_dy_px": -5.279542922973633,
+        "velocity_direction_cosine": -0.009557351469993591,
+        "centroid_acceleration_px": 0.23420506715774536,
+        "frame_delta": 0.1289208084344864,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.5663194060325623,
+        "gold_confidence": 0.9314563274383545,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 6,
+        "ink_mass": 0.17422251403331757,
+        "centroid_motion_px": 2.5210983753204346,
+        "centroid_dx_px": -5.4101152420043945,
+        "centroid_dy_px": 5.284856796264648,
+        "velocity_direction_cosine": -0.011711097322404385,
+        "centroid_acceleration_px": 0.08117060363292694,
+        "frame_delta": 0.11521030962467194,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.6226134300231934,
+        "gold_confidence": 0.7735172510147095,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.21523094177246094,
+        "centroid_motion_px": 2.3700296878814697,
+        "centroid_dx_px": -5.285592079162598,
+        "centroid_dy_px": -4.752741813659668,
+        "velocity_direction_cosine": 0.9985941052436829,
+        "centroid_acceleration_px": 0.12527503073215485,
+        "frame_delta": 0.10496693104505539,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.5379719734191895,
+        "gold_confidence": 0.45770806074142456,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 5,
+        "ink_mass": 0.2548091411590576,
+        "centroid_motion_px": 2.481290102005005,
+        "centroid_dx_px": 5.037604331970215,
+        "centroid_dy_px": 5.479206085205078,
+        "velocity_direction_cosine": -0.04195311665534973,
+        "centroid_acceleration_px": 0.2555115222930908,
+        "frame_delta": 0.1668054163455963,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.5828534364700317,
+        "gold_confidence": 0.8832802772521973,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 5,
+        "ink_mass": 0.21604211628437042,
+        "centroid_motion_px": 2.234788417816162,
+        "centroid_dx_px": 4.6995649337768555,
+        "centroid_dy_px": -4.779475212097168,
+        "velocity_direction_cosine": -0.008429908193647861,
+        "centroid_acceleration_px": 0.27738887071609497,
+        "frame_delta": 0.1473548859357834,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.45858386158943176,
+        "gold_confidence": 0.3423076272010803,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 5,
+        "ink_mass": 0.19061201810836792,
+        "centroid_motion_px": 2.4786550998687744,
+        "centroid_dx_px": 5.387233734130859,
+        "centroid_dy_px": -5.123563766479492,
+        "velocity_direction_cosine": 0.999685525894165,
+        "centroid_acceleration_px": 0.10809741914272308,
+        "frame_delta": 0.1777552217245102,
+        "finite": true
+      }
+    ],
+    "velocities": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        -2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        -2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        -2.0
+      ]
+    ]
+  },
+  "2.0": {
+    "passed": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      false
+    ],
+    "passed_count": 1,
+    "rows": [
+      {
+        "proxy_confidence": 0.4164428114891052,
+        "gold_confidence": 0.8260651230812073,
+        "proxy_class_consistency": 0.25,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.28508731722831726,
+        "centroid_motion_px": 1.0366493463516235,
+        "centroid_dx_px": -0.9959840774536133,
+        "centroid_dy_px": -2.9386425018310547,
+        "velocity_direction_cosine": -0.8966634273529053,
+        "centroid_acceleration_px": 0.24447914958000183,
+        "frame_delta": 0.1686873733997345,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.7263401746749878,
+        "gold_confidence": 0.7278215289115906,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 9,
+        "ink_mass": 0.2158534824848175,
+        "centroid_motion_px": 2.5290334224700928,
+        "centroid_dx_px": -5.319141387939453,
+        "centroid_dy_px": 5.407138824462891,
+        "velocity_direction_cosine": -0.008203634060919285,
+        "centroid_acceleration_px": 0.18355217576026917,
+        "frame_delta": 0.16457656025886536,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.7703498005867004,
+        "gold_confidence": 0.9854829907417297,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 4,
+        "ink_mass": 0.18711893260478973,
+        "centroid_motion_px": 2.4666121006011963,
+        "centroid_dx_px": 5.1859540939331055,
+        "centroid_dy_px": -5.273770332336426,
+        "velocity_direction_cosine": -0.008395358920097351,
+        "centroid_acceleration_px": 0.20842590928077698,
+        "frame_delta": 0.13227921724319458,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.55586177110672,
+        "gold_confidence": 0.9346963167190552,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 6,
+        "ink_mass": 0.18771156668663025,
+        "centroid_motion_px": 2.5187416076660156,
+        "centroid_dx_px": -5.394350051879883,
+        "centroid_dy_px": 5.290355682373047,
+        "velocity_direction_cosine": -0.00973255094140768,
+        "centroid_acceleration_px": 0.1045835018157959,
+        "frame_delta": 0.12026233971118927,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.6221119165420532,
+        "gold_confidence": 0.7465644478797913,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.20710843801498413,
+        "centroid_motion_px": 2.4406096935272217,
+        "centroid_dx_px": -5.387499809265137,
+        "centroid_dy_px": -4.956757545471191,
+        "velocity_direction_cosine": 0.9991341233253479,
+        "centroid_acceleration_px": 0.06644098460674286,
+        "frame_delta": 0.10693579912185669,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.5356383323669434,
+        "gold_confidence": 0.4727931618690491,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.2579645812511444,
+        "centroid_motion_px": 2.4886815547943115,
+        "centroid_dx_px": 5.080121040344238,
+        "centroid_dy_px": 5.4697771072387695,
+        "velocity_direction_cosine": -0.03690941259264946,
+        "centroid_acceleration_px": 0.27820509672164917,
+        "frame_delta": 0.1691143661737442,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.5519145727157593,
+        "gold_confidence": 0.4855837821960449,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 5,
+        "ink_mass": 0.23170927166938782,
+        "centroid_motion_px": 2.2511050701141357,
+        "centroid_dx_px": 4.737400054931641,
+        "centroid_dy_px": -4.8100738525390625,
+        "velocity_direction_cosine": -0.0076116155833005905,
+        "centroid_acceleration_px": 0.2800814211368561,
+        "frame_delta": 0.14229267835617065,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.527076005935669,
+        "gold_confidence": 0.46834611892700195,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 5,
+        "ink_mass": 0.1913030594587326,
+        "centroid_motion_px": 2.494157552719116,
+        "centroid_dx_px": 5.4507856369018555,
+        "centroid_dy_px": -5.124876976013184,
+        "velocity_direction_cosine": 0.9995255470275879,
+        "centroid_acceleration_px": 0.14855819940567017,
+        "frame_delta": 0.17761240899562836,
+        "finite": true
+      }
+    ],
+    "velocities": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        -2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        -2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        -2.0
+      ]
+    ]
+  },
+  "4.0": {
+    "passed": [
+      false,
+      false,
+      false,
+      false,
+      true,
+      false,
+      false,
+      true
+    ],
+    "passed_count": 2,
+    "rows": [
+      {
+        "proxy_confidence": 0.6964857578277588,
+        "gold_confidence": 0.6597826480865479,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.3046967089176178,
+        "centroid_motion_px": 1.0094763040542603,
+        "centroid_dx_px": 2.4848270416259766,
+        "centroid_dy_px": 1.7309236526489258,
+        "velocity_direction_cosine": 0.9843834638595581,
+        "centroid_acceleration_px": 0.22563908994197845,
+        "frame_delta": 0.1712883710861206,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.732042670249939,
+        "gold_confidence": 0.6991205811500549,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 9,
+        "ink_mass": 0.1890466809272766,
+        "centroid_motion_px": 2.510108232498169,
+        "centroid_dx_px": -5.318692207336426,
+        "centroid_dy_px": 5.327339172363281,
+        "velocity_direction_cosine": -0.0008122239960357547,
+        "centroid_acceleration_px": 0.1505763828754425,
+        "frame_delta": 0.149703249335289,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.7492445707321167,
+        "gold_confidence": 0.9820671081542969,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 4,
+        "ink_mass": 0.21150194108486176,
+        "centroid_motion_px": 2.452810525894165,
+        "centroid_dx_px": 5.164422035217285,
+        "centroid_dy_px": -5.235439300537109,
+        "velocity_direction_cosine": -0.006828515324741602,
+        "centroid_acceleration_px": 0.1889047622680664,
+        "frame_delta": 0.13718175888061523,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.4973546266555786,
+        "gold_confidence": 0.9161826968193054,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 6,
+        "ink_mass": 0.2169857621192932,
+        "centroid_motion_px": 2.493699312210083,
+        "centroid_dx_px": -5.344765663146973,
+        "centroid_dy_px": 5.232429504394531,
+        "velocity_direction_cosine": -0.010620001703500748,
+        "centroid_acceleration_px": 0.12674538791179657,
+        "frame_delta": 0.12911704182624817,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.6629270911216736,
+        "gold_confidence": 0.7203488349914551,
+        "proxy_class_consistency": 0.75,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.18969503045082092,
+        "centroid_motion_px": 2.493008613586426,
+        "centroid_dx_px": -5.457611083984375,
+        "centroid_dy_px": -5.112401962280273,
+        "velocity_direction_cosine": 0.999467134475708,
+        "centroid_acceleration_px": 0.09202857315540314,
+        "frame_delta": 0.10995902866125107,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.6303929090499878,
+        "gold_confidence": 0.7045730352401733,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.2569330632686615,
+        "centroid_motion_px": 2.4635398387908936,
+        "centroid_dx_px": 5.235991477966309,
+        "centroid_dy_px": 5.212925910949707,
+        "velocity_direction_cosine": 0.0022074547596275806,
+        "centroid_acceleration_px": 0.3951195478439331,
+        "frame_delta": 0.17265444993972778,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.4429793059825897,
+        "gold_confidence": 0.6691414713859558,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 0.75,
+        "gold_mode_digit": 8,
+        "ink_mass": 0.26182377338409424,
+        "centroid_motion_px": 2.124349594116211,
+        "centroid_dx_px": 4.458707809448242,
+        "centroid_dy_px": -4.549027442932129,
+        "velocity_direction_cosine": -0.01002639252692461,
+        "centroid_acceleration_px": 0.2657320499420166,
+        "frame_delta": 0.13652600347995758,
+        "finite": true
+      },
+      {
+        "proxy_confidence": 0.6055689454078674,
+        "gold_confidence": 0.7963491678237915,
+        "proxy_class_consistency": 0.5,
+        "gold_class_consistency": 1.0,
+        "gold_mode_digit": 5,
+        "ink_mass": 0.1965707242488861,
+        "centroid_motion_px": 2.4830684661865234,
+        "centroid_dx_px": 5.475866317749023,
+        "centroid_dy_px": -5.048983573913574,
+        "velocity_direction_cosine": 0.9991785287857056,
+        "centroid_acceleration_px": 0.24759599566459656,
+        "frame_delta": 0.18131417036056519,
+        "finite": true
+      }
+    ],
+    "velocities": [
+      [
+        2.0,
+        2.0
+      ],
+      [
+        -2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        -2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        -2.0
+      ],
+      [
+        2.0,
+        2.0
+      ],
+      [
+        2.0,
+        -2.0
+      ]
+    ]
+  }
+}
