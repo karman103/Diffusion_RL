@@ -37,6 +37,9 @@
 <nav class="toc">Contents
 <ol>
   <li><a href="#mdp">Denoising as an RL problem</a></li>
+  <li><a href="#hard">Why RL for diffusion is hard</a></li>
+  <li><a href="#lit">Where the literature stands</a></li>
+  <li><a href="#plan">What I'll be doing</a></li>
   <li><a href="#exp1">Experiment 1: which algorithm can you trust?</a></li>
   <li><a href="#exp2">Experiment 2: GRPO on video finds a shortcut</a></li>
   <li><a href="#exp3">Experiment 3: closing the shortcut, +32 points</a></li>
@@ -55,6 +58,47 @@ state = (x_t, t)    action = x_t'    reward = r(x̂₀), only at the end</pre>
 <pre>A_i = (r_i − mean(r_group)) / std(r_group)
 L   = − E[ min(ρ·A, clip(ρ, 1±ε)·A) ] + β · KL(π_θ ‖ π_ref)
 ρ   = π_θ(x_{k+1} | x_k) / π_old(x_{k+1} | x_k)</pre>
+
+<h2 id="hard">Why RL for diffusion is hard</h2>
+<p>RL on a language model is comparatively easy: every token has an exact probability, and the output is a short sequence of small discrete choices. Diffusion breaks each of those assumptions.</p>
+<ol>
+  <li><b>There is no likelihood to differentiate.</b> p(x₀) is intractable, so the policy gradient has to be taken over the whole denoising chain. Deterministic samplers (DDIM with η&nbsp;=&nbsp;0, flow-matching ODEs) aren't even a policy until you inject noise.<span class="sn"></span><span class="sidenote">This is why Flow-GRPO and DanceGRPO both start by converting the ODE sampler into an equivalent SDE.</span></li>
+  <li><b>The reward arrives once, at the end.</b> One scalar has to be credited across 20–50 steps, and the steps are not equal: in my sampler the last step's score term was about 100× larger than the early ones.</li>
+  <li><b>Every action is an entire image.</b> An action has 784 dimensions on MNIST and about 16k in Stable Diffusion's latent space. Per-dimension log-probs make the PPO ratio almost exactly 1, so the standard clip stops meaning anything.</li>
+  <li><b>The reward is a model, and models can be fooled.</b> Aesthetic scorers, classifiers and folding models all have blind spots. An optimiser strong enough to help is strong enough to find them.</li>
+  <li><b>Samples are expensive.</b> One trajectory is a full denoising run. On-policy methods need thousands; back-propagating through the sampler needs the memory of every step it covers.</li>
+  <li><b>Diversity quietly disappears.</b> Reward maximisation is mode-seeking, and the distance from the pretrained model can only be bounded (path-KL), not measured exactly.</li>
+  <li><b>There is usually no ground truth.</b> On a real text-to-image model you can't tell "better images" from "better at fooling the scorer".</li>
+</ol>
+
+<h2 id="lit">Where the literature stands</h2>
+<p>The current methods split into five families, by how they use the reward:<span class="sn"></span><span class="sidenote">For a unifying view, see the tutorial by <a href="https://arxiv.org/abs/2407.13734">Uehara et al.</a>, which casts all of these as entropy-regularised control.</span></p>
+
+<div class="tbl wide"><table>
+  <thead><tr><th>Family</th><th>Papers</th><th>Idea</th><th>Known weakness</th></tr></thead>
+  <tbody>
+    <tr><td>Policy gradient</td><td><a href="https://arxiv.org/abs/2305.13301">DDPO</a>, <a href="https://arxiv.org/abs/2305.16381">DPOK</a>, <a href="https://arxiv.org/abs/2409.00588">DPPO</a></td><td>Denoising is an MDP; use PPO-style updates on per-step log-probs, optionally with a KL penalty</td><td>Sample-hungry: thousands of full denoising runs, high-variance gradients</td></tr>
+    <tr><td>Group-relative (GRPO)</td><td><a href="https://arxiv.org/abs/2505.05470">Flow-GRPO</a>, <a href="https://arxiv.org/abs/2505.07818">DanceGRPO</a></td><td>Normalise rewards within a group per prompt; ODE→SDE so flow models get a policy</td><td>Recent; mostly evaluated with the same learned scorers used for training</td></tr>
+    <tr><td>Reward back-propagation</td><td><a href="https://arxiv.org/abs/2309.17400">DRaFT</a>, <a href="https://arxiv.org/abs/2310.03739">AlignProp</a>, <a href="https://arxiv.org/abs/2304.05977">ReFL</a>, <a href="https://arxiv.org/abs/2409.08861">Adjoint Matching</a></td><td>Differentiate the reward through the sampler</td><td>Fast, but needs a differentiable reward and follows its gradient off-distribution</td></tr>
+    <tr><td>Supervised / preference</td><td><a href="https://arxiv.org/abs/2302.12192">Reward-weighted</a>, <a href="https://arxiv.org/abs/2311.12908">Diffusion-DPO</a>, <a href="https://arxiv.org/abs/2311.13231">D3PO</a></td><td>Reweight the denoising loss by reward, or learn from pairwise preferences</td><td>Stable but slow; limited by the data it reweights</td></tr>
+    <tr><td>Inference-time search</td><td>Best-of-N, <a href="https://arxiv.org/abs/2501.09732">noise search</a></td><td>Don't train; sample more and keep the best</td><td>Cost scales with N at every generation</td></tr>
+  </tbody>
+</table></div>
+
+<p>The same tools are now moving into science, for example reward optimisation for DNA and protein design with <a href="https://arxiv.org/abs/2410.13643">discrete diffusion</a>. What's missing across most of this work is a controlled answer to two questions:</p>
+<ul>
+  <li><b>Which family stays honest when the reward model is imperfect?</b> Most papers report the reward they optimised, or a close relative of it.</li>
+  <li><b>When does GRPO transfer?</b> The published wins are on large text-to-image and text-to-video models, where failures are hard to diagnose.</li>
+</ul>
+
+<h2 id="plan">What I'll be doing</h2>
+<p>I'll take those two questions down to a scale where they can be answered exactly, on one laptop:</p>
+<ol>
+  <li><b>Build a testbed with ground truth.</b> A weak reward model to train on, a strong one held out, so reward hacking is a number rather than an impression (Experiment 1).</li>
+  <li><b>Race the families on it.</b> DDPO, reward-weighted regression, DRaFT and best-of-N, on the same model, seeds and budget.</li>
+  <li><b>Take the winner's recipe, as GRPO, to real models.</b> A video model trained from scratch, RFdiffusion3, a CIFAR-10 DDPM and ZeroScope (Experiments 2–6).</li>
+  <li><b>Hold every result to the same rules.</b> Protocols written before training, an evaluator the reward never saw, paired comparisons from identical noise, and best-of-N as the baseline.</li>
+</ol>
 
 <h2 id="exp1">Experiment 1: Which algorithm can you trust?</h2>
 <p>You can't study reward hacking on Stable Diffusion with an aesthetic predictor: there's no ground truth. So I built a toy with one. Task: turn an unconditional MNIST generator into a <b>7</b> generator, using only a deliberately weak reward model.</p>
@@ -241,10 +285,21 @@ L   = − E[ min(ρ·A, clip(ρ, 1±ε)·A) ] + β · KL(π_θ ‖ π_ref)
 <h2>Further resources and references</h2>
 <ul>
   <li>Black et al., <a href="https://arxiv.org/abs/2305.13301">Training Diffusion Models with Reinforcement Learning</a> (DDPO)</li>
-  <li>Fan et al., DPOK: RL fine-tuning of text-to-image diffusion models with a KL penalty</li>
+  <li>Fan et al., <a href="https://arxiv.org/abs/2305.16381">DPOK: Reinforcement Learning for Fine-tuning Text-to-Image Diffusion Models</a></li>
   <li>Clark et al., <a href="https://arxiv.org/abs/2309.17400">Directly Fine-Tuning Diffusion Models on Differentiable Rewards</a> (DRaFT)</li>
-  <li>Prabhudesai et al., AlignProp: reward back-propagation for text-to-image diffusion</li>
+  <li>Prabhudesai et al., <a href="https://arxiv.org/abs/2310.03739">Aligning Text-to-Image Diffusion Models with Reward Backpropagation</a> (AlignProp)</li>
+  <li>Xu et al., <a href="https://arxiv.org/abs/2304.05977">ImageReward</a> (ReFL)</li>
+  <li>Domingo-Enrich et al., <a href="https://arxiv.org/abs/2409.08861">Adjoint Matching</a></li>
+  <li>Lee et al., <a href="https://arxiv.org/abs/2302.12192">Aligning Text-to-Image Models using Human Feedback</a> (reward-weighted)</li>
+  <li>Wallace et al., <a href="https://arxiv.org/abs/2311.12908">Diffusion Model Alignment Using Direct Preference Optimization</a> (Diffusion-DPO)</li>
+  <li>Yang et al., <a href="https://arxiv.org/abs/2311.13231">Using Human Feedback to Fine-tune Diffusion Models without Any Reward Model</a> (D3PO)</li>
+  <li>Ren et al., <a href="https://arxiv.org/abs/2409.00588">Diffusion Policy Policy Optimization</a> (DPPO)</li>
   <li>Shao et al., <a href="https://arxiv.org/abs/2402.03300">DeepSeekMath</a> (introduces GRPO)</li>
+  <li>Liu et al., <a href="https://arxiv.org/abs/2505.05470">Flow-GRPO: Training Flow Matching Models via Online RL</a></li>
+  <li>Xue et al., <a href="https://arxiv.org/abs/2505.07818">DanceGRPO: Unleashing GRPO on Visual Generation</a></li>
+  <li>Ma et al., <a href="https://arxiv.org/abs/2501.09732">Inference-Time Scaling for Diffusion Models beyond Scaling Denoising Steps</a></li>
+  <li>Wang et al., <a href="https://arxiv.org/abs/2410.13643">Fine-Tuning Discrete Diffusion Models via Reward Optimization</a> (DNA and protein design)</li>
+  <li>Uehara et al., <a href="https://arxiv.org/abs/2407.13734">Understanding RL-Based Fine-Tuning of Diffusion Models: A Tutorial and Review</a></li>
   <li>Gao et al., <a href="https://arxiv.org/abs/2210.10760">Scaling Laws for Reward Model Overoptimization</a></li>
 </ul>
 
