@@ -4,344 +4,254 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>RL for Diffusion Models</title>
-<meta name="description" content="Controlled experiments on reinforcement-learning fine-tuning of diffusion models (DDPO, DRaFT, RWR, best-of-N, GRPO) on MNIST, video, proteins and images, run on one 16 GB laptop.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@500;600;700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<meta name="description" content="A worklog of reinforcement-learning fine-tuning for diffusion models (DDPO, DRaFT, RWR, best-of-N, GRPO) on MNIST, video, proteins and images, run on one 16 GB laptop.">
 <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<nav class="sitenav"><a href="#part1">Part 1 · Which algorithm</a><a href="#part2">Part 2 · GRPO at scale</a><a href="#lessons">Lessons</a><a href="https://github.com/karman103/Diffusion_RL">Code</a></nav>
-<main>
-<header class="col">
-  <div class="eyebrow">Research note · reinforcement learning for diffusion models</div>
-  <h1>RL for diffusion models: what works, and what gets hacked</h1>
-  <p class="dek">DDPO, RWR, DRaFT, best-of-N and GRPO on MNIST, video, RFdiffusion3 and CIFAR-10. One 16 GB laptop. Every result scored by an evaluator the reward never saw.</p>
-  <div class="byline">Nov 2026 · Apple M3, 16 GB · 5 diffusion models · 30+ RL runs</div>
-</header>
+<article class="page">
 
-<section class="col">
-  <div class="versus three" role="group" aria-label="Headline results">
-    <div class="ok">
-      <div class="label">DDPO on a weak reward</div>
-      <div class="big">96%</div>
-      <div class="sub">real 7s by the gold model<br>MNIST · 3 seeds, ±1%</div>
-    </div>
-    <div class="bad">
-      <div class="label">DRaFT on the same reward</div>
-      <div class="big">0.7%</div>
-      <div class="sub">real 7s by the gold model<br>proxy score 0.99 · reward hacked</div>
-    </div>
-    <div class="ok">
-      <div class="label">GRPO on video</div>
-      <div class="big">+32.4</div>
-      <div class="sub">points of success, 49% → 82%<br>3 seeds, 95% CI +27.7 to +37.3</div>
-    </div>
-  </div>
+<a class="site" href="https://github.com/karman103/Diffusion_RL">Diffusion RL</a>
 
-  <h2>TL;DR</h2>
-  <ul>
-    <li><b>Learn from your own samples.</b> DDPO, RWR, GRPO, best-of-N stay honest. DRaFT attacks the reward model.</li>
-    <li><b>Pay for exactly the target.</b> Any shortcut in the reward gets found.</li>
-    <li><b>RL needs headroom.</b> RFdiffusion3 already satisfied the reward, so nothing moved.</li>
-    <li><b>The reward model is the ceiling.</b> CIFAR-10: reward +0.056, independent judge +0.009.</li>
-    <li><b>Best-of-N is the baseline to beat.</b> Best-of-64: 99% real 7s at 3.2 nats KL.</li>
-  </ul>
-</section>
+<h1>RL for Diffusion Models: What Works, and What Gets Hacked. A Worklog</h1>
+<div class="meta"><a class="btn" href="https://github.com/karman103/Diffusion_RL">Code on GitHub</a><span>November 2026</span></div>
+
+<p>In this post I fine-tune diffusion models with reinforcement learning, one experiment at a time, on a single 16&nbsp;GB MacBook.<span class="sn"></span><span class="sidenote">All code, protocols, per-sample metrics and analysis scripts are on <a href="https://github.com/karman103/Diffusion_RL">GitHub</a>. Apple M3, MPS backend, no cloud.</span> The goal is not a state-of-the-art model. It is to find out, under controlled conditions, <i>when RL actually improves a diffusion model and when it just games the reward</i>.</p>
+
+<p>The trick that makes this measurable: every experiment has two judges. The model is trained against a <b>reward</b>, and scored by an independent <b>evaluator</b> the optimiser never sees. If the reward goes up and the evaluator doesn't, the model has been hacking the reward.</p>
+
+<p>Here's every experiment, in the order I ran them:</p>
+
+<div class="tbl"><table>
+  <thead><tr><th>Experiment</th><th>Reward</th><th>Evaluator (truth)</th><th>Verdict</th></tr></thead>
+  <tbody>
+    <tr><td>1: MNIST, DDPO</td><td class="n">0.08 → 0.91</td><td class="n good">9% → 96%</td><td>works</td></tr>
+    <tr><td>1: MNIST, DRaFT</td><td class="n">0.08 → 0.99</td><td class="n bad">9% → 0.7%</td><td>hacked</td></tr>
+    <tr><td>2: Video, any legible digit</td><td class="n">0.61 → 0.92</td><td class="n">+11.7 pts, mostly 8s</td><td>shortcut</td></tr>
+    <tr class="best"><td>3: Video, requested digit</td><td class="n">0.78 → 0.91</td><td class="n good">49% → 82%</td><td>works</td></tr>
+    <tr><td>4: Proteins, RFdiffusion3</td><td class="n">±0.000</td><td class="n">±0.000</td><td>no headroom</td></tr>
+    <tr><td>5: Images, CIFAR-10</td><td class="n">+0.056</td><td class="n bad">+0.009</td><td>hacked</td></tr>
+    <tr><td>6: Text-to-video, ZeroScope</td><td class="n">n/a</td><td class="n">n/a</td><td>fits in memory</td></tr>
+  </tbody>
+</table></div>
+
+<nav class="toc">Contents
+<ol>
+  <li><a href="#mdp">Denoising as an RL problem</a></li>
+  <li><a href="#exp1">Experiment 1: which algorithm can you trust?</a></li>
+  <li><a href="#exp2">Experiment 2: GRPO on video finds a shortcut</a></li>
+  <li><a href="#exp3">Experiment 3: closing the shortcut, +32 points</a></li>
+  <li><a href="#exp4">Experiment 4: RFdiffusion3 doesn't move</a></li>
+  <li><a href="#exp5">Experiment 5: CIFAR-10 hacks the classifier</a></li>
+  <li><a href="#exp6">Experiment 6: a real text-to-video model</a></li>
+  <li><a href="#conclusion">Conclusion</a></li>
+</ol></nav>
+
+<h2 id="mdp">Denoising as an RL problem</h2>
+<p>A DDIM sampler with η&nbsp;=&nbsp;1 is a chain of Gaussian transitions. Read each transition as an action, and the sampler becomes a policy:</p>
+<pre>π_θ(x_t' | x_t) = N( μ_θ(x_t, t), σ_t² I )
+state = (x_t, t)    action = x_t'    reward = r(x̂₀), only at the end</pre>
+<p>The image likelihood is intractable, but each step's log-probability is exact and cheap. That's all a policy gradient needs.<span class="sn"></span><span class="sidenote">These are densities of the sampler's transitions, not likelihoods of the final sample. The distinction matters when people talk about "the likelihood ratio" in diffusion RL.</span> Because the policy and the frozen reference share σ<sub>t</sub>, the per-step KL is closed-form, and summing it gives a <i>path KL</i> that upper-bounds the KL between final images.</p>
+<p><b>GRPO</b> samples a group of outputs per prompt, normalises each reward against its group, and takes clipped steps anchored by a KL penalty:</p>
+<pre>A_i = (r_i − mean(r_group)) / std(r_group)
+L   = − E[ min(ρ·A, clip(ρ, 1±ε)·A) ] + β · KL(π_θ ‖ π_ref)
+ρ   = π_θ(x_{k+1} | x_k) / π_old(x_{k+1} | x_k)</pre>
+
+<h2 id="exp1">Experiment 1: Which algorithm can you trust?</h2>
+<p>You can't study reward hacking on Stable Diffusion with an aesthetic predictor: there's no ground truth. So I built a toy with one. Task: turn an unconditional MNIST generator into a <b>7</b> generator, using only a deliberately weak reward model.</p>
+<ul>
+  <li><b>Base model:</b> 1.5M-param UNet DDPM. About 9% of its samples are 7s.</li>
+  <li><b>Reward (proxy):</b> an MLP trained on just 1,000 labels (89.9% accurate). r&nbsp;=&nbsp;p(7|x).</li>
+  <li><b>Evaluator (gold):</b> a CNN on all 60k labels with augmentation (99.2%).</li>
+</ul>
+<p>I compared DDPO (policy gradient), reward-weighted regression (RWR), DRaFT (back-propagate the reward through the sampler) and best-of-N (no training).<span class="sn"></span><span class="sidenote">All methods share the base model, a 20-step sampler, 64 trajectories per epoch, AdamW at 1e-5, and the same 256 fixed evaluation seeds.</span></p>
+
+<figure class="wide">
+  <img src="figures/fig_methods.png" alt="Four line charts over RL epochs comparing methods on proxy reward, gold accuracy, Fréchet distance to real sevens, and diversity." width="1870" height="400">
+  <figcaption>DRaFT (green) climbs the proxy fastest while its gold accuracy collapses. DDPO on the proxy (blue, 3 seeds) is almost identical to DDPO trained directly on the gold model (orange).</figcaption>
+</figure>
+
+<div class="tbl"><table>
+  <thead><tr><th>Method (150 epochs)</th><th>proxy p(7)</th><th>gold acc</th><th>FD → 7s ↓</th><th>diversity</th><th>path-KL</th></tr></thead>
+  <tbody>
+    <tr><td>Pretrained</td><td class="n">0.081</td><td class="n">0.086</td><td class="n">20.85</td><td class="n">5.71</td><td class="n">0</td></tr>
+    <tr class="best"><td>DDPO, 3 seeds</td><td class="n">0.914</td><td class="n good">0.958</td><td class="n">0.96</td><td class="n">1.85</td><td class="n">76</td></tr>
+    <tr><td>DDPO + KL β=3e-4</td><td class="n">0.460</td><td class="n">0.488</td><td class="n">8.93</td><td class="n">4.49</td><td class="n">7</td></tr>
+    <tr><td>RWR</td><td class="n">0.336</td><td class="n">0.316</td><td class="n">32.26</td><td class="n">3.93</td><td class="n">697</td></tr>
+    <tr><td>DRaFT-1, 3 seeds</td><td class="n">0.988</td><td class="n bad">0.007</td><td class="n">49.7</td><td class="n">1.81</td><td class="n">6,500</td></tr>
+    <tr><td>Oracle: DDPO on gold</td><td class="n">0.825</td><td class="n">0.914</td><td class="n">1.62</td><td class="n">2.31</td><td class="n">68</td></tr>
+    <tr><td>Best-of-64</td><td class="n">0.962</td><td class="n">0.989</td><td class="n">–</td><td class="n">–</td><td class="n">3.2 exact</td></tr>
+  </tbody>
+</table></div>
+
+<figure class="wide half">
+  <div><img src="figures/fig_proxy_vs_gold.png" alt="Gold accuracy against proxy reward; best-of-N, DDPO and RWR follow the diagonal; DRaFT drops to zero after proxy 0.5." width="640" height="500">
+  <figcaption>Proxy vs truth. Methods that reweight their own samples stay on the diagonal. DRaFT falls off at proxy ≈ 0.5.</figcaption></div>
+  <div><img src="figures/fig_grid_methods.png" alt="Sample grids over training for DDPO, DDPO with KL, DRaFT and RWR." width="1046" height="1046">
+  <figcaption>What each method draws. DRaFT ends in faint strokes and grey bars that the MLP reads as 7.</figcaption></div>
+</figure>
+
+<h3>Why DRaFT gets hacked</h3>
+<p>DDPO's update is a weighted average over <i>the model's own samples</i>: it can only shift probability toward images the model already makes, and on those the proxy is roughly right. DRaFT's update is ∇<sub>x</sub>r, which asks the reward model which pixel direction raises the score. For an MLP that's an adversarial perturbation. <b>DRaFT is an adversarial attack on the reward model, baked into the generator's weights.</b><span class="sn"></span><span class="sidenote">Control: DRaFT against the strong gold CNN gives mostly recognisable 7s, but still with ghost overlays and 3,560 nats of path-KL. A robust reward model helps; it doesn't make gradient fine-tuning safe.</span></p>
+
+<h3>Reward shaping comes first</h3>
+<p>My first DDPO run used r&nbsp;=&nbsp;log&nbsp;p(7|x). It produced blobs: 0% real 7s. Changing only the reward to p(7|x) gave 96%.</p>
+
+<figure class="wide">
+  <img src="figures/fig_grid_shaping.png" alt="Grid of samples from the same noise seeds over DDPO training. Top row with log-probability reward becomes white blobs; bottom row with probability reward becomes clean sevens." width="1046" height="520">
+  <figcaption>Same noise, same algorithm, same proxy. Top: log p reward. Bottom: p reward.</figcaption>
+</figure>
+
+<p>The cause is advantage normalisation. With 9% 7s per batch, most of the variance in log&nbsp;p comes from the 91% that <i>aren't</i> 7s, and among those, more ink scores slightly higher. The normalised gradient follows ink. With bounded p, non-7s all score about 0, so the gradient comes from the 7s. A monotone transform leaves the optimum unchanged but changes which optimum you reach.</p>
+
+<figure class="wide">
+  <img src="figures/fig_shaping.png" alt="Charts comparing log-probability and probability rewards for DDPO and DRaFT plus a random-reward control." width="1870" height="400">
+  <figcaption>log p inflates ink and KL for both methods. The random-reward control (orange) is the noise floor.</figcaption>
+</figure>
+
+<h3>The price of staying close, and best-of-N</h3>
+<figure class="wide">
+  <img src="figures/fig_klsweep.png" alt="Charts of DDPO with KL penalties of 0, 3e-4, 1e-3 and 0.1." width="1870" height="400">
+  <figcaption>KL sweep. β=0 mode-seeks (diversity 5.7 → 1.85). β=3e-4 keeps diversity at 4.5 and halves progress. β=0.1 freezes the model.</figcaption>
+</figure>
+<p>Best-of-64 reaches 99% gold accuracy at 3.2 nats of <i>exact</i> KL. RL reaches the same accuracy at 20–165 nats of path-KL.<span class="sn"></span><span class="sidenote">Part of the gap is measurement: path-KL is an upper bound, and a random-reward control drifts 65 nats on its own. Same conclusion as <a href="https://arxiv.org/abs/2210.10760">Gao et al.</a> for language models.</span> If inference compute is cheap, best-of-N is hard to beat. RL earns its place by building the search into the weights: here, 64× cheaper sampling.</p>
+
+<h3>Sample reuse, and a clip that never clips</h3>
+<p>Three passes per batch reach 98% gold accuracy after 2,880 trajectories, against about 9,600 with one. But the PPO clip never fires: DDPO averages each step's log-prob over pixels, which shrinks |ρ&nbsp;−&nbsp;1| to about 2e-4. The gain is just extra gradient steps. This is also why the official DDPO config uses ε&nbsp;=&nbsp;1e-4.</p>
+
+<h3>Black-box rewards</h3>
+<p>DDPO doesn't need a gradient, so it can optimise JPEG file size. Rewarding <i>incompressibility</i> gives thick, rough strokes. Rewarding <i>compressibility</i> finds the degenerate optimum: digits fade to solid black. The reward is satisfied exactly, and the output is useless.</p>
+<figure class="wide">
+  <img src="figures/fig_grid_jpeg.png" alt="Sample grids for JPEG incompressibility and compressibility rewards over training." width="1046" height="520">
+  <figcaption>Top: incompressible. Bottom: compressible, blank by epoch 100.</figcaption>
+</figure>
+
+<h3>Gotchas that took most of the time</h3>
+<ol>
+  <li><b>The last denoising step dominates.</b> Its σ ≈ 0.006, so its score term is ~100× larger than early steps. Ending the stochastic chain early fixed gradient variance and the KL estimate.</li>
+  <li><b>Run a null-reward control.</b> Random advantages still drift 65 nats. Read every KL against that floor.</li>
+  <li><b>Keep x̂₀ clipping.</b> Removing it took FD from 1.3 to 149.</li>
+  <li><b>Learning rate controls hacking.</b> 3e-5 instead of 1e-5 sent DDPO straight to blobs.</li>
+</ol>
+
+<h2 id="exp2">Experiment 2: GRPO on video finds a shortcut</h2>
+<p>Next, a real generative task. I trained a video diffusion model from scratch: a 1.7M-parameter factorised space-time UNet on Moving-MNIST (8 frames, 32×32, one digit sliding in one of eight directions). It was conditioned on <b>direction only</b>.</p>
+<p>The GRPO reward paid for correct motion and "a legible digit". The independent success rate rose by 11.7 points. But GRPO got there by drawing 8s: 109–150 of 256 test clips, against 64 before training. A loopy, high-contrast 8 is the easiest thing to call legible. Without the 8s, the gain was 0–5 points.</p>
+<blockquote>If the reward has a shortcut, GRPO finds it.</blockquote>
+
+<h2 id="exp3">Experiment 3: Closing the shortcut, +32 points</h2>
+<p>The fix was to change what the reward pays for. The model now takes a <b>(direction, digit)</b> prompt, like "a 3 moving down-left", and the reward pays only for <i>that</i> digit. Drawing an 8 when asked for a 3 now costs reward.</p>
+<ul>
+  <li><b>Pretraining:</b> 12,000 steps, about 3 hours. A predeclared gate required ≥40% correct digits before any RL. It scored 36% at 8k steps, so I extended training and it passed at 47.5%.<span class="sn"></span><span class="sidenote">Every change is recorded as an amendment in the study's <code>PROTOCOL.json</code>, written before training.</span></li>
+  <li><b>Reward:</b> 0.4 × p(requested digit) + 0.6 × motion score, times an ink guard that zeroes blank clips.</li>
+  <li><b>Evaluator:</b> a different CNN trained on the other half of MNIST, plus phase-correlation motion.</li>
+  <li><b>Training:</b> 150 GRPO updates, 4 prompts × 8 samples, 3 seeds, about an hour each.</li>
+  <li><b>Test:</b> 320 clips with identical starting noise for every method.</li>
+</ul>
+
+<div class="tbl"><table>
+  <thead><tr><th>Method</th><th>Sampling cost</th><th>Success</th><th>Δ vs pretrained (95% CI)</th><th>Worst digit</th></tr></thead>
+  <tbody>
+    <tr><td>Pretrained</td><td class="n">1×</td><td class="n">49.1%</td><td class="n">–</td><td class="n">34%</td></tr>
+    <tr><td>GRPO, seed 1</td><td class="n">1×</td><td class="n">75.9%</td><td class="n good">+26.9 (21.6, 32.2)</td><td class="n">53%</td></tr>
+    <tr><td>GRPO, seed 2</td><td class="n">1×</td><td class="n">84.1%</td><td class="n good">+35.0 (29.7, 40.6)</td><td class="n">69%</td></tr>
+    <tr><td>GRPO, seed 3</td><td class="n">1×</td><td class="n">84.4%</td><td class="n good">+35.3 (29.7, 40.9)</td><td class="n">72%</td></tr>
+    <tr class="best"><td>GRPO, pooled</td><td class="n">1×</td><td class="n">81.5%</td><td class="n good">+32.4 (27.7, 37.3)</td><td class="n">–</td></tr>
+    <tr><td>Best-of-4</td><td class="n">4×</td><td class="n">82.8%</td><td class="n">+33.8 (28.1, 39.4)</td><td class="n">56%</td></tr>
+    <tr><td>Guidance w=2</td><td class="n">2×</td><td class="n">85.6%</td><td class="n">+36.6 (30.9, 42.2)</td><td class="n">75%</td></tr>
+  </tbody>
+</table></div>
+
+<p>All three seeds improved by 27–35 points. GRPO matches best-of-4 at a quarter of the sampling cost. Motion was already perfect, so the whole gain is in drawing the right digit.</p>
+
+<figure class="wide">
+  <img src="figures/video_digit_paired_effects.png" alt="Paired changes vs the pretrained model with 95% confidence intervals: success, legible requested digit, and direction." width="1560" height="442" loading="lazy">
+  <figcaption>Paired change vs the pretrained model on 320 identical-noise clips, bootstrap 95% CIs.</figcaption>
+</figure>
+
+<p>And no shortcut this time. Every digit improved; the weakest went from 34% to 53–72%. The pretrained model had its own 8 bias (68 clips read as 8 when 32 were requested). After GRPO: 28, 38 and 31. <b>GRPO removed the bias instead of exploiting it.</b></p>
 
 <figure>
-  <div class="plate"><img src="figures/fig_grid_shaping.png" alt="Grid of samples from the same noise seeds over DDPO training. Top row with log-probability reward becomes white blobs; bottom row with probability reward becomes clean sevens." width="1046" height="520"></div>
-  <figcaption><b>Same noise, same algorithm, different reward transform.</b> Top: r = log p(7|x) → blobs, 0% gold. Bottom: r = p(7|x) → 7s.</figcaption>
+  <img src="figures/video_digit_per_digit.png" alt="Success rate by requested digit 0 to 9 for pretrained, three GRPO seeds and best-of-4." width="910" height="390" loading="lazy">
+  <figcaption>Success by requested digit.</figcaption>
 </figure>
-
-<section class="col">
-  <h2>Denoising as an RL problem</h2>
-  <p>A stochastic DDIM sampler (η = 1) is a chain of Gaussian steps, so each step is a policy action:</p>
-  <div class="eq">π_θ(x_t' | x_t) = N( μ_θ(x_t, t), σ_t² I )
-state = (x_t, t)   action = x_t'   reward = r(x̂₀) at the end</div>
-  <ul>
-    <li>Per-step log-probs are exact and cheap, even though the image likelihood isn't.</li>
-    <li>Policy and reference share σ_t, so per-step KL is closed form.</li>
-  </ul>
-  <p><b>GRPO</b>: sample a group per prompt, normalise rewards within the group, take clipped steps, anchor with KL:</p>
-  <div class="eq">A_i = (r_i − mean(r_group)) / std(r_group)
-L = − E[ min(ρ·A, clip(ρ, 1±ε)·A) ] + β·KL(π_θ ‖ π_ref)</div>
-
-  <div class="part" id="part1">Part 1</div>
-  <h2 class="parth">Which algorithm can you trust?</h2>
-  <p>Goal: turn an unconditional MNIST generator into a 7 generator, using only a <i>weak</i> reward model. A strong model we never train on tells us the truth.</p>
-  <dl class="setup">
-    <dt>Base</dt><dd>1.5M-param UNet DDPM. ~9% of samples are 7s.</dd>
-    <dt>Proxy reward</dt><dd>MLP on 1,000 labels (89.9%). r = p(7|x).</dd>
-    <dt>Gold judge</dt><dd>CNN on 60k labels (99.2%). Never trained on.</dd>
-    <dt>Black-box</dt><dd>JPEG file size (no gradient).</dd>
-  </dl>
-  <h3>Same reward, opposite outcomes</h3>
-</section>
 
 <figure>
-  <div class="plate"><img src="figures/fig_methods.png" alt="Four line charts over RL epochs comparing methods on proxy reward, gold accuracy, Fréchet distance to real sevens, and diversity." width="1870" height="400"></div>
-  <figcaption><b>Training curves.</b> DRaFT (green) wins the proxy and loses the truth. DDPO on the proxy (blue) ≈ DDPO on gold (orange).</figcaption>
+  <img src="figures/video_digit_comparison.png" alt="Ten rows, one per digit, showing frames from the pretrained and GRPO models from the same starting noise." width="1080" height="1410" loading="lazy">
+  <figcaption>Same noise, before and after GRPO. One clip per digit, picked by a fixed rule rather than by outcome. The bar is the evaluator's verdict. GRPO's 4 is a miss.</figcaption>
 </figure>
 
-<section class="col">
-  <div class="tbl">
-  <table>
-    <thead><tr><th>Method (150 epochs)</th><th>proxy p(7)</th><th>gold acc</th><th>FD → 7s ↓</th><th>diversity</th><th>path-KL</th></tr></thead>
-    <tbody>
-      <tr><td>Pretrained base</td><td>0.081</td><td>0.086</td><td>20.85</td><td>5.71</td><td>0</td></tr>
-      <tr class="hl-ok"><td>DDPO, 3 seeds</td><td>0.914 ± .022</td><td class="ok">0.958 ± .010</td><td>0.96</td><td>1.85</td><td>76 ± 64</td></tr>
-      <tr><td>DDPO, 3 passes / batch (75 ep)</td><td>0.983</td><td>1.000</td><td>1.78</td><td>1.10</td><td>76</td></tr>
-      <tr><td>DDPO + KL β = 3e-4</td><td>0.460</td><td>0.488</td><td>8.93</td><td>4.49</td><td>7</td></tr>
-      <tr><td>RWR</td><td>0.336</td><td>0.316</td><td>32.26</td><td>3.93</td><td>697</td></tr>
-      <tr class="hl-bad"><td>DRaFT-1, 3 seeds</td><td>0.988 ± .003</td><td class="bad">0.007 ± .002</td><td>49.7</td><td>1.81</td><td>6,500</td></tr>
-      <tr class="sep"><td>Oracle: DDPO on gold</td><td>0.825</td><td>0.914</td><td>1.62</td><td>2.31</td><td>68</td></tr>
-      <tr><td>Best-of-16 (no training)</td><td>0.739</td><td>0.749</td><td>–</td><td>–</td><td>1.8 exact</td></tr>
-      <tr><td>Best-of-64 (no training)</td><td>0.962</td><td>0.989</td><td>–</td><td>–</td><td>3.2 exact</td></tr>
-    </tbody>
-  </table>
-  </div>
-</section>
+<p>The cost: within-prompt diversity fell from 0.47 to 0.37–0.41, as is usual for KL-regularised RL. KL to the reference stayed below 0.02, and the ratio never reached the clip, so the KL anchor did the regularising.</p>
 
-<div class="two">
-  <figure>
-    <div class="plate"><img src="figures/fig_proxy_vs_gold.png" alt="Scatter-line chart of gold accuracy against proxy reward; best-of-N, DDPO and RWR follow the diagonal; DRaFT drops to zero after proxy 0.5." width="640" height="500"></div>
-    <figcaption><b>Proxy vs truth.</b> Sample-reweighting methods stay on the diagonal. DRaFT falls off at proxy ≈ 0.5.</figcaption>
-  </figure>
-  <figure>
-    <div class="plate"><img src="figures/fig_grid_methods.png" alt="Sample grids over training for DDPO, DDPO with KL, DRaFT and RWR." width="1046" height="1046"></div>
-    <figcaption><b>What each method draws.</b> DRaFT ends in adversarial textures the MLP reads as 7.</figcaption>
-  </figure>
-</div>
-
-<section class="col">
-  <h3>Why</h3>
-  <ul>
-    <li><b>DDPO</b> only reweights images the model already makes. On those, the proxy is roughly right.</li>
-    <li><b>DRaFT</b> follows ∇ₓr, which for an MLP is an adversarial direction. It's an adversarial attack baked into the weights.</li>
-    <li><b>Control:</b> DRaFT on the strong gold CNN gives mostly real 7s, but still ghost overlays and 3,560 nats of KL. Robust rewards help; they don't make it safe.</li>
-  </ul>
-
-  <h3>Reward shaping comes first</h3>
-  <ul>
-    <li>r = log p → 0% real 7s. r = p → 96%. Same optimum, different path.</li>
-    <li>Cause: with 9% 7s per batch, most log p variance comes from non-7s, where "more ink" scores slightly higher.</li>
-    <li>Bounded p scores non-7s ≈ 0, so the gradient comes from the 7s.</li>
-  </ul>
-</section>
-
-<figure>
-  <div class="plate"><img src="figures/fig_shaping.png" alt="Charts comparing log-probability and probability rewards for DDPO and DRaFT plus a random-reward control." width="1870" height="400"></div>
-  <figcaption><b>Shaping and controls.</b> log p inflates ink and KL. Random-reward control (orange) is the noise floor.</figcaption>
+<figure class="wide">
+  <img src="figures/video_digit_training.png" alt="Training curves for three GRPO seeds: reward, KL to the reference, and clip fraction." width="1560" height="390" loading="lazy">
+  <figcaption>Smoothed group reward, KL to the pretrained model, and PPO clip fraction.</figcaption>
 </figure>
 
-<section class="col">
-  <h3>The price of staying close</h3>
-</section>
-<figure>
-  <div class="plate"><img src="figures/fig_klsweep.png" alt="Charts of DDPO with KL penalties of 0, 3e-4, 1e-3 and 0.1." width="1870" height="400"></div>
-  <figcaption><b>KL sweep.</b> β = 0: diversity 5.7 → 1.85. β = 3e-4: keeps diversity, halves progress. β = 0.1: frozen.</figcaption>
-</figure>
-<section class="col">
-  <ul>
-    <li>Best-of-64: 99% gold at 3.2 nats exact KL. RL: same accuracy at 20–165 nats path-KL.</li>
-    <li>If inference is cheap, best-of-N is hard to beat. RL's win: 64× cheaper sampling.</li>
-  </ul>
+<h2 id="exp4">Experiment 4: RFdiffusion3 doesn't move</h2>
+<p>Then proteins. I fine-tuned the real RFdiffusion3 checkpoint (168M parameters, frozen) through a small low-rank adapter on its final coordinate-update layer. The policy was a stochastic version of RFD3's own sampler; the reward favoured compact, well-bonded, clash-free backbones.</p>
+<p>First study: three GRPO seeds plus three controls, tested on 288 fresh backbones. Every change was within ±0.001 of zero. My guess was that actions moved only the Cα atoms, and the frozen denoiser pulled each residue back. So I let actions move every atom, raised the learning rate, and focused on low noise levels:</p>
 
-  <h3>Sample reuse</h3>
-</section>
-<div class="two">
-  <figure class="narrow">
-    <div class="plate"><img src="figures/fig_sample_eff.png" alt="Gold accuracy against number of trajectories sampled for one pass per batch versus three passes." width="640" height="460"></div>
-    <figcaption><b>3 passes per batch:</b> 98% gold after 2,880 trajectories vs ~9,600 with one.</figcaption>
-  </figure>
-  <div class="col" style="margin:0">
-    <ul>
-      <li>Per-pixel log-prob averaging shrinks |ρ − 1| to ~2e-4.</li>
-      <li>So the ε = 0.2 clip never fires, even after 6 passes.</li>
-      <li>The gain is just extra gradient steps. Explains DDPO's ε = 1e-4.</li>
-    </ul>
-  </div>
-</div>
+<div class="tbl"><table>
+  <thead><tr><th>Seed</th><th>Actions on</th><th>Reward change</th><th>95% CI</th></tr></thead>
+  <tbody>
+    <tr><td>11</td><td>Cα only, lr 3e-3</td><td class="n">+0.0005</td><td class="n">(−0.0001, +0.0014)</td></tr>
+    <tr><td>21</td><td>all atoms, lr 1e-3</td><td class="n">+0.0006</td><td class="n">(−0.0001, +0.0013)</td></tr>
+    <tr><td>22</td><td>all atoms, lr 1e-3</td><td class="n">−0.0000</td><td class="n">(−0.0008, +0.0006)</td></tr>
+  </tbody>
+</table></div>
 
-<section class="col">
-  <h3>Black-box rewards</h3>
-  <ul>
-    <li><b>Incompressibility</b> (+30% file size): thick, rough strokes.</li>
-    <li><b>Compressibility</b>: digits fade to solid black. Reward satisfied, output useless.</li>
-  </ul>
-</section>
-<figure>
-  <div class="plate"><img src="figures/fig_grid_jpeg.png" alt="Sample grids for JPEG incompressibility and compressibility rewards over training." width="1046" height="520"></div>
-  <figcaption><b>JPEG rewards.</b> Top: incompressible. Bottom: compressible → blank by epoch 100.</figcaption>
+<figure class="wide">
+  <img src="figures/rfd3_paired_deltas.png" alt="Paired reward deltas for RFdiffusion3 at 24, 32 and 40 residues, all centred on zero." width="1800" height="810" loading="lazy">
+  <figcaption>First study: paired reward changes on 288 fresh backbones, centred on zero at every design length.</figcaption>
 </figure>
 
-<section class="col">
-  <h3>Gotchas</h3>
-  <ol class="find">
-    <li><b>The last step dominates.</b> σ ≈ 0.006 → 100× larger score term. End the stochastic chain early.</li>
-    <li><b>Run a null-reward control.</b> Random advantages still drift 65 nats.</li>
-    <li><b>Keep x̂₀ clipping.</b> Removing it: FD 1.3 → 149.</li>
-    <li><b>Learning rate controls hacking.</b> 3e-5 instead of 1e-5 → straight to blobs.</li>
-  </ol>
+<p>Still nothing.<span class="sn"></span><span class="sidenote">A separate benchmark refilling an 8-residue gap in crambin (PDB 1CRN) gave the same answer: a mean paired change of 0.00002 Å RMSD to native.</span> RFdiffusion3 already satisfies a geometric reward, so every group has almost no reward variance to learn from. <b>RL needs headroom.</b> Moving it will need a reward the base model doesn't already meet, like binding or designability.</p>
 
-  <div class="part" id="part2">Part 2</div>
-  <h2 class="parth">GRPO on video, proteins and images</h2>
-  <p>Same recipe on four real models: on-policy GRPO, held-out evaluator, paired comparisons from identical noise.</p>
-
-  <h3 class="sub">Video: +32 points, every digit improves</h3>
-  <dl class="setup">
-    <dt>Model</dt><dd>1.7M-param space-time UNet, trained from scratch. Moving-MNIST, 8 frames, 32×32.</dd>
-    <dt>Gate</dt><dd>≥ 40% correct digit before RL. 36% at 8k steps → extended to 12k → 47.5%.</dd>
-    <dt>Prompt</dt><dd>Direction + digit, e.g. "a 3 moving down-left".</dd>
-    <dt>Reward</dt><dd>0.4 × p(requested digit) + 0.6 × motion, × ink guard.</dd>
-    <dt>Evaluator</dt><dd>Separate CNN on disjoint MNIST + phase correlation.</dd>
-    <dt>Training</dt><dd>150 GRPO updates, 4 prompts × 8 samples, 3 seeds.</dd>
-    <dt>Test</dt><dd>320 identical-noise clips (80 prompts × 4).</dd>
-  </dl>
-  <div class="note"><span class="eyebrow">Why condition on the digit?</span>A first version paid for "any legible digit". GRPO gained +11.7 points by drawing 8s (64 → 109–150 of 256). Paying for the <i>requested</i> digit closed the shortcut.</div>
-
-  <div class="tbl"><table>
-    <thead><tr><th>Method</th><th>Success</th><th>Δ vs pretrained (95% CI)</th><th>Worst digit</th></tr></thead>
-    <tbody>
-      <tr><td>Pretrained</td><td>49.1%</td><td>n/a</td><td>34%</td></tr>
-      <tr class="hl-ok"><td>GRPO, seed 1</td><td>75.9%</td><td class="ok">+26.9 (+21.6, +32.2)</td><td>53%</td></tr>
-      <tr class="hl-ok"><td>GRPO, seed 2</td><td>84.1%</td><td class="ok">+35.0 (+29.7, +40.6)</td><td>69%</td></tr>
-      <tr class="hl-ok"><td>GRPO, seed 3</td><td>84.4%</td><td class="ok">+35.3 (+29.7, +40.9)</td><td>72%</td></tr>
-      <tr class="hl-ok sep"><td><b>GRPO, 3 seeds pooled</b></td><td><b>81.5%</b></td><td class="ok"><b>+32.4 (+27.7, +37.3)</b></td><td>n/a</td></tr>
-      <tr><td>Best-of-4 sampling (4× cost)</td><td>82.8%</td><td>+33.8 (+28.1, +39.4)</td><td>56%</td></tr>
-      <tr><td>Guidance, w = 2 (2× cost)</td><td>85.6%</td><td>+36.6 (+30.9, +42.2)</td><td>75%</td></tr>
-    </tbody>
-  </table></div>
-  <ul>
-    <li>All 3 seeds: +27 to +35 points.</li>
-    <li>Matches best-of-4 at ¼ the sampling cost.</li>
-    <li>Motion stayed at 100%; all the gain is the right digit.</li>
-  </ul>
-</section>
-
-<figure>
-  <div class="plate"><img src="figures/video_digit_paired_effects.png" alt="Three panels of paired changes vs the pretrained model with 95% confidence intervals: success, legible requested digit, and direction. All GRPO seeds sit between +0.27 and +0.35 on the first two; direction stays at zero change." width="1560" height="442" loading="lazy"></div>
-  <figcaption><b>Paired change vs pretrained</b>, 320 clips, bootstrap 95% CIs.</figcaption>
+<h2 id="exp5">Experiment 5: CIFAR-10 hacks the classifier</h2>
+<p>On Google's pretrained CIFAR-10 DDPM, I used GRPO to make images more frog-like. The reward was one classifier's frog probability; the evaluator was a second classifier trained on disjoint data.</p>
+<ul>
+  <li>Reward classifier: <span class="good">+0.056</span></li>
+  <li>Independent classifier: <span class="bad">+0.009</span></li>
+</ul>
+<p>The reward rose six times more than the truth. GRPO learned what <i>that classifier</i> responds to, not what a frog looks like. <b>The reward model sets the ceiling.</b></p>
+<figure class="wide">
+  <img src="figures/cifar_paired_effects.png" alt="Paired effects on CIFAR-10: the training classifier's frog probability rises clearly, the independent classifier's barely changes." width="1620" height="630" loading="lazy">
+  <figcaption>Gains transfer only as far as the reward agrees with independent judgement.</figcaption>
 </figure>
 
-<section class="col">
-  <h4>No shortcut this time</h4>
-  <ul>
-    <li>Worst digit: 34% → 53–72%.</li>
-    <li>Clips read as 8: 68 before → 28 / 38 / 31 after (target 32). GRPO removed the 8 bias.</li>
-  </ul>
-</section>
+<h2 id="exp6">Experiment 6: A real text-to-video model</h2>
+<p>Finally, a feasibility check on ZeroScope, a pretrained text-to-video model. With the U-Net frozen and a small output residual trained on eight frames, one GRPO update fits in 16&nbsp;GB. That's all this shows. It's not a result, and scaling it needs more memory than this laptop has.</p>
 
-<figure class="narrow">
-  <div class="plate"><img src="figures/video_digit_per_digit.png" alt="Line chart of success rate by requested digit 0 to 9. The pretrained model sits between 0.34 and 0.66; all three GRPO seeds sit between 0.53 and 1.0 for every digit." width="910" height="390" loading="lazy"></div>
-  <figcaption><b>Success by requested digit.</b> Every digit goes up.</figcaption>
-</figure>
+<h2 id="conclusion">Conclusion</h2>
+<p>Across five diffusion models, RL <i>always</i> optimised the reward. Whether that became real improvement came down to two things:</p>
+<ol>
+  <li><b>Does the algorithm learn from its own samples?</b> DDPO and GRPO do; DRaFT follows the reward gradient and attacks the reward model.</li>
+  <li><b>Does the reward pay for exactly the target?</b> Ink, 8s and classifier quirks were all shortcuts RL found.</li>
+</ol>
+<p>When both hold, it delivers: +32 points on video, every class improved, at 1× sampling cost. What I'd carry to a real system:</p>
+<ul>
+  <li>Prefer on-policy methods (DDPO, GRPO) when the reward is a learned model.</li>
+  <li>Always keep an evaluator the optimiser never sees.</li>
+  <li>Condition the reward on the prompt, so collapsing onto an easy mode costs reward.</li>
+  <li>Treat reward shaping as a hyperparameter.</li>
+  <li>Compare against best-of-N and guidance at matched inference cost, and report KL against a null-reward control.</li>
+</ul>
+<p>Next up: RFdiffusion3 with a binding or designability reward, GRPO combined with guidance on video, Diffusion-DPO in the same harness, and the proxy-vs-gold protocol on Stable Diffusion with LoRA.</p>
 
-<figure class="narrow">
-  <div class="plate"><img src="figures/video_digit_comparison.png" alt="Ten rows, one per digit 0 to 9, each showing four frames from the pretrained model and four from the GRPO model, from the same starting noise. GRPO clips have cleaner, sharper strokes; the pretrained 0 and 2 are blobs." width="1080" height="1410" loading="lazy"></div>
-  <figcaption><b>Same noise, before vs after.</b> One clip per digit, chosen by a fixed rule. Bar = evaluator verdict. GRPO's 4 is a miss.</figcaption>
-</figure>
+<h2>Further resources and references</h2>
+<ul>
+  <li>Black et al., <a href="https://arxiv.org/abs/2305.13301">Training Diffusion Models with Reinforcement Learning</a> (DDPO)</li>
+  <li>Fan et al., DPOK: RL fine-tuning of text-to-image diffusion models with a KL penalty</li>
+  <li>Clark et al., <a href="https://arxiv.org/abs/2309.17400">Directly Fine-Tuning Diffusion Models on Differentiable Rewards</a> (DRaFT)</li>
+  <li>Prabhudesai et al., AlignProp: reward back-propagation for text-to-image diffusion</li>
+  <li>Shao et al., <a href="https://arxiv.org/abs/2402.03300">DeepSeekMath</a> (introduces GRPO)</li>
+  <li>Gao et al., <a href="https://arxiv.org/abs/2210.10760">Scaling Laws for Reward Model Overoptimization</a></li>
+</ul>
 
-<section class="col">
-  <h4>Cost</h4>
-  <ul>
-    <li>Within-prompt diversity: 0.47 → 0.37–0.41.</li>
-    <li>Reward 0.70–0.76 → 0.85–0.90 in every seed; KL stays &lt; 0.02.</li>
-  </ul>
-</section>
+<footer>
+  Code, predeclared protocols and per-sample metrics: <a href="https://github.com/karman103/Diffusion_RL">github.com/karman103/Diffusion_RL</a>. Folders: <code>mnist_rl/</code> (Exp. 1), <code>image_video_grpo/learned_video/</code> (Exp. 2–3), <code>rfd3_grpo/</code> (Exp. 4), <code>image_video_grpo/</code> (Exp. 5), <code>text_video_grpo/</code> (Exp. 6).
+</footer>
 
-<figure>
-  <div class="plate"><img src="figures/video_digit_training.png" alt="Training curves for three GRPO seeds: smoothed reward rising from about 0.70-0.76 to 0.85-0.91, KL to the reference staying below 0.02, and clip fraction at zero." width="1560" height="390" loading="lazy"></div>
-  <figcaption><b>Training.</b> Reward, KL, clip fraction. The clip never fires; KL does the regularising.</figcaption>
-</figure>
-
-<section class="col">
-  <h3 class="sub">Proteins: RFdiffusion3 doesn't move</h3>
-  <ul>
-    <li>Frozen RFdiffusion3 (168M) + low-rank adapter on the last coordinate layer.</li>
-    <li>Reward: compact, well-bonded, clash-free backbones.</li>
-    <li>First study: 3 seeds + 3 controls, 288 fresh backbones → Δ ≈ −0.001 to −0.0003.</li>
-    <li>Fix attempt: actions on all atoms, higher lr, low-noise window, 60 epochs → still zero.</li>
-  </ul>
-  <div class="tbl"><table>
-    <thead><tr><th>Seed</th><th>Actions on</th><th>Reward change</th><th>95% CI</th></tr></thead>
-    <tbody>
-      <tr><td>11</td><td>Cα only, lr 3e-3</td><td>+0.0005</td><td>−0.0001, +0.0014</td></tr>
-      <tr><td>21</td><td>all atoms, lr 1e-3</td><td>+0.0006</td><td>−0.0001, +0.0013</td></tr>
-      <tr><td>22</td><td>all atoms, lr 1e-3</td><td>−0.0000</td><td>−0.0008, +0.0006</td></tr>
-    </tbody>
-  </table></div>
-</section>
-
-<figure>
-  <div class="plate"><img src="figures/rfd3_paired_deltas.png" alt="Paired reward deltas for RFdiffusion3 at 24, 32 and 40 residues, all centred on zero." width="1800" height="810" loading="lazy"></div>
-  <figcaption><b>RFdiffusion3.</b> Paired reward changes centred on zero at every length.</figcaption>
-</figure>
-
-<section class="col">
-  <div class="note"><span class="eyebrow">Takeaway</span>The base model already satisfies a geometric reward, so groups have no variance to learn from. Next: a reward it doesn't satisfy (binding, designability).</div>
-
-  <h3 class="sub">Images: reward up, truth barely</h3>
-  <ul>
-    <li>Google CIFAR-10 DDPM, reward = one classifier's frog probability.</li>
-    <li>Training classifier: <b class="ok">+0.056</b>. Independent classifier: <b class="bad">+0.009</b>.</li>
-    <li>GRPO learned the classifier's quirks, not "frog".</li>
-  </ul>
-</section>
-
-<figure>
-  <div class="plate"><img src="figures/cifar_paired_effects.png" alt="Paired effects on CIFAR-10: the training classifier's frog probability rises clearly, the independent classifier's barely changes." width="1620" height="630" loading="lazy"></div>
-  <figcaption><b>CIFAR-10.</b> Gains transfer only as far as the reward agrees with the judge.</figcaption>
-</figure>
-
-<section class="col">
-  <h3 class="sub">Text-to-video: it fits, barely</h3>
-  <ul>
-    <li>ZeroScope, frozen U-Net + small output residual, 8 frames.</li>
-    <li>One update fits in 16 GB. Feasibility only, not a result.</li>
-  </ul>
-
-  <div class="part" id="lessons">Lessons</div>
-  <h2 class="parth">What ties it together</h2>
-  <div class="tbl"><table>
-    <thead><tr><th>Experiment</th><th class="l">Reward up?</th><th class="l">Truth up?</th><th class="l">Why</th></tr></thead>
-    <tbody>
-      <tr class="hl-ok"><td>MNIST · DDPO, weak proxy</td><td class="l">0.08 → 0.91</td><td class="l ok">9% → 96%</td><td class="l">Own samples</td></tr>
-      <tr class="hl-bad"><td>MNIST · DRaFT, weak proxy</td><td class="l">0.08 → 0.99</td><td class="l bad">0.7%</td><td class="l">Reward gradient</td></tr>
-      <tr class="hl-ok"><td>Video · requested digit</td><td class="l">0.78 → 0.91</td><td class="l ok">+32.4</td><td class="l">Exact target</td></tr>
-      <tr class="hl-bad"><td>Video · any legible digit</td><td class="l">0.61 → 0.92</td><td class="l">+11.7, mostly 8s</td><td class="l">Shortcut</td></tr>
-      <tr><td>Proteins · RFdiffusion3</td><td class="l">No</td><td class="l">No</td><td class="l">No headroom</td></tr>
-      <tr class="hl-bad"><td>Images · CIFAR-10</td><td class="l">+0.056</td><td class="l bad">+0.009</td><td class="l">Classifier quirks</td></tr>
-    </tbody>
-  </table></div>
-  <ol class="find">
-    <li><b>Shortcut in the reward → it finds the shortcut.</b></li>
-    <li><b>Reward gradient → it attacks the reward model.</b></li>
-    <li><b>Reward already satisfied → nothing to do.</b></li>
-    <li><b>Honest reward + on-policy → it delivers.</b></li>
-  </ol>
-
-  <h3>Carry to a real system</h3>
-  <ul>
-    <li>Prefer on-policy methods (DDPO, GRPO) with learned rewards.</li>
-    <li>Always keep a held-out evaluator.</li>
-    <li>Condition the reward on the prompt so mode collapse costs reward.</li>
-    <li>Treat reward shaping as a hyperparameter.</li>
-    <li>Report KL against a null-reward control; compare with best-of-N and CFG at matched cost.</li>
-  </ul>
-
-  <h3>Next</h3>
-  <ul>
-    <li>RFdiffusion3 with a binding / designability reward</li>
-    <li>GRPO + classifier-free guidance on video</li>
-    <li>Diffusion-DPO in the same harness</li>
-    <li>Proxy-vs-gold on Stable Diffusion + LoRA</li>
-  </ul>
-
-  <footer>
-    Code, protocols and per-sample metrics on <a href="https://github.com/karman103/Diffusion_RL">GitHub</a>. Every GRPO study fixed its protocol before training; amendments are in each <code>PROTOCOL.json</code>. One Apple M3, 16 GB, no cloud.
-  </footer>
-</section>
-</main>
+</article>
 </body>
 </html>
