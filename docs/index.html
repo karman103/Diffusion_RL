@@ -15,7 +15,9 @@
 <h1>RL for Diffusion Models: What Works, and What Gets Hacked. A Worklog</h1>
 <div class="meta"><a class="btn" href="https://github.com/karman103/Diffusion_RL">Code on GitHub</a><span>November 2026</span></div>
 
-<p>In this post I fine-tune diffusion models with reinforcement learning, one experiment at a time, on a single 16&nbsp;GB MacBook.<span class="sn"></span><span class="sidenote">All code, protocols, per-sample metrics and analysis scripts are on <a href="https://github.com/karman103/Diffusion_RL">GitHub</a>. Apple M3, MPS backend, no cloud.</span> The goal is not a state-of-the-art model. It is to find out, under controlled conditions, <i>when RL actually improves a diffusion model and when it just games the reward</i>.</p>
+<p>This project started with RFdiffusion3. I had been using it to generate protein backbones, and I wanted to know one thing: <b>can reinforcement learning steer RFD3 toward a reward?</b> Answering that properly meant first working out, on smaller models, when RL on a diffusion model works at all.</p>
+
+<p>So in this post I fine-tune diffusion models with reinforcement learning, one experiment at a time, on a single 16&nbsp;GB MacBook.<span class="sn"></span><span class="sidenote">All code, protocols, per-sample metrics and analysis scripts are on <a href="https://github.com/karman103/Diffusion_RL">GitHub</a>. Apple M3, MPS backend, no cloud.</span> The goal is not a state-of-the-art model. It is to find out, under controlled conditions, <i>when RL actually improves a diffusion model and when it just games the reward</i>.</p>
 
 <p>The trick that makes this measurable: every experiment has two judges. The model is trained against a <b>reward</b>, and scored by an independent <b>evaluator</b> the optimiser never sees. If the reward goes up and the evaluator doesn't, the model has been hacking the reward.</p>
 
@@ -232,7 +234,7 @@ L   = − E[ min(ρ·A, clip(ρ, 1±ε)·A) ] + β · KL(π_θ ‖ π_ref)
 </figure>
 
 <h2 id="exp4">Experiment 4: RFdiffusion3 doesn't move</h2>
-<p>Then proteins. I fine-tuned the real RFdiffusion3 checkpoint (168M parameters, frozen) through a small low-rank adapter on its final coordinate-update layer. The policy was a stochastic version of RFD3's own sampler; the reward favoured compact, well-bonded, clash-free backbones.</p>
+<p>Then proteins, and the question that started all of this. I fine-tuned the real RFdiffusion3 checkpoint (168M parameters, frozen) through a small low-rank adapter on its final coordinate-update layer. The policy was a stochastic version of RFD3's own sampler; the reward favoured compact, well-bonded, clash-free backbones.</p>
 <p>First study: three GRPO seeds plus three controls, tested on 288 fresh backbones. Every change was within ±0.001 of zero. My guess was that actions moved only the Cα atoms, and the frozen denoiser pulled each residue back. So I let actions move every atom, raised the learning rate, and focused on low noise levels:</p>
 
 <div class="tbl"><table>
